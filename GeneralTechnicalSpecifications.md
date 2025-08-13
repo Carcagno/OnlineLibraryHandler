@@ -19,65 +19,66 @@ In a fictive world, where there are no similar software existing, and where all 
 
 This software beeing a library management system, based on terminal, and which does not provide a graphical interface, it should provide simple features, as already non-exhaustively listed in the [2. Goals](#GoalsLink) section. By providing simple text command and appropriates arguments, and based on the type of the user making those operations, some basic features will be provided. 
 
-There will be 2 categories of users:
-<h3>1) Administrators</h3>
-This type user will be allowed to type the command to handle every "administrative" tasks of the library: 
-- All users related command (create, delete, etc.).
-- All Book creations, modifications and removal commands (Add a book, delete a book, change title, change author name, change category, etc.).
-- All author creations, modifications and removal commands (AddAuthor, delete, change, etc.)
+There will be 2 categories of users:  
+<h3>1) Administrators</h3>  
+This type user will be allowed to type the command to handle every "administrative" tasks of the library:  
+    - All users related command (create, delete, etc.).  
+    - All Book creations, modifications and removal commands (Add a book, delete a book, change title, change author name, change category, etc.).  
+    - All author creations, modifications and removal commands (AddAuthor, delete, change, etc.).  
+
 
 <h3>2) Readers</h3>
 This type of user is allowed to perform simple tasks to basically borrow and give back a book with appropriates commands.
 
 <h3>3) Common</h3>
 Both previous users will have some commands available in common:
-- Search book (by title). This will display the availability of the book.
-- Search author (by authorName). This will display all the book written by the author.
+    - Search book (by title). This will display the availability of the book.
+    - Search author (by authorName). This will display all the book written by the author.
 
 
-<h2 name="FeaturesList">4. FeaturesList<h2>
+<h2 name="FeaturesList">4. FeaturesList</h2>
 
 <h3>1) Login</h3>
-  Command: None (Should only enter his name)
+Command: None (Should only enter his name).
 
-  The user must be able to login with his name. This will be ask directly by the application everytime she will be launched.
+The user must be able to login with his name. This will be ask directly by the application everytime she will be launched.
 
 <h3>2) Administrator - create account</h3>
-  Command: createUser
+Command: createUser 
 
-  If the user is an administrator, he must be able to create account of both types: Administrator & Reader. For this, the connected administrator will need to type "createUser". It will then be asked to him:
+If the user is an administrator, he must be able to create account of both types: Administrator & Reader. For this, the connected administrator will need to type "createUser". It will then be asked to him:
     - userName
-    - userType \[A | R\]
+    - userType \[A | R\] 
 
-  A message will be prompt to confirm if the user creation will be successfull.
+A message will be prompt to confirm if the user creation will be successfull.
 
-  If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
+If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
     
 <h3>3) Administrator - delete an account</h3>
-  Command: deleteUser
+Command: deleteUser 
 
-  If the user is an administrator, he must be able to delete account of both types: Administrator & Reader. For this, the connected administrator will need to type "deleteUser". It will then be asked to him:
+If the user is an administrator, he must be able to delete account of both types: Administrator & Reader. For this, the connected administrator will need to type "deleteUser". It will then be asked to him:
     - The userName he wants to delete
   
-  If the entered username exists, it must be deleted, and a confirmation message of the successful deletion must be prompted. Otherwise, an error message must be prompted (telling the user if the name was not an existing user, or if the user could'nt be deleted for any exterior reason).
+If the entered username exists, it must be deleted, and a confirmation message of the successful deletion must be prompted. Otherwise, an error message must be prompted (telling the user if the name was not an existing user, or if the user could'nt be deleted for any exterior reason).
 
-  If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
+If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
 
 <h3>4) Administrator - show user info</h3>
-  Command: showUser
+Command: showUser 
 
-  If the user is an administrator, he must be able to show the user info of both types: Administrator and Reader. For this, the connected administrator will need to type "showUser". It will then be asked to him:
-    - The userName to show
+If the user is an administrator, he must be able to show the user info of both types: Administrator and Reader. For this, the connected administrator will need to type "showUser". It will then be asked to him:
+    - The userName to show 
 
-  If the user exists, all the informations about the user must be prompted to him:
+If the user exists, all the informations about the user must be prompted to him:
     - The userName
     - The userType (Administrator or Reader)
     - If reader:
         - The borrowedBookCount
         - The borrowedBookList
-    Otherwise, an error message must be prompted (telling the user if the name was not an existing user, or if the user info could'nt be prompted for any exterior reason).
+Otherwise, an error message must be prompted (telling the user if the name was not an existing user, or if the user info could'nt be prompted for any exterior reason). 
 
-  If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
+If a reader tries to enter this command, an error message telling him that he does not have the right to use this command must be prompted.
 
 <h3>5) Administrator - Create author</h3>
 
