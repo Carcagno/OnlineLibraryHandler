@@ -1,43 +1,55 @@
-<h1 style="text-align: center;">general technical specifications</h1>
+# General Technical Specifications
 
+## 1. Context & Introduction
 
-<h2 name="ContextAndIntroductionLink">1. Context & introduction</h2>
+The project is a terminal-based library manager. It is a showcase project designed to demonstrate my mastery of `C++`.  
+The goal is to provide a high-quality product as an example of good development practices.  
+The intended usage scenario is for fictional library managers (`Administrator`) and library users (`Reader`).
 
-The project is a terminal based library manager. It is only a showcase project to show my mastering of the C++. The goal here is to provide a good quality product. The usage which is considered for the project is for fictives library managers (administrators) & library users (readers).
+There are already many real-world projects that manage libraries. The purpose here is **not** to surpass existing products, but solely to create and deliver a professional-looking showcase application.
 
-There are, beyond a shadow of a doubt, real projects already used in real library. The goal here is not to have a better product than those existing products, but to only create and provide a showcase product.
+---
 
+## 2. Goals
 
-<h2 name="GoalsLink">2. Goals</h2>
+The main goal of the project is to provide a **terminal-based** library management system that supports all core operations related to managing books in a library.
 
-The main goal of the project is to provide a terminal based library manager which allows to manage every operations in a library regarding the handling of the books. For example: add a book (with information like author, title, publication date, etc.), find a book (by author, by title), remove a book, or books (by title, by author, to delete all the books of the author), add an user (administrator, reader), borrow a book, give back a book, etc.
+**Examples of supported operations:**
+- Add a book (with details such as `authorName`, `title`, `publicationDate`, etc.)
+- Find a book (by `authorName` or `title`)
+- Remove a book or multiple books (by `title` or by `authorName`)
+- Add a user (`Administrator` or `Reader`)
+- Borrow a book
+- Return a book
 
-In a fictive world, where there are no similar software existing, and where all those task are handled manually, such project would be created to ease the management of a library, and would make a very important gain of time and paper.
+In a fictional scenario where no similar software exists and all operations are performed manually, such a system would significantly simplify library management, saving both time and paperwork.
 
+---
 
-<h2 name="GeneralDescriptionLink">3. General description</h2>
+## 3. General Description
 
-This software beeing a library management system, based on terminal, and which does not provide a graphical interface, it should provide simple features, as already non-exhaustively listed in the [2. Goals](#GoalsLink) section. By providing simple text command and appropriates arguments, and based on the type of the user making those operations, some basic features will be provided. 
+This software is a **terminal-based library management system** without a graphical user interface.  
+It is designed to provide simple features — some already listed in [2. Goals](#2-goals).
 
-There will be 2 categories of users:  
-<h3>1) Administrators</h3>
+By typing basic text commands with the right arguments, and depending on the type of the logged-in user, the following categories of features will be available:
 
-This type of user will be allowed to type the command to handle every "administrative" task of the library:
-<ul>
-    <li> All users related command (create, delete, etc.).</li>
-    <li> All Book creations, modifications and removal commands (Add a book, delete a book, change title, change author name, change category, etc.).</li>
-    <li> All author creations, modifications and removal commands (AddAuthor, delete, change, etc.).</li>
-</ul>
-<h3>2) Readers</h3>
-<ul>
-    <li> This type of user is allowed to perform simple tasks to basically borrow and give back a book with appropriates commands.</li>
-</ul>
-<h3>3) Common</h3>
-Both previous users will have some commands available in common:
-<ul>
-    <li> Search book (by title). This will display the availability of the book.</li>
-    <li> Search author (by authorName). This will display all the book written by the author.</li>
-</ul>
+### 1) Administrators
+This type of user can perform all "administrative" tasks, including:
+- User management commands (`createUser`, `deleteUser`, `modifyUser`, etc.)
+- Book management commands (`createBook`, `deleteBook`, `modifyBook`, update `title`, `authorName`, `category`, etc.)
+- Author management commands (`createAuthor`, `deleteAuthor`, `modifyAuthor`, etc.)
+
+### 2) Readers
+This type of user can:
+- Borrow a book
+- Return a book
+
+### 3) Common
+Both `Administrator` and `Reader` users have access to:
+- Search for a book by `title` (displays its availability)
+- Search for an author by `authorName` (displays all their books)
+
+---
 
 ## 4. Features List
 
@@ -105,29 +117,68 @@ Searches for a book by `title` and displays its details (`title`, `authorName`, 
 **Command:** `searchAuthor`  
 Searches for an author by `authorName` and lists their books with details (`title`, `category`, `publicationDate`, availability).
 
-5. Cas d’utilisation (use cases)
-Décris les principaux scénarios d’utilisation du logiciel.
+---
 
-Exemple : « Un utilisateur recherche un livre par titre », « Un administrateur supprime un auteur », etc.
+## 5. Use Cases
 
-6. Contraintes
-Techniques : langage (C++ version moderne, standard utilisé…), OS cible, dépendances éventuelles, etc.
+Describes the main usage scenarios of the software.
 
-Fonctionnelles : ergonomie, sécurité des données, performance minimale…
+**Examples:**
+- A user searches for a book by `title`
+- An `Administrator` deletes an author
 
-Organisationnelles : délai, budget, responsabilités des intervenants.
+---
 
-7. Critères de réception et de qualité
-Quels sont les critères d’acceptation pour considérer le projet comme réussi ?
+## 6. Constraints
 
-Tests attendus, degré d’automatisation, robustesse, documentation…
+**Technical:**  
+- Programming language: `C++` (modern version, specified standard)  
+- Target OS: defined during development  
+- Possible dependencies: to be confirmed during design phase
 
-8. Livrables
-Liste précise des éléments attendus en fin de projet (code source, documentation, schémas, fichiers de tests…).
+**Functional:**  
+- Text-based UI with focus on ergonomics  
+- Secure handling of user and book data  
+- Fast execution for common operations
 
-9. Glossaire (optionnel)
-Définitions de termes spécifiques utilisés dans le CDC.
+**Organizational:**  
+- Deadlines to be set according to project scope  
+- Budget: N/A — personal project  
+- Responsibilities: single developer
 
-10. Annexes (optionnel)
-Documents complémentaires, schémas préliminaires, références…
+---
 
+## 7. Acceptance & Quality Criteria
+
+Defines the quality benchmarks for considering the project complete:
+- Successful execution of defined features
+- Basic automated or manual testing
+- Robustness against invalid inputs
+- Adequate documentation of code and usage
+
+---
+
+## 8. Deliverables
+
+- Complete `C++` source code  
+- Documentation (technical and user guide)  
+- Test files and execution examples  
+
+---
+
+## 9. Glossary (optional)
+
+**`userName`** – Unique identifier for a user.  
+**`userType`** – Type of the user (`A` = Administrator, `R` = Reader).  
+**`authorName`** – Name of a book's author.  
+**`title`** – Book title.  
+**`category`** – Book category or genre.  
+**`publicationDate`** – Book’s publication date.
+
+---
+
+## 10. Annexes (optional)
+
+- Additional diagrams  
+- Early prototypes or sketches  
+- References
