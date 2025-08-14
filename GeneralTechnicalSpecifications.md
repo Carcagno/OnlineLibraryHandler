@@ -22,9 +22,9 @@ This software beeing a library management system, based on terminal, and which d
 There will be 2 categories of users:  
 <h3>1) Administrators</h3>  
 This type user will be allowed to type the command to handle every "administrative" tasks of the library:  
-    - All users related command (create, delete, etc.).  
-    - All Book creations, modifications and removal commands (Add a book, delete a book, change title, change author name, change category, etc.).  
-    - All author creations, modifications and removal commands (AddAuthor, delete, change, etc.).  
+- All users related command (create, delete, etc.).  
+- All Book creations, modifications and removal commands (Add a book, delete a book, change title, change author name, change category, etc.).  
+- All author creations, modifications and removal commands (AddAuthor, delete, change, etc.).  
 
 
 <h3>2) Readers</h3>
