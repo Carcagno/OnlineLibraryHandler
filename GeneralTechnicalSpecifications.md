@@ -4,7 +4,7 @@
 
 The project is a terminal-based library manager. It is a showcase project designed to demonstrate my mastery of `C++`.  
 The goal is to provide a high-quality product as an example of good development practices.  
-The intended usage scenario is for fictional library managers (`Administrator`) and library users (`Reader`).
+The intended usage scenario is for fictional library manager.
 
 There are already many real-world projects that manage libraries. The purpose here is **not** to surpass existing products, but solely to create and deliver a professional-looking showcase application.
 
@@ -31,7 +31,7 @@ In a fictional scenario where no similar software exists and all operations are 
 This software is a **terminal-based library management system** without a graphical user interface.  
 It is designed to provide simple features — some already listed in [2. Goals](#2-goals).
 
-By typing basic text commands with the right arguments, and depending on the type of the logged-in user, the following categories of features will be available:
+By typing basic text commands, and then typing the right data when asked, and depending on the type of the logged-in user, the following categories of features will be available:
 
 ### 1) Administrators
 This type of user can perform all "administrative" tasks, including:
@@ -71,15 +71,15 @@ Updates account details (`userName`, `userType`). Restricted to `Administrator`.
 
 ### 5) Administrator - Show User Info  
 **Command:** `showUser`  
-Displays information about a given account (`userName`, `userType`, `number of borrowed books`, `list of borrowed books` if `Reader`). Restricted to `Administrator`.
+Displays information about a given account (`userName`, `userType`, + if `Reader`:  `number of borrowed books`, `list of borrowed books` ). Restricted to `Administrator`.
 
 ### 6) Administrator - Create Author  
 **Command:** `createAuthor`  
-Adds a new author to the system by specifying `authorName`. Restricted to `Administrator`.
+Adds a new author to the system by specifying `authorName`. Restricted to `Administrator`. Should be done prior to creating a new book.
 
 ### 7) Administrator - Delete Author  
 **Command:** `deleteAuthor`  
-Removes an author from the system using `authorName`. Restricted to `Administrator`.
+Removes an author from the system using `authorName`. Restricted to `Administrator`. Must nullify author section of the book of the author.
 
 ### 8) Administrator - Modify Author  
 **Command:** `modifyAuthor`  
@@ -87,15 +87,15 @@ Updates the `authorName` of an existing author. Restricted to `Administrator`.
 
 ### 9) Administrator - Create Book  
 **Command:** `createBook`  
-Adds a new book to the library with `title`, `authorName`, `category`, and `publicationDate`. Restricted to `Administrator`.
+Adds a new book to the library with `title`, `authorName`, `category`, and `publicationDate`. Restricted to `Administrator`. Should be done after creating an author.
 
 ### 10) Administrator - Delete Book  
 **Command:** `deleteBook`  
-Removes a book from the library by `title`. Restricted to `Administrator`.
+Removes a book from the library by `title`. Restricted to `Administrator`. Must delete the book on the author list if not null.
 
 ### 11) Administrator - Modify Book  
 **Command:** `modifyBook`  
-Updates details of an existing book (`title`, `authorName`, `category`, `publicationDate`). Restricted to `Administrator`.
+Updates details of an existing book (`title`, `authorName` (Should then search for the author, verify if existing, if yes, add the book to the author, and link the author to the book), `category`, `publicationDate`). Restricted to `Administrator`.
 
 ### 12) Reader - Borrow Book  
 **Command:** `borrowBook`  
