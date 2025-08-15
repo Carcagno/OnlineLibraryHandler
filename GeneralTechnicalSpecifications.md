@@ -132,7 +132,7 @@ Searches for an author by `authorName` and lists their books with details (`titl
 - No performance concerns
 
 **Organizational:**  
-- Small-scope project: design, development & testing should take ~one week
+- Small-scope project: design, development and testing should take ~one week
 - Budget: None — personal project  
 - Responsibilities: single developer
 
@@ -140,10 +140,10 @@ Searches for an author by `authorName` and lists their books with details (`titl
 
 ## 7. Acceptance & Quality Criteria
 
-Defines the quality benchmarks for considering the project complete:
-- Successful execution of defined features
-- Manual test during usage
-- Robustness against invalid inputs
+Defines the quality benchmarks for considering the project complete:  
+- Successful execution of defined features  
+- Manual test during usage  
+- Robustness against invalid inputs  
 - Self-documented program (prompt command available at each step)
 
 ---
