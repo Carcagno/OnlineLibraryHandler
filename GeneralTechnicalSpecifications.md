@@ -36,7 +36,7 @@ By typing basic text commands with the right arguments, and depending on the typ
 ### 1) Administrators
 This type of user can perform all "administrative" tasks, including:
 - User management commands (`createUser`, `deleteUser`, `modifyUser`, etc.)
-- Book management commands (`createBook`, `deleteBook`, `modifyBook`, update `title`, `authorName`, `category`, etc.)
+- Book management commands (`createBook`, `deleteBook`, `modifyBook`, `updateTitle`, `authorName`, `category`, etc.)
 - Author management commands (`createAuthor`, `deleteAuthor`, `modifyAuthor`, etc.)
 
 ### 2) Readers
@@ -46,7 +46,7 @@ This type of user can:
 
 ### 3) Common
 Both `Administrator` and `Reader` users have access to:
-- Search for a book by `title` (displays its availability)
+- Search for a book by `title` (displays its `availability`)
 - Search for an author by `authorName` (displays all their books)
 
 ---
@@ -55,7 +55,7 @@ Both `Administrator` and `Reader` users have access to:
 
 ### 1) Login  
 **Command:** *None* — user enters their `userName` at startup.  
-Allows any user to log in to the system and access commands according to their role.
+Allows any user to log in to the system and access commands according to their `userType`.
 
 ### 2) Administrator - Create Account  
 **Command:** `createUser`  
@@ -71,7 +71,7 @@ Updates account details (`userName`, `userType`). Restricted to `Administrator`.
 
 ### 5) Administrator - Show User Info  
 **Command:** `showUser`  
-Displays information about a given account (`userName`, `userType`, borrowed books if `Reader`). Restricted to `Administrator`.
+Displays information about a given account (`userName`, `userType`, `number of borrowed books`, `list of borrowed books` if `Reader`). Restricted to `Administrator`.
 
 ### 6) Administrator - Create Author  
 **Command:** `createAuthor`  
@@ -99,51 +99,41 @@ Updates details of an existing book (`title`, `authorName`, `category`, `publica
 
 ### 12) Reader - Borrow Book  
 **Command:** `borrowBook`  
-Allows a `Reader` to borrow a book by specifying its `title` if available.
+Allows a `Reader` to borrow a book by specifying its `title` if its `availability` is `True`.
 
 ### 13) Reader - Return Book  
 **Command:** `giveBackBook`  
-Allows a `Reader` to return a previously borrowed book by `title`.
+Allows a `Reader` to return a previously borrowed book by `title`; marks the `availability` of the book as `True` again.
 
 ### 14) Reader - Display Own Information  
 **Command:** `displayMe`  
-Displays the `Reader`’s own account details (`userName`, `userType`, number of borrowed books, list of borrowed books).
+Displays the `Reader`’s own account details (`userName`, `userType`, `number of borrowed books`, `list of borrowed books`).
 
 ### 15) Common - Search Book  
 **Command:** `searchBook`  
-Searches for a book by `title` and displays its details (`title`, `authorName`, `category`, `publicationDate`, availability).
+Searches for a book by `title` and displays its details (`title`, `authorName`, `category`, `publicationDate`, `availability`).
 
 ### 16) Common - Search Author  
 **Command:** `searchAuthor`  
-Searches for an author by `authorName` and lists their books with details (`title`, `category`, `publicationDate`, availability).
-
----
-
-## 5. Use Cases
-
-Describes the main usage scenarios of the software.
-
-**Examples:**
-- A user searches for a book by `title`
-- An `Administrator` deletes an author
+Searches for an author by `authorName` and lists their books with details (`title`, `category`, `publicationDate`, `availability`).
 
 ---
 
 ## 6. Constraints
 
 **Technical:**  
-- Programming language: `C++` (modern version, specified standard)  
-- Target OS: defined during development  
-- Possible dependencies: to be confirmed during design phase
+- Programming language: `C++` (modern version, C++20)  
+- Target OS: Windows 11
+- Dependencies: None, only STL functions
 
 **Functional:**  
-- Text-based UI with focus on ergonomics  
-- Secure handling of user and book data  
-- Fast execution for common operations
+- Text-based UI 
+- No data safety concerns
+- No performance concerns
 
 **Organizational:**  
-- Deadlines to be set according to project scope  
-- Budget: N/A — personal project  
+- Small-scope project: design, development & testing should take ~one week
+- Budget: None — personal project  
 - Responsibilities: single developer
 
 ---
@@ -152,33 +142,34 @@ Describes the main usage scenarios of the software.
 
 Defines the quality benchmarks for considering the project complete:
 - Successful execution of defined features
-- Basic automated or manual testing
+- Manual test during usage
 - Robustness against invalid inputs
-- Adequate documentation of code and usage
+- Self-documented program (prompt command available at each step)
 
 ---
 
 ## 8. Deliverables
 
 - Complete `C++` source code  
-- Documentation (technical and user guide)  
-- Test files and execution examples  
+- Technical documentation  
+- No test campaign required  
 
 ---
 
-## 9. Glossary (optional)
+## 9. Glossary
 
 **`userName`** – Unique identifier for a user.  
 **`userType`** – Type of the user (`A` = Administrator, `R` = Reader).  
 **`authorName`** – Name of a book's author.  
 **`title`** – Book title.  
 **`category`** – Book category or genre.  
-**`publicationDate`** – Book’s publication date.
+**`publicationDate`** – Book’s publication date.  
+**`availability`** – Book availability status (`True` = available, `False` = not available).  
+**`number of borrowed books`** – The count of books borrowed by a `Reader`.  
+**`list of borrowed books`** – The precise list of each book currently borrowed, including all relevant information.
 
 ---
 
 ## 10. Annexes (optional)
 
-- Additional diagrams  
-- Early prototypes or sketches  
-- References
+- Additional diagrams to be determined
