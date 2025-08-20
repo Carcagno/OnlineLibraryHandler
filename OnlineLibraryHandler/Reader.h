@@ -2,9 +2,11 @@
 
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "IUser.h"
 #include "Book.h"
+#include "BookStock.h"
 
 class Reader : public IUser {
 protected:
@@ -24,6 +26,7 @@ public:
 
 	//MISC
 	virtual void cleanUserForDelete() override;
+	void borrowBook(const std::string& bookName, const BookStock& bookStock);
 	void printBorrowedBooks() const;
 	void giveBackBook(const std::string& book);
 };
