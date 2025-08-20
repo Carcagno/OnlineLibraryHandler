@@ -17,5 +17,6 @@ class BookStock {
 			return std::weak_ptr<Book>();
 		}
 		bookSharedPtr->setIsBorrowed(true);
+		return std::weak_ptr<Book>{bookSharedPtr};
 	}*/
 };

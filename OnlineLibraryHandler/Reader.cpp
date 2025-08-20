@@ -39,6 +39,9 @@ void Reader::printBorrowedBooks() const {
 		std::cout << "You did'nt borrow any book" << std::endl;
 		return;
 	}
+	
+	std::cout << "You borrowed " << m_borrowedBookCount << " book(s)" << std::endl;
+
 	/*for (auto book : m_borrowedBooks) {
 		std::shared_ptr<Book> bookSharedPtr{book.lock()};
 		if (bookSharedPtr) {
@@ -56,6 +59,7 @@ void Reader::giveBackBook(const std::string& book) {
 			if (bookSharedPtr->getTitle() == book) {
 				bookSharedPtr->setIsBorrowed = false;
 				m_borrowedBooks.erase(it);
+				--m_borrowedBookCount;
 				std::cout << "The book " << book << " was successfully given back" << std::endl;
 				return;
 			}

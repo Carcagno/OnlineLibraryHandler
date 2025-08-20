@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36" version="28.1.0">
   <diagram name="Page-1" id="cnl19Zu05ogIa-8aHU8F">
-    <mxGraphModel dx="6037" dy="4797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="-58" dy="1516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -22,7 +22,7 @@
         <mxCell id="HNg3gGWHc3ooryUhJboP-2" value="- std::string m_title&lt;br&gt;&lt;div&gt;- std::weak_ptr&amp;lt;Author&amp;gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;m_author&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- bookCategory m_category&lt;/div&gt;&lt;div&gt;- int m_publicationDate&lt;/div&gt;&lt;div&gt;- bool m_isBorrowed&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-1">
           <mxGeometry y="29" width="360" height="81" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-3" value="+ Book(const std::string&amp;amp; title, Author author, bookCategory category, int publicationDate)&lt;div&gt;+ ~Book()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- void setTitle(const std::string&amp;amp; title)&lt;/div&gt;&lt;div&gt;- void setAuthor(const Author&amp;amp; author)&lt;/div&gt;&lt;div&gt;- void setCategory(const bookCategory category)&lt;/div&gt;&lt;div&gt;- void setPublicationDate(const int publicationDate)&lt;br&gt;- void setIsBorrowed(const bool isBorrowed)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- std::string getTitle() const&lt;/div&gt;&lt;div&gt;- Author getAuthor() const&lt;/div&gt;&lt;div&gt;- bookCategory getCategory() const&lt;/div&gt;&lt;div&gt;- int getPublicationDate() const&lt;/div&gt;&lt;div&gt;- bool isBorrowed() const&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void printBook() const&lt;/div&gt;&lt;div&gt;+ void modifyBook()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- void deleteThisBookInAuthor()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-3" value="+ Book(const std::string&amp;amp; title, Author author, bookCategory category, int publicationDate)&lt;div&gt;+ ~Book()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- void setTitle(const std::string&amp;amp; title)&lt;/div&gt;&lt;div&gt;- void setAuthor(const Author&amp;amp; author)&lt;/div&gt;&lt;div&gt;- void setCategory(const bookCategory category)&lt;/div&gt;&lt;div&gt;- void setPublicationDate(const int publicationDate)&lt;br&gt;- void setIsBorrowed(const bool isBorrowed)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- std::string getTitle() const&lt;/div&gt;&lt;div&gt;- Author getAuthor() const&lt;/div&gt;&lt;div&gt;- bookCategory getCategory() const&lt;/div&gt;&lt;div&gt;- int getPublicationDate() const&lt;/div&gt;&lt;div&gt;- bool getIsBorrowed() const&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void printBook() const&lt;/div&gt;&lt;div&gt;+ void modifyBook()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- void deleteThisBookInAuthor()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-1">
           <mxGeometry y="110" width="360" height="330" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-10" value="&lt;span style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;&amp;lt;enumeration&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;bookCategory&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -68,13 +68,13 @@
             <mxPoint x="11" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-28" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;User" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-28" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IUser" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="1080" y="-320" width="360" height="320" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-29" value="- std::string m_userName&lt;div&gt;- char m_userType&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-28">
           <mxGeometry y="29" width="360" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-30" value="+ User(const std::string&amp;amp; userName, const char userType)&lt;br&gt;+ ~User()&lt;br&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; userName)&lt;br&gt;&lt;br&gt;+ std::string getUserName() const&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete()&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-28">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-30" value="+ IUser(const std::string&amp;amp; userName, const char userType)&lt;br&gt;+ IUser()&lt;br&gt;+ ~IUser()&amp;nbsp;&lt;div&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; userName)&lt;/div&gt;&lt;div&gt;+&amp;nbsp;void setUserType(const char c)&lt;br&gt;&lt;br&gt;+ std::string getUserName() const&lt;/div&gt;&lt;div&gt;+ char getUserType() const&lt;br&gt;&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete() = 0&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-28">
           <mxGeometry y="170" width="360" height="150" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-33" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;entryX=0.503;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-34" target="HNg3gGWHc3ooryUhJboP-30">
@@ -88,21 +88,21 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-34" value="Administrator" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="1280" y="150" width="350" height="320" as="geometry" />
+          <mxGeometry x="1280" y="150" width="350" height="380" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-38" value="//" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-34">
-          <mxGeometry y="29" width="350" height="141" as="geometry" />
+          <mxGeometry y="29" width="350" height="31" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-36" value="+ Administrator(const std::string&amp;amp; AdministratorName)&lt;br&gt;+ ~Administrator()&lt;br&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; administratorName)&lt;br&gt;&lt;br&gt;+ std::string getUserName() const&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete()&lt;/div&gt;&lt;div&gt;+ void addUser()&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-34">
-          <mxGeometry y="170" width="350" height="150" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-36" value="+ Administrator(const std::string&amp;amp; AdministratorName)&lt;br&gt;+ ~Administrator()&lt;br&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; administratorName)&lt;br&gt;&lt;br&gt;+ std::string getUserName() const&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addUser()&lt;br&gt;+ void deleteUser()&lt;br&gt;+ void modifyUser()&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addAuthor()&lt;/div&gt;&lt;div&gt;+ void deleteAuthor()&lt;/div&gt;&lt;div&gt;+ void modifyAuthor()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addBook()&lt;/div&gt;&lt;div&gt;+ void deleteBook()&lt;/div&gt;&lt;div&gt;+ void modifyBook()&lt;/div&gt;&lt;div&gt;&lt;br&gt;+ void showUser()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-34">
+          <mxGeometry y="60" width="350" height="320" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-37" value="Reader" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="880" y="150" width="360" height="320" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-41" value="- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; borrowedBooks&lt;div&gt;- int m_borrowedBookCount&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-37">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-41" value="- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; m_borrowedBooks&lt;div&gt;- int m_borrowedBookCount&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-37">
           <mxGeometry y="29" width="360" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-39" value="+ Reader(const std::string&amp;amp; readerName)&lt;br&gt;+ ~Reader()&lt;br&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; readerName)&lt;div&gt;&lt;br&gt;+ std::string getUserName() const&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete()&lt;br&gt;+ void printBorrowedBooks() const&lt;br&gt;+ void giveBackBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-37">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-39" value="+ Reader(const std::string&amp;amp; readerName, const char userType)&lt;br&gt;+ ~Reader()&lt;div&gt;&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete() override&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void borrowBook(const std::string&amp;amp; bookName)&lt;br&gt;+ void printBorrowedBooks() const&lt;br&gt;+ void giveBackBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void displayMe()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-37">
           <mxGeometry y="170" width="360" height="150" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-40" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="HNg3gGWHc3ooryUhJboP-37">
@@ -134,13 +134,13 @@
             <mxPoint x="-26" y="10" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.999;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.947;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.995;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.947;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1629" y="472" as="sourcePoint" />
-            <mxPoint x="1551" y="470" as="targetPoint" />
+            <mxPoint x="1639.65" y="590.3199999999999" as="sourcePoint" />
+            <mxPoint x="1561" y="530" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1630" y="520" />
-              <mxPoint x="1551" y="520" />
+              <mxPoint x="1630" y="580" />
+              <mxPoint x="1561" y="580" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -150,7 +150,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-51" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="1593" y="530" as="geometry">
+          <mxGeometry x="1593" y="590" as="geometry">
             <mxPoint x="3" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -160,7 +160,7 @@
         <mxCell id="HNg3gGWHc3ooryUhJboP-57" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Book&amp;gt;&amp;gt; m_books&lt;div&gt;- std::string m_bookFilePath&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-56">
           <mxGeometry y="29" width="360" height="81" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-58" value="+ BookStock(const std::string bookFilePath)&lt;div&gt;+ ~BookStock()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addBook(const Book book)&lt;/div&gt;&lt;div&gt;+ void deleteBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;+ void modifyBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; borrowBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void giveBackBook(std::weak_ptr&amp;lt;Book&amp;gt; book)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ void printAllBooks() const&lt;br&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; findBook(const std::string&amp;amp; bookName) const&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-56">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-58" value="+ BookStock(const std::string bookFilePath)&lt;div&gt;+ ~BookStock()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addBook(const Book book)&lt;/div&gt;&lt;div&gt;+ void deleteBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;+ void modifyBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; borrowBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void giveBackBook(std::weak_ptr&amp;lt;Book&amp;gt; book)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ void printAllBooks() const&lt;br&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; searchBook(const std::string&amp;amp; bookName) const&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-56">
           <mxGeometry y="110" width="360" height="270" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-59" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.749;exitY=1.005;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-39" target="HNg3gGWHc3ooryUhJboP-56">
@@ -169,17 +169,16 @@
             <mxPoint x="1110" y="597" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-60" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HNg3gGWHc3ooryUhJboP-59">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-60" value="holds 0..* weak_ptr&amp;lt;Book&amp;gt; from the stock" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HNg3gGWHc3ooryUhJboP-59">
           <mxGeometry x="0.0188" y="2" relative="1" as="geometry">
             <mxPoint x="11" y="3" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-61" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.999;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="HNg3gGWHc3ooryUhJboP-57">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-61" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.25;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-57">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1369" y="470" as="sourcePoint" />
+            <mxPoint x="1430" y="570" as="sourcePoint" />
             <mxPoint x="1290" y="470" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1369" y="520" />
               <mxPoint x="1369" y="650" />
             </Array>
           </mxGeometry>
@@ -190,7 +189,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-63" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="1250" y="580" as="geometry">
+          <mxGeometry x="1240" y="590" as="geometry">
             <mxPoint x="130" y="74" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -200,7 +199,7 @@
         <mxCell id="HNg3gGWHc3ooryUhJboP-68" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Author&amp;gt;&amp;gt; m_authors&lt;div&gt;- std::string m_authorsFilePath&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-67">
           <mxGeometry y="29" width="360" height="81" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-69" value="+&amp;nbsp;&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;(const std::string authorFilePath)&lt;div&gt;+ ~&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addAuthor(const author&amp;nbsp;author)&lt;/div&gt;&lt;div&gt;+ void deleteAuthor(const std::string&amp;amp; author)&lt;/div&gt;&lt;div&gt;+ void modifyAuthor(const std::string&amp;amp; author)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void printAllA&lt;/span&gt;uthors&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;() const&lt;br&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; findAuthor(const std::string&amp;amp; authorName) const&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-67">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-69" value="+&amp;nbsp;&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;(const std::string authorFilePath)&lt;div&gt;+ ~&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addAuthor(const author&amp;nbsp;author)&lt;/div&gt;&lt;div&gt;+ void deleteAuthor(const std::string&amp;amp; author)&lt;/div&gt;&lt;div&gt;+ void modifyAuthor(const std::string&amp;amp; author)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void printAllA&lt;/span&gt;uthors&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;() const&lt;br&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; searchAuthor(const std::string&amp;amp; authorName) const&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="HNg3gGWHc3ooryUhJboP-67">
           <mxGeometry y="110" width="360" height="270" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-72" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-67">
@@ -208,7 +207,7 @@
             <mxPoint x="1549" y="590" as="sourcePoint" />
             <mxPoint x="1420" y="770" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="2060" y="395" />
+              <mxPoint x="2060" y="380" />
             </Array>
           </mxGeometry>
         </mxCell>
