@@ -172,4 +172,5 @@ Defines the quality benchmarks for considering the project complete:
 
 ## 10. Annexes (optional)
 
-- Additional diagrams to be determined
+- [UML Diagram](OnlineLibraryHandler.drawio.png)
+
