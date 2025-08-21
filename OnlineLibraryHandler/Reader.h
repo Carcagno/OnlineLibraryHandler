@@ -15,7 +15,7 @@ protected:
 
 public:
 	//CTOR
-	Reader(const std::string& readerName, const char readerType);
+	Reader(const std::string& readerName);
 	
 	//DTOR
 	~Reader() override = default;
@@ -26,7 +26,12 @@ public:
 
 	//MISC
 	virtual void cleanUserForDelete() override;
+
+		//book borrowing handle
 	void borrowBook(const std::string& bookName, const BookStock& bookStock);
 	void printBorrowedBooks() const;
 	void giveBackBook(const std::string& book);
+
+	void virtual displayUser() override;
+
 };

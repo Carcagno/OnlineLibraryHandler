@@ -1,7 +1,7 @@
 #include "Reader.h"
 
-Reader::Reader(const std::string& readerName, const char readerType) :
-	IUser(readerName, readerType),
+Reader::Reader(const std::string& readerName) :
+	IUser(readerName, 'R'),
 	m_borrowedBookCount{0} {
 
 }
@@ -68,4 +68,22 @@ void Reader::giveBackBook(const std::string& book) {
 	*/
 	// to be refined - Error handling
 	std::cout << "You didn't borrowed the book " << book << ". Then, you can't give it back ..." << std::endl;
+}
+
+void Reader::displayUser() {
+	IUser::displayUser();
+	std::cout << "Reader\n" << std::endl;
+	
+	std::cout << "List of borrowed books: \n";
+	for (auto book : m_borrowedBooks) {
+		std::shared_ptr<Book> bookSharedPtr{ book.lock() };
+
+		if (bookSharedPtr) {
+			//to be refined
+			//bookSharedPtr.printBook();
+		}
+		else {
+			//to be refined - Error handling
+		}
+	}
 }

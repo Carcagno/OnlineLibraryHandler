@@ -39,4 +39,9 @@ public:
 	//MISC
 	virtual void cleanUserForDelete() = 0;
 
+	virtual void displayUser() = 0 {
+		std::cout << "UserName: " << m_userName << "\nUserType: ";
+
+	}
+	
 };
