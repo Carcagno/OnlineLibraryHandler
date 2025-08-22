@@ -47,5 +47,8 @@
     <ClInclude Include="Author.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

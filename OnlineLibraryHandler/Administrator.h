@@ -5,6 +5,8 @@
 #include "IUser.h"
 #include "Reader.h"
 #include "UserPool.h"
+#include "AuthorPool.h"
+#include "Author.h"
 
 class Administrator : public IUser {
 protected:
@@ -28,16 +30,16 @@ public:
 	void deleteUser(UserPool& userPool);
 	void modifyUser(UserPool& userPool);
 	void displayUser() override;
-	void showUser(UserPool& userPool);
+	void showUser(const UserPool& userPool);
 
 		//author handling
-	void addAuthor();
-	void deleteAuthor();
-	void modifyAuthor();
+	void addAuthor(AuthorPool& authorPool);
+	void deleteAuthor(AuthorPool& authorPool);
+	void modifyAuthor(AuthorPool& authorPool);
 
 		//book handling
-	void addBook();
-	void deleteBook();
-	void modifyBook();
+	void addBook(BookStock& bookStock, AuthorPool& authorPool);
+	void deleteBook(BookStock& bookStock);
+	void modifyBook(BookStock& bookStock);
 
  };

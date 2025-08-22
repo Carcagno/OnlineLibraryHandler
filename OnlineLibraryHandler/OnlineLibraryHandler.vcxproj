@@ -135,6 +135,7 @@
     <ClInclude Include="BookStock.h" />
     <ClInclude Include="IUser.h" />
     <ClInclude Include="Reader.h" />
+    <ClInclude Include="UserPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

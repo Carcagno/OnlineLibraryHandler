@@ -45,6 +45,8 @@ void Administrator::deleteUser(UserPool& userPool) {
 
 	do {
 		std::string userName{};
+
+		// to be refined - cin security valid input
 		std::cout << "Please, enter the name of the user to delete";
 		std::cin >> userName;
 		
@@ -56,7 +58,16 @@ void Administrator::deleteUser(UserPool& userPool) {
 }
 
 void Administrator::modifyUser(UserPool& userPool) {
+	std::string userName{};
 
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the name of the user to modify" << std::endl;
+	std::cin >> userName;
+
+	//to be refined - call to UserPool getUserPointer
+	// userPool.modifyUser(userName);
+
+	//to be refined - enter the info to modify
 }
 
 void Administrator::displayUser() {
@@ -65,32 +76,104 @@ void Administrator::displayUser() {
 	std::cout << "Administrator" << std::endl;
 }
 
-void Administrator::showUser(UserPool& userPool) {
-
+void Administrator::showUser(const UserPool& userPool) {
+	
+	//to be refined - call to UserPool displayUser
+	//userPool.displayUser(this->m_userName);
 }
 
 	//author handling
-void Administrator::addAuthor() {
+void Administrator::addAuthor(AuthorPool& authorPool) {
+	std::shared_ptr<Author> tmpAuthorPtr{};
+	std::string authorName{};
+
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the name of the new author";
+	std::cin >> authorName;
+
+	//to be refined - call to AuthorPool addAuthor
+
+	//tmpAuthorPtr = std::make_shared<Author>(Author{ authorName });
+
+	//authorPool.addAuthor(tmpAuthorPtr);
+}
+
+void Administrator::deleteAuthor(AuthorPool& authorPool) {
+	std::string authorName{};
+
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the name of the author to delete";
+	std::cin >> authorName;
+	
+	//to be refined - call to AuthorPool deleteAuthor
+	//authorPool.deleteAuthor(authorName);
 
 }
 
-void Administrator::deleteAuthor() {
+void Administrator::modifyAuthor(AuthorPool& authorPool) {
+	std::string authorName{};
 
-}
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the name of the author to modify";
+	std::cin >> authorName;
 
-void Administrator::modifyAuthor() {
-
+	//to be refined - call to AuthorPool modifyAuthor
 }
 
 	//book handling
-void Administrator::addBook() {
+void Administrator::addBook(BookStock& bookStock, AuthorPool& authorPool) {
+	std::string bookTitle{};
+	std::weak_ptr<Author> author{};
+	std::string authorName{};
+	//to be refined - creation of the enum
+	//bookCategory category
+	int publicationDate;
+	std::shared_ptr<Book> book{};
+
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the title of the book to add";
+	std::cin >> bookTitle;
+
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the name of the author for this book";
+	std::cin >> authorName;
+
+	//to be refined - wrong author name
+	// to be refined - searchAuthor authorPool
+	//author = authorPool.searchAuthor(authorName)
+
+	//to be refined - enum
+	//std::cout << "Please ented the book category number:\n1. Sci-Fi\n2. Classi\n3. Autobiography\n4. Roman\n5. Fantasy\n6. Thriller\n7. Essay\n\nChoice: ";
+	//std::cin >> category;
+
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the year of publication (YYYY) of the book: ";
+	std::cin >> publicationDate;
+
+
+	//to be refined - implem Book
+	//book = std::make_shared<Book>(Book{ bookTitle, author, category, publicationDate });
 
 }
 
-void Administrator::deleteBook() {
+void Administrator::deleteBook(BookStock& bookStock) {
+	std::string bookTitle{};
 
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the title of the book to delete";
+	std::cin >> bookTitle;
+
+	// to be refined - deleteBook bookStock
+	//bookStock.deleteBook(bookTitle);
 }
 
-void Administrator::modifyBook() {
+void Administrator::modifyBook(BookStock& bookStock) {
+	std::string bookTitle;
 
+	// to be refined - cin security valid input
+	std::cout << "Please, enter the title of the book to modify";
+	std::cin >> bookTitle;
+
+	//to be refined - call to bookStock modifyBook
+	//bookStock.modifyBook();
 }

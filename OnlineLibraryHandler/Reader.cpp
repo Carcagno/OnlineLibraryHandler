@@ -7,7 +7,7 @@ Reader::Reader(const std::string& readerName) :
 }
 
 void Reader::cleanUserForDelete() {
-	for (auto book : m_borrowedBooks) {
+	for (std::weak_ptr<Book> book : m_borrowedBooks) {
 		//to be refined
 		/*std::shared_ptr<Book> bookSharedPtr{book.lock()};
 		if (bookSharedPtr) {
@@ -75,7 +75,7 @@ void Reader::displayUser() {
 	std::cout << "Reader\n" << std::endl;
 	
 	std::cout << "List of borrowed books: \n";
-	for (auto book : m_borrowedBooks) {
+	for (std::weak_ptr<Book> book : m_borrowedBooks) {
 		std::shared_ptr<Book> bookSharedPtr{ book.lock() };
 
 		if (bookSharedPtr) {
