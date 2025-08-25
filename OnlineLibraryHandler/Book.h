@@ -7,6 +7,9 @@
 #include "Author.h"
 #include "AuthorPool.h"
 
+class Author;
+class AuthorPool;
+
 //to be refined
 class Book {
 public:
@@ -30,16 +33,9 @@ private:
 	bool m_isBorrowed;
 
 	void setTitle(const std::string& title);
-	void setAuthor(std::weak_ptr<Author> author);
 	void setCategory(const bookCategory category);
 	void setPublicationDate(const int publicationDate);
 	void setIsBorrowed(const bool isBorrowed);
-
-	std::string getTitle() const;
-	std::weak_ptr<Author> getAuthor() const;
-	Book::bookCategory getCategory() const;
-	int getPublicationDate() const;
-	bool getIsBorrowed() const;
 
 	void deleteThisBookInAuthor();
 	void printCategory() const;
@@ -47,10 +43,21 @@ private:
 
 public:
 	Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate);
-	
 	~Book();
 
+	void setAuthor(std::weak_ptr<Author> author);
+
+	std::string getTitle() const;
+	std::weak_ptr<Author> getAuthor() const;
+	Book::bookCategory getCategory() const;
+	int getPublicationDate() const;
+	bool getIsBorrowed() const;
+
 	void printBook() const;
+	void printAllAvailableCategory();
 	void modifyBook(AuthorPool& authorPool);
+
+	void resetAuthor();
+
 
 };

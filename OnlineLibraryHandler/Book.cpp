@@ -62,13 +62,13 @@ bool Book::getIsBorrowed() const {
 }
 
 void Book::deleteThisBookInAuthor() {
-	std::shared_ptr<Author> author{ std::make_shared<Author>(m_author.lock()) };
+	std::shared_ptr<Author> author{ m_author.lock() };
 	
 	if (!author) {
 		//to be refined - exception Handling
 	}
 
-	if (!(author->deleteAuthorBook(m_title))) {
+	if (!(author->SetAuthorBookToNone(m_title))) {
 		// to be refined - exception handling
 	}
 }
@@ -109,15 +109,19 @@ void Book::printCategory() const {
 
 
 void Book::printBook() const {
-	std::shared_ptr<Author> author{ std::make_shared<Author>(m_author.lock())};
+	std::shared_ptr<Author> author{ m_author.lock()};
 
 
 	std::cout << "\n\t\t\t==================== " << m_title << " ====================\n" 
 		<< "Author info: " << std::endl;
 	
-	author->printAuthor();
-	
-	printCategory;
+	if (author) {
+		author->printAuthor();
+	}
+	else {
+		std::cout << "Author unknown" << std::endl;
+	}
+	printCategory();
 	
 	std::cout << "Publication Date: " << m_publicationDate;
 	std::cout << "Book borrowing status: ";
@@ -132,7 +136,7 @@ void Book::printBook() const {
 	std::cout << std::endl;
 }
 
-void printAllAvailableCategory() {
+void Book::printAllAvailableCategory() {
 	std::cout << "Available categories: \n1. SciFi\n2. Classic\n3. Autobiography\n4. Roman\n5. Fantasy\n6. Thriller\n7.	Essay" << std::endl;
 }
 
@@ -165,7 +169,7 @@ void Book::modifyBook(AuthorPool &authorPool) {
 		}
 	}
 	else {
-		//to be refined - exception handling
+		std::cout << "Actual author: Unknown" << std::endl;
 	}
 	
 	std::cout << "Actual book category: ";
@@ -193,3 +197,6 @@ void Book::modifyBook(AuthorPool &authorPool) {
 	printBook();
 }
 
+void Book::resetAuthor() {
+	this->m_author.reset();
+}
