@@ -1,8 +1,18 @@
 #pragma once
 
+#include <memory>
+#include <string>
+
+#include "Author.h"
+
 class AuthorPool {
 	//to be refined - implement class
+private:
+
+public:	
 	AuthorPool();
-	//placeholder
+
+
+	std::weak_ptr<Author> getAuthorFromPool(const std::string& authorName) const;
 
 };
