@@ -4,6 +4,8 @@
 
 #include "Reader.h"
 #include "Administrator.h"
+#include "Author.h"
+#include "Book.h"
 
 int main()
 {
@@ -34,6 +36,12 @@ int main()
             tmpR->displayUser();
         }
     }
+
+    std::shared_ptr<Author> aut1{ std::make_shared<Author>("Jean Valjean") };
+    std::shared_ptr<Book> b1{ std::make_shared<Book>("Alice", aut1, Book::bookCategory::Classic, 1894) };
+
+    aut1->printAuthor();
+    b1->printBook();
 
     return 0;
 }

@@ -124,6 +124,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Administrator.cpp" />
+    <ClCompile Include="Author.cpp" />
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="OnlineLibraryHandler.cpp" />
     <ClCompile Include="Reader.cpp" />
   </ItemGroup>
