@@ -6,11 +6,22 @@ Book::Book(const std::string& title, std::weak_ptr<Author> author, bookCategory 
 	m_category{ category},
 	m_publicationDate{ publicationDate },
 	m_isBorrowed{ false } {
+	std::shared_ptr<Author> authorShared{ m_author.lock() };
 
+	// The book should add himself into the bookstock to tighten his presence in the stock with is creation / destruction, to ensure that, while he exists, he can be found in the stock.
+	//to be refined - add book to the bookStock ?!
+	
+	// the book, once created, and given the fact that the author is already created, must add himself to the author.
+	if (authorShared) {
+		std::weak_ptr<Book> bookWeak{}; // To be refined - get the weakptr from the BookStock ?!
+
+		authorShared->addBookToAuthor(bookWeak);
+	}
 }
 
 Book::~Book() {
 	deleteThisBookInAuthor();
+	// to be refined - delete book in bookstock
 }
 
 
@@ -65,10 +76,11 @@ void Book::deleteThisBookInAuthor() {
 	std::shared_ptr<Author> author{ m_author.lock() };
 	
 	if (!author) {
-		//to be refined - exception Handling
+		//Author = None / Unknown. No need to delete the book in any author book
+		return;
 	}
 
-	if (!(author->SetAuthorBookToNone(m_title))) {
+	if (!(author->deleteBookFromAuthor(m_title))) {
 		// to be refined - exception handling
 	}
 }
@@ -123,7 +135,7 @@ void Book::printBook() const {
 	}
 	printCategory();
 	
-	std::cout << "Publication Date: " << m_publicationDate;
+	std::cout << "Publication Date: " << m_publicationDate << std::endl;
 	std::cout << "Book borrowing status: ";
 	
 	if (m_isBorrowed) {
@@ -132,7 +144,7 @@ void Book::printBook() const {
 	else {
 		std::cout << "Available";
 	}
-	
+
 	std::cout << std::endl;
 }
 

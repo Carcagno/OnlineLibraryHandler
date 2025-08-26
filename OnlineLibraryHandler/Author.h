@@ -13,20 +13,26 @@ private:
 	std::string m_authorName;
 	std::vector<std::weak_ptr<Book>> m_books;
 
+	//UNINIT
 	void SetAllAuthorBooksToNone();
 
 public:
+	//CTOR
 	Author(const std::string& authorName);
+	//DTOR
 	~Author();
 
-
+	//SETTERS
 	void setAuthorName(const std::string& authorName);
 
+	//GETTERS
 	std::string getAuthorName() const;
 
-	void printAuthor();
+	//MISC
+		//PRINTERS
+	void printAuthor() const;
 
-	bool SetAuthorBookToNone(const std::string& book);
-
-	void addBookToAuthor(const Book& book);
+		//Author's books handler
+	bool deleteBookFromAuthor(const std::string& bookTitle);
+	void addBookToAuthor(std::weak_ptr<Book> book);
 };

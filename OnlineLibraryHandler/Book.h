@@ -10,7 +10,6 @@
 class Author;
 class AuthorPool;
 
-//to be refined
 class Book {
 public:
 	enum bookCategory
@@ -32,32 +31,39 @@ private:
 	int m_publicationDate;
 	bool m_isBorrowed;
 
+	//SETTERS - private
 	void setTitle(const std::string& title);
 	void setCategory(const bookCategory category);
 	void setPublicationDate(const int publicationDate);
 	void setIsBorrowed(const bool isBorrowed);
 
+	//MISC - private
 	void deleteThisBookInAuthor();
 	void printCategory() const;
 
 
 public:
+	//CTOR
 	Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate);
+	//DTOR
 	~Book();
 
+	//SETTERS
 	void setAuthor(std::weak_ptr<Author> author);
 
+	//GETTERS
 	std::string getTitle() const;
 	std::weak_ptr<Author> getAuthor() const;
 	Book::bookCategory getCategory() const;
 	int getPublicationDate() const;
 	bool getIsBorrowed() const;
 
+	//MISC
+		//PRINTERS
 	void printBook() const;
 	void printAllAvailableCategory();
+		
+		//Book handling
 	void modifyBook(AuthorPool& authorPool);
-
 	void resetAuthor();
-
-
 };
