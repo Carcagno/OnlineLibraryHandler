@@ -22,29 +22,21 @@ public:
 	//DTOR
 	~BookStock();
 
+	//GETTERS
+	std::weak_ptr<Book> getBookFromStock(const std::string& bookName) const;
+
 	//MISC
 		//Book basic handling
-	void addBook(std::shared_ptr<Book> book);
-	void deleteBook(const std::string& bookName);
-	void modifyBook(const std::string& bookName, AuthorPool authorPool);
+	bool addBook(std::shared_ptr<Book> book);
+	bool deleteBook(const std::string& bookName);
+	bool modifyBook(const std::string& bookName, AuthorPool authorPool);
 
 		//Book borrowing handling
 	std::weak_ptr<Book> borrowBook(const std::string& bookName);
-	void giveBackBook(std::weak_ptr<Book> bookWeak);
+	bool giveBackBook(std::weak_ptr<Book> bookWeak);
 
 		//PRINTERS
 	void printAllBooks() const;
 	
-	std::weak_ptr<Book> searchBook(const std::string& bookName) const;
 
-	//to be refined - defined in .cpp
-	/*std::weak_ptr<Book> borrowBook(const std::string& book) {
-		if (bookSharedPtr->getIsBorrowed()) {
-			//To be refined - Error Handling
-			std::cerr << "The Book: " << bookSharedPtr->gitTitle() << " is already borrowed!" << std::endl;
-			return std::weak_ptr<Book>();
-		}
-		bookSharedPtr->setIsBorrowed(true);
-		return std::weak_ptr<Book>{bookSharedPtr};
-	}*/
 };

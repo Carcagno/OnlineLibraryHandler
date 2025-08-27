@@ -20,8 +20,13 @@ std::weak_ptr<IUser> UserPool::getUserFromPool(const std::string& userName) {
 }
 
 
-void UserPool::addUser(std::shared_ptr<IUser> user) {
-	m_users.push_back(user);
+bool UserPool::addUser(std::shared_ptr<IUser> user) {
+	if (user) {
+		m_users.push_back(user);
+		return true;
+	}
+	std::cerr << "Cannot add empty user. UserPool was left untouched." << std::endl;
+	return false;
 }
 
 bool UserPool::deleteUser(const std::string& userName) {
@@ -32,7 +37,7 @@ bool UserPool::deleteUser(const std::string& userName) {
 		}
 	}
 
-	std::cout << "Could'nt find user \"" << userName << "\" to delete. UserPool was left untouched." << std::endl;
+	std::cerr << "Could'nt find user \"" << userName << "\" to delete. UserPool was left untouched." << std::endl;
 
 	return false;
 }

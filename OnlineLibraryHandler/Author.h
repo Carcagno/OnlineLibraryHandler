@@ -19,6 +19,7 @@ private:
 public:
 	//CTOR
 	Author(const std::string& authorName);
+
 	//DTOR
 	~Author();
 

@@ -89,5 +89,26 @@ void Reader::displayUser() {
 }
 
 void Reader::selfModify() {
+	//to be refined - DRY: mayber IUser implem and call for Admin & Reader ?
+	std::string newUserName{ "" };
+	char newUserType{ '\0' };
 
+	std::cout << "Enter new userName (leave empty to keep old name): ";
+	std::cin >> newUserName;
+
+	std::cout << "Enter new userType (leave empty to keep old type), \'A\' or \'R\': ";
+	std::cin >> newUserType;
+
+	if (newUserName != "" && newUserName != "\n" && !(newUserName.empty())) {
+		m_userName = newUserName;
+	}
+
+	if (newUserType != '\0' && newUserType != '\n') {
+		m_userType = newUserType;
+	}
+
+	//maybe implement a way to have books borrowed modifyed (imply to display, and ask for each if admin wants to change borrow status ?)
+
+	std::cout << "User has been modifyed. New user informations:\n" << std::endl;
+	this->displayUser();
 }

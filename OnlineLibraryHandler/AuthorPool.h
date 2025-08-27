@@ -16,14 +16,24 @@ private:
 	std::string m_authorsFilePath;
 
 public:	
+	//CTOR
 	AuthorPool(const std::string& authorFilePath);
+
+	//DTOR
 	~AuthorPool();
 
-	void addAuthor(std::shared_ptr<Author> authorName);
-	void deleteAuthor(const std::string& authorName);
-	void modifyAuthor(const std::string& authorName);
-
-	void printAllAuthors() const;
+	//GETTERS
 	std::weak_ptr<Author> getAuthorFromPool(const std::string& authorName);
+
+	//MISC
+		//Author handling
+	bool addAuthor(std::shared_ptr<Author> authorName);
+	bool deleteAuthor(const std::string& authorName);
+	bool modifyAuthor(const std::string& authorName);
+
+	//PRINTERS
+	void printAllAuthors() const;
+	
+	
 
 };

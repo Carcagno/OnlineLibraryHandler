@@ -10,21 +10,40 @@ AuthorPool::~AuthorPool() {
 	// to be refined - should exclude empty author in the save file, because default created ?
 }
 
-void AuthorPool::addAuthor(std::shared_ptr<Author> authorName) {
-	m_authors.push_back(authorName);
+std::weak_ptr<Author> AuthorPool::getAuthorFromPool(const std::string& authorName) {
+	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
+		if (it->get()->getAuthorName() == authorName) {
+			return std::weak_ptr<Author>{*it };
+		}
+	}
+
+	std::cerr << "Could'nt find any author \"" << authorName << "\". Author pool was left untouched and an empty Author is returned." << std::endl;
+	return std::weak_ptr<Author>{};
 }
 
-void AuthorPool::deleteAuthor(const std::string& authorName) {
+bool AuthorPool::addAuthor(std::shared_ptr<Author> authorName) {
+	if (authorName) {
+		m_authors.push_back(authorName);
+		return true;
+	}
+
+	std::cerr << "Cannot add empty Author. AuthorPool was left untouched." << std::endl;
+	return false;
+}
+
+bool AuthorPool::deleteAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			m_authors.erase(it);
-			return;
+			return true;
 		}
 	}
-	std::cout << "Could'nt find any author \"" << authorName << "\" to delete. Author pool was left untouched." << std::endl;
+
+	std::cerr << "Could'nt find any author \"" << authorName << "\" to delete. Author pool was left untouched." << std::endl;
+	return false;
 }
 
-void AuthorPool::modifyAuthor(const std::string& authorName) {
+bool AuthorPool::modifyAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			std::string newAuthorName{};
@@ -34,10 +53,12 @@ void AuthorPool::modifyAuthor(const std::string& authorName) {
 			std::cin >> newAuthorName;
 
 			it->get()->setAuthorName(newAuthorName);
-			return;
+			return true;
 		}
 	}
-	std::cout << "Could'nt find any author \"" << authorName << "\" to modify. Author pool was left untouched." << std::endl;
+
+	std::cerr << "Could'nt find any author \"" << authorName << "\" to modify. Author pool was left untouched." << std::endl;
+	return false;
 }
 
 void AuthorPool::printAllAuthors() const {
@@ -46,15 +67,4 @@ void AuthorPool::printAllAuthors() const {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		it->get()->printAuthor();
 	}
-}
-
-std::weak_ptr<Author> AuthorPool::getAuthorFromPool(const std::string& authorName) {
-	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
-		if (it->get()->getAuthorName() == authorName) {
-			return std::weak_ptr<Author>{*it };
-		}
-	}
-	
-	std::cout << "Could'nt find any author \"" << authorName << "\". Author pool was left untouched and an empty Author is returned." << std::endl;
-	return std::weak_ptr<Author>{};
 }

@@ -8,6 +8,7 @@ IUser{AdministratorName, 'A'} {
 
 //MISC
 void Administrator::cleanUserForDelete() {
+	//No specific clean to do a this time. Mayberin future evolutions
 	return;
 }
 
@@ -35,9 +36,7 @@ void Administrator::addUser(UserPool& userPool) {
 		tmpPtrUser = std::make_shared<Reader>(tmp);
 	}
 
-	//to be refined - call to UserPool create user
-
-	//userPool.addUser(tmpPtrUser);
+	userPool.addUser(tmpPtrUser);
 }
 
 void Administrator::deleteUser(UserPool& userPool) {
@@ -75,11 +74,13 @@ void Administrator::modifyUser(UserPool& userPool) {
 			std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
 
 			tmpA.get()->displayUser();
+			tmpA.get()->selfModify();
 		}
 		else {
 			std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
 
 			tmpR.get()->displayUser();
+			tmpR.get()->selfModify();
 		}
 	}
 }
@@ -193,5 +194,23 @@ void Administrator::modifyBook(BookStock& bookStock) {
 }
 
 void Administrator::selfModify() {
+	std::string newUserName{""};
+	char newUserType{ '\0' };
+	
+	std::cout << "Enter new userName (leave empty to keep old name): ";
+	std::cin >> newUserName;
 
+	std::cout << "Enter new userType (leave empty to keep old type), \'A\' or \'R\': ";
+	std::cin >> newUserType;
+
+	if (newUserName != "" && newUserName != "\n" && !(newUserName.empty())) {
+		m_userName = newUserName;
+	}
+
+	if (newUserType != '\0' && newUserType != '\n') {
+		m_userType = newUserType;
+	}
+
+	std::cout << "User has been modifyed. New user informations:\n" << std::endl;
+	this->displayUser();
 }
