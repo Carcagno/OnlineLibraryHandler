@@ -38,13 +38,13 @@ void BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
 //Book borrowing handling
 std::weak_ptr<Book> BookStock::borrowBook(const std::string& bookName) {
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
-		if (it->get()->getTitle() == book) {
+		if (it->get()->getTitle() == bookName) {
 			if (it->get()->getIsBorrowed()) {
 				std::cout << "The book is already borrowed and cannot be borrowed twice" << std::endl;
 			}
 			else {
 				it->get()->setIsBorrowed(true);
-				std::cout << "The book " << book << " is now borrowed by you!" << std::endl;
+				std::cout << "The book " << bookName << " is now borrowed by you!" << std::endl;
 			}
 			return *it;
 		}
@@ -87,7 +87,7 @@ void BookStock::printAllBooks() const {
 		return;
 	}
 	
-	for (auto book : m_books) {
+	for (std::shared_ptr<Book> book : m_books) {
 		book->printBook();
 	}
 }

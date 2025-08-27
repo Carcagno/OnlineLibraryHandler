@@ -124,7 +124,7 @@ void Book::printBook() const {
 	std::shared_ptr<Author> author{ m_author.lock()};
 
 
-	std::cout << "\n\t\t\t==================== " << m_title << " ====================\n" 
+	std::cout << "\n\t\t\t->->->->->->->->->->->-> " << m_title << " <-<-<-<-<-<-<-<-<-<-<-<-\n" 
 		<< "Author info: " << std::endl;
 	
 	if (author) {

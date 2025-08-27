@@ -8,6 +8,8 @@
 #include "Book.h"
 #include "BookStock.h"
 
+class UserPool;
+
 class Reader : public IUser {
 protected:
 	std::vector<std::weak_ptr<Book>> m_borrowedBooks; //To be refined
@@ -33,5 +35,7 @@ public:
 	void giveBackBook(const std::string& book);
 
 	void virtual displayUser() override;
+
+	void selfModify() override;
 
 };

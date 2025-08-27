@@ -8,6 +8,8 @@
 #include "AuthorPool.h"
 #include "Author.h"
 
+class UserPool;
+
 class Administrator : public IUser {
 protected:
 
@@ -42,4 +44,6 @@ public:
 	void deleteBook(BookStock& bookStock);
 	void modifyBook(BookStock& bookStock);
 
+		//Self handling
+	void selfModify() override;
  };
