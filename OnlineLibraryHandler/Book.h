@@ -35,7 +35,6 @@ private:
 	void setTitle(const std::string& title);
 	void setCategory(const bookCategory category);
 	void setPublicationDate(const int publicationDate);
-	void setIsBorrowed(const bool isBorrowed);
 
 	//MISC - private
 	void deleteThisBookInAuthor();
@@ -50,6 +49,7 @@ public:
 
 	//SETTERS
 	void setAuthor(std::weak_ptr<Author> author);
+	void setIsBorrowed(const bool isBorrowed);
 
 	//GETTERS
 	std::string getTitle() const;

@@ -87,3 +87,7 @@ void Reader::displayUser() {
 		}
 	}
 }
+
+void Reader::selfModify() {
+
+}

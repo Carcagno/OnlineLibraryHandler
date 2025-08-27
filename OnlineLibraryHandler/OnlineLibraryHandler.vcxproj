@@ -125,9 +125,12 @@
   <ItemGroup>
     <ClCompile Include="Administrator.cpp" />
     <ClCompile Include="Author.cpp" />
+    <ClCompile Include="AuthorPool.cpp" />
     <ClCompile Include="Book.cpp" />
+    <ClCompile Include="BookStock.cpp" />
     <ClCompile Include="OnlineLibraryHandler.cpp" />
     <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="UserPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Administrator.h" />

@@ -43,5 +43,7 @@ public:
 		std::cout << "UserName: " << m_userName << "\nUserType: ";
 
 	}
+
+	virtual void selfModify() = 0;
 	
 };

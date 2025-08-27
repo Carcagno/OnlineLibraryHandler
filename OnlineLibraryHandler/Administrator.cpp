@@ -65,9 +65,23 @@ void Administrator::modifyUser(UserPool& userPool) {
 	std::cin >> userName;
 
 	//to be refined - call to UserPool getUserPointer
-	// userPool.modifyUser(userName);
+	std::weak_ptr<IUser> userWeak{ userPool.getUserFromPool(userName) };
+	std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
-	//to be refined - enter the info to modify
+	if (userShared) {
+		std::cout << "Current user information: " << std::endl;
+
+		if (userShared.get()->getUserType() == 'A') {
+			std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
+
+			tmpA.get()->displayUser();
+		}
+		else {
+			std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
+
+			tmpR.get()->displayUser();
+		}
+	}
 }
 
 void Administrator::displayUser() {
@@ -176,4 +190,8 @@ void Administrator::modifyBook(BookStock& bookStock) {
 
 	//to be refined - call to bookStock modifyBook
 	//bookStock.modifyBook();
+}
+
+void Administrator::selfModify() {
+
 }

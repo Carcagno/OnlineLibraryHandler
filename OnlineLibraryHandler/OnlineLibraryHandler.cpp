@@ -28,12 +28,12 @@ int main()
         if (user->getUserType() == 'A') {
             std::shared_ptr<Administrator> tmpA { std::dynamic_pointer_cast<Administrator>(user) };
 
-            tmpA->displayUser();
+            tmpA.get()->displayUser();
         }
         else {
             std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(user) };
 
-            tmpR->displayUser();
+            tmpR.get()->displayUser();
         }
     }
 
