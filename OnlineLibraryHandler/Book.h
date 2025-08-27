@@ -61,7 +61,7 @@ public:
 	//MISC
 		//PRINTERS
 	void printBook() const;
-	void printAllAvailableCategory();
+	static void printAllAvailableCategory();
 		
 		//Book handling
 	void modifyBook(AuthorPool& authorPool);

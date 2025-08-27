@@ -16,8 +16,6 @@ std::weak_ptr<Author> AuthorPool::getAuthorFromPool(const std::string& authorNam
 			return std::weak_ptr<Author>{*it };
 		}
 	}
-
-	std::cerr << "Could'nt find any author \"" << authorName << "\". Author pool was left untouched and an empty Author is returned." << std::endl;
 	return std::weak_ptr<Author>{};
 }
 
@@ -43,7 +41,7 @@ bool AuthorPool::deleteAuthor(const std::string& authorName) {
 	return false;
 }
 
-bool AuthorPool::modifyAuthor(const std::string& authorName) {
+bool AuthorPool::modifyAuthor(const std::string& authorName) { // to be refined - The pool should maybe not be responsible of the modification. SelfModify in AUthor ?
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			std::string newAuthorName{};

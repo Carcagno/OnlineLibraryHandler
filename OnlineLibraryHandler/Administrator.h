@@ -7,6 +7,7 @@
 #include "UserPool.h"
 #include "AuthorPool.h"
 #include "Author.h"
+#include "Utils.h"
 
 class UserPool;
 
@@ -32,7 +33,7 @@ public:
 	void deleteUser(UserPool& userPool);
 	void modifyUser(UserPool& userPool);
 	void displayUser() override;
-	void showUser(const UserPool& userPool);
+	void showOtherUser(UserPool& userPool, const std::string& userName);
 
 		//author handling
 	void addAuthor(AuthorPool& authorPool);
@@ -42,7 +43,7 @@ public:
 		//book handling
 	void addBook(BookStock& bookStock, AuthorPool& authorPool);
 	void deleteBook(BookStock& bookStock);
-	void modifyBook(BookStock& bookStock);
+	void modifyBook(BookStock& bookStock, AuthorPool& authorPool);
 
 		//Self handling
 	void selfModify() override;

@@ -36,6 +36,7 @@ bool BookStock::addBook(std::shared_ptr<Book> book) {
 
 bool BookStock::deleteBook(const std::string& bookName) {
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
+		//to be refined - delete book in authorPool ?
 		if (it->get()->getTitle() == bookName) {
 			m_books.erase(it);
 			return true;
@@ -45,7 +46,7 @@ bool BookStock::deleteBook(const std::string& bookName) {
 	return false;
 }
 
-bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
+bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) { // to be refined - the stock should maybe not be responsible of the modification of the book ? 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 			it->get()->modifyBook(authorPool);
@@ -109,4 +110,9 @@ void BookStock::printAllBooks() const {
 	for (std::shared_ptr<Book> book : m_books) {
 		book->printBook();
 	}
+}
+bool BookStock::isStockEmpty() const {
+	if (m_books.empty())
+		return true;
+	return false;
 }

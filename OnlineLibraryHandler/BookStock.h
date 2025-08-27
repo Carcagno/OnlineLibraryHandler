@@ -37,6 +37,6 @@ public:
 
 		//PRINTERS
 	void printAllBooks() const;
-	
+	bool isStockEmpty() const;
 
 };

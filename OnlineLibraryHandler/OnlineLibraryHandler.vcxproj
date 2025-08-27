@@ -131,6 +131,7 @@
     <ClCompile Include="OnlineLibraryHandler.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="UserPool.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Administrator.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="IUser.h" />
     <ClInclude Include="Reader.h" />
     <ClInclude Include="UserPool.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
