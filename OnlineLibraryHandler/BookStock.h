@@ -21,7 +21,7 @@ private:
 public:
 
 	//CTOR
-	BookStock(const std::string bookFilePath);
+	BookStock(const std::string& bookFilePath);
 	
 	//DTOR
 	~BookStock();
@@ -33,7 +33,7 @@ public:
 		//Book basic handling
 	bool addBook(std::shared_ptr<Book> book);
 	bool deleteBook(const std::string& bookName);
-	bool modifyBook(const std::string& bookName, AuthorPool authorPool);
+	bool modifyBook(const std::string& bookName, std::weak_ptr<AuthorPool> authorPool);
 
 		//Book borrowing handling
 	std::weak_ptr<Book> borrowBook(const std::string& bookName);

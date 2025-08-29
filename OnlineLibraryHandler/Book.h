@@ -70,7 +70,7 @@ public:
 	static void printAllAvailableCategory();
 		
 		//Book handling
-	void modifyBook(AuthorPool& authorPool);
+	void modifyBook(std::weak_ptr<AuthorPool> authorPool);
 	void resetAuthor();
 	void deleteThisBookInAuthor();
 

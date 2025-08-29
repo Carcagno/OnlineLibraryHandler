@@ -198,7 +198,6 @@ void Administrator::modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr
 	std::string bookTitle;
 	bool isBookModifyed{ false };
 	std::shared_ptr<BookStock> bookStockShared{ bookStock.lock() };
-	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
 
 	do {
 		std::cout << "Please, enter the title of the book to modify";
@@ -210,7 +209,13 @@ void Administrator::modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr
 			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
 			continue;
 		}
-		isBookModifyed = bookStock.modifyBook(bookTitle, authorPool);
+
+		if (bookStockShared) {
+			isBookModifyed = bookStockShared.get()->modifyBook(bookTitle, authorPool);
+		}
+		else {
+			throw std::invalid_argument("Cannot modify a book from an empty Pool");
+		}
 	} while (!isBookModifyed);
 }
 
