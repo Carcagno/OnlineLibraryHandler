@@ -34,6 +34,9 @@ int main()
     bookStock.get()->printAllBooks();
 
     authorPool.get()->printAllAuthors();
+    
+    userPool.get()->displayAllUsers();
+
 
     return 0;
 }

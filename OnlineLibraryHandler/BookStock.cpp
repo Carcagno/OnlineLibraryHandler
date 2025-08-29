@@ -36,6 +36,7 @@ bool BookStock::addBook(std::shared_ptr<Book> book) {
 bool BookStock::deleteBook(const std::string& bookName) { 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
+			it->get()->deleteThisBookInAuthor();
 			m_books.erase(it);
 			return true;
 		}
@@ -44,7 +45,7 @@ bool BookStock::deleteBook(const std::string& bookName) {
 	return false;
 }
 
-bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
+bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) { // to be refined - smartPointer!
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 			it->get()->modifyBook(authorPool);

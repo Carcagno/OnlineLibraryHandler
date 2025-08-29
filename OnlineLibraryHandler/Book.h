@@ -44,7 +44,6 @@ private:
 	void setPublicationDate(const int publicationDate);
 
 	//MISC - private
-	void deleteThisBookInAuthor();
 	void printCategory() const;
 
 
@@ -73,4 +72,6 @@ public:
 		//Book handling
 	void modifyBook(AuthorPool& authorPool);
 	void resetAuthor();
+	void deleteThisBookInAuthor();
+
 };

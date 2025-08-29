@@ -33,20 +33,6 @@ std::shared_ptr<Book> Book::create(const std::string& title, std::shared_ptr<Aut
 }
 
 Book::~Book() {
-	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
-	
-	deleteThisBookInAuthor();
-
-	if (bookStockShared) {
-		if (!bookStockShared.get()->deleteBook(m_title)) {
-			//The failure of the deletion could be normal, considering the fact that, at the end of the program, everything is destructed in the reverse order of creation. 
-			//No needs to show an error message to the user, but could be interesting to have a log file, with those warning displayed.
-			//std::cerr << "Warning: a deleted book may remain in the BookStock with an invalid state because it fails to delete itself in the stock." << std::endl;
-		}
-	}
-	else {
-	}
-
 }
 
 
@@ -166,10 +152,10 @@ void Book::printBook() const {
 	std::cout << "Book borrowing status: ";
 	
 	if (m_isBorrowed) {
-		std::cout << "Borrowed";
+		std::cout << "Borrowed\n";
 	}
 	else {
-		std::cout << "Available";
+		std::cout << "Available\n";
 	}
 
 	std::cout << std::endl;

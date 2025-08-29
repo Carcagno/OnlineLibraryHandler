@@ -13,11 +13,13 @@ void Administrator::cleanUserForDelete() {
 }
 
 	//user handling
-void Administrator::addUser(UserPool& userPool) {
+void Administrator::addUser(std::weak_ptr<UserPool> userPool) {
 	std::string userName{};
 	char userType{};
 	std::shared_ptr<IUser> tmpPtrUser;
 	bool isUserAdded{ false };
+	std::shared_ptr<UserPool> userPoolShared{ userPool.lock() };
+
 
 	do {
 		std::cout << "Please, enter the informations of the new user:\n" << "UserName: ";
@@ -53,13 +55,20 @@ void Administrator::addUser(UserPool& userPool) {
 			tmpPtrUser = std::make_shared<Reader>(tmp);
 		}
 
-		isUserAdded = userPool.addUser(tmpPtrUser);
+
+		if (userPoolShared) {
+			isUserAdded = userPoolShared.get()->addUser(tmpPtrUser);
+		}
+		else {
+			throw std::invalid_argument("Cannot add an user to an inaccessible Pool.");
+		}
 
 	} while (!isUserAdded);
 }
 
-void Administrator::deleteUser(UserPool& userPool) {
+void Administrator::deleteUser(std::weak_ptr<UserPool> userPool) {
 	bool isUserDeleted{ false };
+	std::shared_ptr<UserPool> userPoolShared{ userPool.lock() };
 
 	do {
 		std::string userName{};
@@ -74,14 +83,20 @@ void Administrator::deleteUser(UserPool& userPool) {
 			continue;
 		}
 
-		isUserDeleted = userPool.deleteUser(userName);
+		if (userPoolShared) {
+			isUserDeleted = userPoolShared.get()->deleteUser(userName);
+		}
+		else {
+			throw std::invalid_argument("Cannot delete an user from an inaccessible Pool.");
+		}
 
 	} while (!isUserDeleted);
 }
 
-void Administrator::modifyUser(UserPool& userPool) {
+void Administrator::modifyUser(std::weak_ptr<UserPool> userPool) {
 	std::string userName{};
 	bool isModifyed{ false };
+	std::shared_ptr<UserPool> userPoolShared{ userPool.lock() };
 
 	do {
 		std::cout << "Please, enter the name of the user to modify" << std::endl;
@@ -94,26 +109,34 @@ void Administrator::modifyUser(UserPool& userPool) {
 			continue;
 		}
 
-		std::weak_ptr<IUser> userWeak{ userPool.getUserFromPool(userName) };
-		std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
-		if (userShared) {
-			std::cout << "Current user information: " << std::endl;
+		if (userPoolShared) {
+			std::weak_ptr<IUser> userWeak{ userPoolShared.get()->getUserFromPool(userName)};
+			std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
-			if (userShared.get()->getUserType() == 'A') {
-				std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
+			if (userShared) {
+				std::cout << "Current user information: " << std::endl;
 
-				tmpA.get()->displayUser();
-				tmpA.get()->selfModify();
+				if (userShared.get()->getUserType() == 'A') {
+					std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
+
+					tmpA.get()->displayUser();
+					tmpA.get()->selfModify();
+				}
+				else {
+					std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
+
+					tmpR.get()->displayUser();
+					tmpR.get()->selfModify();
+				}
+				isModifyed = true;
 			}
-			else {
-				std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
-
-				tmpR.get()->displayUser();
-				tmpR.get()->selfModify();
-			}
-			isModifyed = true;
 		}
+		else {
+			throw std::invalid_argument("Cannot modify an user from an inaccessible Pool.");
+		}
+
+
 	} while (!isModifyed);
 }
 
@@ -123,25 +146,33 @@ void Administrator::displayUser() {
 	std::cout << "Administrator" << std::endl;
 }
 
-void Administrator::showOtherUser(UserPool& userPool, const std::string& userName) {
-	std::weak_ptr<IUser> userWeak{ userPool.getUserFromPool(userName) };
-	std::shared_ptr<IUser> userShared{ userWeak.lock() };
+void Administrator::showOtherUser(std::weak_ptr<UserPool> userPool, const std::string& userName) {
+	std::shared_ptr<UserPool> userPoolShared{ userPool.lock() };
+	
+	if (userPoolShared) {
+		std::weak_ptr<IUser> userWeak{ userPoolShared.get()->getUserFromPool(userName)};
+		std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
-	if (userShared) {
-		if (userShared.get()->getUserType() == 'A') {
-			std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
-			tmpA.get()->displayUser();
+		if (userShared) {
+			if (userShared.get()->getUserType() == 'A') {
+				std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(userShared) };
+				tmpA.get()->displayUser();
+			}
+			else {
+				std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
+				tmpR.get()->displayUser();
+			}
 		}
-		else {
-			std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(userShared) };
-			tmpR.get()->displayUser();
-		}
+	}
+	else {
+		throw std::invalid_argument("Cannot show an user from an inaccessible Pool.");
 	}
 }
 	//author handling
-void Administrator::modifyAuthor(AuthorPool& authorPool) {
+void Administrator::modifyAuthor(std::weak_ptr<AuthorPool> authorPool) {
 	std::string authorName{};
 	bool isAuthorModifyed{ false };
+	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
 
 	do {
 		std::cout << "Please, enter the name of the author to modify";
@@ -153,15 +184,21 @@ void Administrator::modifyAuthor(AuthorPool& authorPool) {
 			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
 			continue;
 		}
-
-		isAuthorModifyed = authorPool.modifyAuthor(authorName);
+		if (authorPoolShared) {
+			isAuthorModifyed = authorPoolShared.get()->modifyAuthor(authorName);
+		}
+		else {
+			throw std::invalid_argument("Cannot modify an author from an empty Pool.");
+		}
 	} while (!isAuthorModifyed);
 }
 
 	//book handling
-void Administrator::modifyBook(BookStock& bookStock, AuthorPool& authorPool) {
+void Administrator::modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool) {
 	std::string bookTitle;
 	bool isBookModifyed{ false };
+	std::shared_ptr<BookStock> bookStockShared{ bookStock.lock() };
+	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
 
 	do {
 		std::cout << "Please, enter the title of the book to modify";
