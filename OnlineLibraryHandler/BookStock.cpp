@@ -1,6 +1,6 @@
 #include "BookStock.h"
 
-//CTOR
+//CTOR 
 BookStock::BookStock(const std::string bookFilePath):
 	m_bookFilePath{bookFilePath} {
 
@@ -19,7 +19,6 @@ std::weak_ptr<Book> BookStock::getBookFromStock(const std::string& bookName) con
 		}
 	}
 
-	//to be refined - error handling if the book is not found ? Normal behavior with message ? handled by the caller ?
 	return std::weak_ptr<Book>{};
 }
 
@@ -34,9 +33,8 @@ bool BookStock::addBook(std::shared_ptr<Book> book) {
 	return false;
 }
 
-bool BookStock::deleteBook(const std::string& bookName) {
+bool BookStock::deleteBook(const std::string& bookName) { 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
-		//to be refined - delete book in authorPool ?
 		if (it->get()->getTitle() == bookName) {
 			m_books.erase(it);
 			return true;
@@ -46,7 +44,7 @@ bool BookStock::deleteBook(const std::string& bookName) {
 	return false;
 }
 
-bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) { // to be refined - the stock should maybe not be responsible of the modification of the book ? 
+bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 			it->get()->modifyBook(authorPool);
@@ -71,8 +69,8 @@ std::weak_ptr<Book> BookStock::borrowBook(const std::string& bookName) {
 			return *it;
 		}
 	}
+
 	return std::weak_ptr<Book>{};
-	//to be refined - Exception handling - book not found. Could be normal, just return weak_ptr empty ?
 }
 
 bool BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {

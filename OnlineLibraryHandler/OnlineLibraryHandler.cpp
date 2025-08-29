@@ -6,42 +6,34 @@
 #include "Administrator.h"
 #include "Author.h"
 #include "Book.h"
+#include "UserPool.h"
+#include "BookStock.h"
+#include "AuthorPool.h"
 
 int main()
 {
-    Reader r1{ "Jose"};
-    Reader r2{ "Polo"};
+    std::shared_ptr<AuthorPool> authorPool{ AuthorPool::create("PlaceHolder/Path") };
+    std::shared_ptr<BookStock> bookStock{ std::make_shared<BookStock>("PlaceHolder/Path") };
+    std::shared_ptr<UserPool> userPool{ std::make_shared<UserPool>("PlaceHolder/Path") };
+    std::shared_ptr<IUser> activeUser{ std::make_shared<Administrator>("Kevin", bookStock) };
+    
+    if (1 == 1) {
+        std::shared_ptr<Author> aut1{ Author::create("Jean Valjean", authorPool) };
 
-    Administrator a1{"Don"};
-    Administrator a2{ "Bill" };
-
-    std::vector<std::shared_ptr<IUser>> userVect{std::make_shared<Reader>(r1), std::make_shared<Reader>(r2), std::make_shared<Administrator>(a1), std::make_shared<Administrator>(a2) };
-
-    r1.displayUser();
-    r2.displayUser();
-
-    a1.displayUser();
-    a2.displayUser();
-
-    std::cout << "\n=====vect=====" << std::endl;
-    for (std::shared_ptr<IUser> user : userVect) {
-        if (user->getUserType() == 'A') {
-            std::shared_ptr<Administrator> tmpA { std::dynamic_pointer_cast<Administrator>(user) };
-
-            tmpA.get()->displayUser();
-        }
-        else {
-            std::shared_ptr<Reader> tmpR{ std::dynamic_pointer_cast<Reader>(user) };
-
-            tmpR.get()->displayUser();
-        }
+        std::shared_ptr<Book> b1{ Book::create("Alice", aut1, Book::bookCategory::Classic, 1894, bookStock) };
     }
 
-    std::shared_ptr<Author> aut1{ std::make_shared<Author>("Jean Valjean") };
-    std::shared_ptr<Book> b1{ std::make_shared<Book>("Alice", aut1, Book::bookCategory::Classic, 1894) };
+    bookStock.get()->printAllBooks();
 
-    aut1->printAuthor();
-    b1->printBook();
+    authorPool.get()->printAllAuthors();
+
+    bookStock.get()->deleteBook("Alice");
+
+    authorPool.get()->deleteAuthor("Jean Valjean");
+
+    bookStock.get()->printAllBooks();
+
+    authorPool.get()->printAllAuthors();
 
     return 0;
 }

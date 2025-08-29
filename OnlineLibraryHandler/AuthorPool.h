@@ -15,9 +15,13 @@ private:
 	std::vector<std::shared_ptr<Author>> m_authors;
 	std::string m_authorsFilePath;
 
-public:	
-	//CTOR
+	//CTOR - Private
 	AuthorPool(const std::string& authorFilePath);
+
+public:	
+
+	//CREATOR
+	static std::shared_ptr<AuthorPool> create(const std::string& authorFilePath);
 
 	//DTOR
 	~AuthorPool();

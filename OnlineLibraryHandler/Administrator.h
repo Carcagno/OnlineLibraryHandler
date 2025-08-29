@@ -16,7 +16,7 @@ protected:
 
 public:
 	//CTOR
-	Administrator(const std::string& AdministratorName);
+	Administrator(const std::string& AdministratorName, std::weak_ptr<BookStock> bookStock);
 
 	//DTOR
 	~Administrator() override = default;
@@ -36,13 +36,9 @@ public:
 	void showOtherUser(UserPool& userPool, const std::string& userName);
 
 		//author handling
-	void addAuthor(AuthorPool& authorPool);
-	void deleteAuthor(AuthorPool& authorPool);
 	void modifyAuthor(AuthorPool& authorPool);
 
 		//book handling
-	void addBook(BookStock& bookStock, AuthorPool& authorPool);
-	void deleteBook(BookStock& bookStock);
 	void modifyBook(BookStock& bookStock, AuthorPool& authorPool);
 
 		//Self handling

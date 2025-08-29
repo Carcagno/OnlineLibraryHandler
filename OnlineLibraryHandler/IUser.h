@@ -1,15 +1,21 @@
 #pragma once
 #include <string>
 
+#include "bookStock.h"
+
+class BookStock;
+
 class IUser {
 protected:
 	std::string m_userName;
 	char m_userType;
+	std::weak_ptr<BookStock> m_bookStock;
 
 	//CTOR
-	IUser(const std::string& userName, const char userType) :
+	IUser(const std::string& userName, const char userType, std::weak_ptr<BookStock> bookStock) :
 		m_userName{ userName },
-		m_userType{ userType } {
+		m_userType{ userType },
+		m_bookStock{ bookStock } {
 
 	}
 

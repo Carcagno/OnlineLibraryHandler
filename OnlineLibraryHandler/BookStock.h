@@ -9,6 +9,9 @@
 #include "Book.h"
 #include "AuthorPool.h"
 
+class Book;
+class AuthorPool;
+
 class BookStock {
 
 private:
@@ -16,6 +19,7 @@ private:
 	std::string m_bookFilePath;
 
 public:
+
 	//CTOR
 	BookStock(const std::string bookFilePath);
 	

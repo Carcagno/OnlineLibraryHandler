@@ -1,10 +1,23 @@
 #include "authorPool.h"
 
+//CTOR - Private to avoid direct creation because of the shared_ptr & selfFilling with default empty author
 AuthorPool::AuthorPool(const std::string& authorFilePath): 
 	m_authorsFilePath{} {
-	//  to be refined - should create an empty author for books ?
 }
 
+std::shared_ptr<AuthorPool> AuthorPool::create(const std::string& authorFilePath) {
+	std::shared_ptr<AuthorPool> authorPoolShared{ std::shared_ptr<AuthorPool>(new AuthorPool(authorFilePath)) };
+	
+	
+	std::shared_ptr<Author> emptyAuthor{ Author::create("Unknow", authorPoolShared) };
+	
+	authorPoolShared->addAuthor(emptyAuthor);
+
+
+	return authorPoolShared;
+}
+
+//DTOR
 AuthorPool::~AuthorPool() {
 	//to be refined - saving operation in file
 	// to be refined - should exclude empty author in the save file, because default created ?
@@ -41,16 +54,10 @@ bool AuthorPool::deleteAuthor(const std::string& authorName) {
 	return false;
 }
 
-bool AuthorPool::modifyAuthor(const std::string& authorName) { // to be refined - The pool should maybe not be responsible of the modification. SelfModify in AUthor ?
+bool AuthorPool::modifyAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
-			std::string newAuthorName{};
-
-			std::cout << "Please, provide a new name for the author \"" << authorName << "\": ";
-			//to be refined - cin error & validation
-			std::cin >> newAuthorName;
-
-			it->get()->setAuthorName(newAuthorName);
+			return it->get()->selfModify();
 			return true;
 		}
 	}

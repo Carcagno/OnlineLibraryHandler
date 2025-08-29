@@ -1,8 +1,8 @@
 #include "Administrator.h"
 
 //CTOR
-Administrator::Administrator(const std::string& AdministratorName):
-IUser{AdministratorName, 'A'} {
+Administrator::Administrator(const std::string& AdministratorName, std::weak_ptr<BookStock> bookStock):
+IUser{AdministratorName, 'A', bookStock} {
 
 }
 
@@ -45,11 +45,11 @@ void Administrator::addUser(UserPool& userPool) {
 		}
 
 		if (userType == 'A') {
-			Administrator tmp{ userName };
+			Administrator tmp{ userName, m_bookStock };
 			tmpPtrUser = std::make_shared<Administrator>(tmp);
 		}
 		else {
-			Reader tmp{ userName };
+			Reader tmp{ userName, m_bookStock };
 			tmpPtrUser = std::make_shared<Reader>(tmp);
 		}
 
@@ -138,50 +138,7 @@ void Administrator::showOtherUser(UserPool& userPool, const std::string& userNam
 		}
 	}
 }
-
 	//author handling
-void Administrator::addAuthor(AuthorPool& authorPool) {
-	std::shared_ptr<Author> tmpAuthorPtr{};
-	std::string authorName{};
-	bool isAuthorAdded{ false };
-
-	do {
-		std::cout << "Please, enter the name of the new author";
-		std::cin >> authorName;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-		tmpAuthorPtr = std::make_shared<Author>(Author{ authorName });
-		isAuthorAdded = authorPool.addAuthor(tmpAuthorPtr);
-
-	} while (!isAuthorAdded);
-}
-
-void Administrator::deleteAuthor(AuthorPool& authorPool) {
-	std::string authorName{};
-	bool isAuthorDeleted{ false };
-	
-	do {
-		std::cout << "Please, enter the name of the author to delete";
-		std::cin >> authorName;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-		isAuthorDeleted = authorPool.deleteAuthor(authorName);
-
-	} while (!isAuthorDeleted);
-}
-
 void Administrator::modifyAuthor(AuthorPool& authorPool) {
 	std::string authorName{};
 	bool isAuthorModifyed{ false };
@@ -202,106 +159,6 @@ void Administrator::modifyAuthor(AuthorPool& authorPool) {
 }
 
 	//book handling
-void Administrator::addBook(BookStock& bookStock, AuthorPool& authorPool) {
-	std::string bookTitle{};
-	std::weak_ptr<Author> author{};
-	std::string authorName{};
-	Book::bookCategory category;
-	int integerCategory{};
-	int publicationDate;
-	std::shared_ptr<Book> book{};
-	bool isBookAdded{ false };
-	
-	do {
-		std::cout << "Please, enter the title of the book to add";
-		std::cin >> bookTitle;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-		std::cout << "Please, enter the name of the author for this book";
-		std::cin >> authorName;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-		author = authorPool.getAuthorFromPool(authorName);
-		
-		if (author.expired()) {
-			std::cout << "Couldn't find author \"" << authorName << "\". Retrying to get all information of the book to add." << std::endl;
-			continue;
-		}
-
-		Book::printAllAvailableCategory();
-		std::cout << "Please enter the book category number: ";
-		std::cin >> integerCategory;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-			category = static_cast<Book::bookCategory>(integerCategory);
-			if (category >= Book::bookCategory::defaultValue) {
-				std::cout << "Invalid category. Retrying to get all information of the book to add." << std::endl;
-				continue;
-			}
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-	
-
-		std::cout << "Please, enter the year of publication (YYYY) of the book: ";
-		std::cin >> publicationDate;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-		book = std::make_shared<Book>(bookTitle, author, category, publicationDate);
-
-		isBookAdded = bookStock.addBook(book);
-
-	} while (!isBookAdded);
-}
-
-void Administrator::deleteBook(BookStock& bookStock) {
-	std::string bookTitle{};
-	bool isBookDeleted{ false };
-
-	if (bookStock.isStockEmpty()) {
-		std::cout << "Cannot delete any book. The stock is empty." << std::endl;
-		return;
-	}
-
-	do {
-		std::cout << "Please, choose among books in the bookStock." << std::endl;
-		bookStock.printAllBooks();
-
-		// to be refined - cin security valid input
-		std::cout << "Please, enter the title of the book to delete";
-		std::cin >> bookTitle;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-		
-		isBookDeleted = bookStock.deleteBook(bookTitle);
-	} while (!isBookDeleted);
-}
-
 void Administrator::modifyBook(BookStock& bookStock, AuthorPool& authorPool) {
 	std::string bookTitle;
 	bool isBookModifyed{ false };
