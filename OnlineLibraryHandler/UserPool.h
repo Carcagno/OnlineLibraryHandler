@@ -15,15 +15,21 @@ private:
 	std::string m_userFilePath;
 
 public:
+	//CTOR
 	UserPool(const std::string& userFilePath);
+
+	//DTOR
 	~UserPool();
 
+	//GETTERS
 	std::weak_ptr<IUser> getUserFromPool(const std::string& userName);
 
-	void addUser(std::shared_ptr<IUser> user);
+	//MISC
+		//User handling
+	bool addUser(std::shared_ptr<IUser> user);
 	bool deleteUser(const std::string& userName);
 	
-	void displayUsers(const std::string& userName) const;
+	//PRINTERS
 	void displayAllUsers() const;
 	
 };

@@ -9,15 +9,16 @@
 #include "BookStock.h"
 
 class UserPool;
+class BookStock;
 
 class Reader : public IUser {
 protected:
-	std::vector<std::weak_ptr<Book>> m_borrowedBooks; //To be refined
+	std::vector<std::weak_ptr<Book>> m_borrowedBooks;
 	int m_borrowedBookCount;
 
 public:
 	//CTOR
-	Reader(const std::string& readerName);
+	Reader(const std::string& readerName, std::weak_ptr<BookStock> bookStock);
 	
 	//DTOR
 	~Reader() override = default;
@@ -30,7 +31,7 @@ public:
 	virtual void cleanUserForDelete() override;
 
 		//book borrowing handle
-	void borrowBook(const std::string& bookName, const BookStock& bookStock);
+	void borrowBook(const std::string& bookName);
 	void printBorrowedBooks() const;
 	void giveBackBook(const std::string& book);
 

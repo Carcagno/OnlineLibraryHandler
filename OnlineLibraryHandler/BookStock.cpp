@@ -1,6 +1,6 @@
 #include "BookStock.h"
 
-//CTOR
+//CTOR 
 BookStock::BookStock(const std::string bookFilePath):
 	m_bookFilePath{bookFilePath} {
 
@@ -11,28 +11,48 @@ BookStock::~BookStock() {
 
 }
 
-//MISC
-	//Book basic handling
-void BookStock::addBook(std::shared_ptr<Book> book) {
-	m_books.push_back(book);
+//GETTERS
+std::weak_ptr<Book> BookStock::getBookFromStock(const std::string& bookName) const {
+	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
+		if (it->get()->getTitle() == bookName) {
+			return (*it);
+		}
+	}
+
+	return std::weak_ptr<Book>{};
 }
 
-void BookStock::deleteBook(const std::string& bookName) {
+//MISC
+	//Book basic handling
+bool BookStock::addBook(std::shared_ptr<Book> book) {
+	if (book) {
+		m_books.push_back(book);
+		return true;
+	}
+	std::cerr << "Cannot add empty Book. BookStock was left untouched." << std::endl;
+	return false;
+}
+
+bool BookStock::deleteBook(const std::string& bookName) { 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 			m_books.erase(it);
-			return;
+			return true;
 		}
 	}
+	std::cerr << "Could'nt find any Book \"" << bookName << "\" to delete. BookStock was left untouched." << std::endl;
+	return false;
 }
 
-void BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
+bool BookStock::modifyBook(const std::string& bookName, AuthorPool authorPool) {
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 			it->get()->modifyBook(authorPool);
-			return;
+			return true;
 		}
 	}
+	std::cerr << "Could'nt find any Book \"" << bookName << "\" to modify. BookStock was left untouched." << std::endl;
+	return false;
 }
 
 //Book borrowing handling
@@ -49,16 +69,16 @@ std::weak_ptr<Book> BookStock::borrowBook(const std::string& bookName) {
 			return *it;
 		}
 	}
+
 	return std::weak_ptr<Book>{};
-	//to be refined - Exception handling - book not found. Could be normal, just return weak_ptr empty ?
 }
 
-void BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {
+bool BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {
 	std::shared_ptr<Book> book{ bookWeak.lock() };
 
 	if (!book) {
-		std::cout << "Invalid book. Cannot give back an invalid book" << std::endl;
-		//to be refined - Real exception handling or cout OK ?
+		std::cerr << "Invalid book. Cannot give back an invalid book" << std::endl;
+		return false;
 	}
 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
@@ -66,18 +86,16 @@ void BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {
 			if (it->get()->getIsBorrowed()) {
 				it->get()->setIsBorrowed(false);
 				std::cout << "The book was given back to the library and is now available to be borrowed" << std::endl;
+				return true;
 			}
 			else {
-				std::cout << "The book " << book << " is not borrowed. This mean that you can't give it back..." << std::endl;
+				std::cerr << "The book \"" << book << "\" is not borrowed. This mean that you can't give it back..." << std::endl;
+				return false;
 			}
-			return;
 		}
 	}
-
-	//to be refined - Exception handling when book to be given back not found ?
-
-	return;
-
+	std::cerr << "Could'nt find any Book \"" << book.get()->getTitle() << "\" in the BookStock to give back. BookStock was left untouched." << std::endl;
+	return false;
 }
 
 //PRINTERS
@@ -91,14 +109,8 @@ void BookStock::printAllBooks() const {
 		book->printBook();
 	}
 }
-
-std::weak_ptr<Book> BookStock::searchBook(const std::string& bookName) const {
-	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
-		if (it->get()->getTitle() == bookName) {
-			return (*it);
-		}
-	}
-
-	//to be refined - error handling if the book is not found ? Normal behavior with message ? handled by the caller ?
-	return std::weak_ptr<Book>{};
+bool BookStock::isStockEmpty() const {
+	if (m_books.empty())
+		return true;
+	return false;
 }

@@ -6,11 +6,13 @@
 
 #include "Author.h"
 #include "AuthorPool.h"
+#include "BookStock.h"
 
 class Author;
 class AuthorPool;
+class BookStock;
 
-class Book {
+class Book: public std::enable_shared_from_this<Book> {
 public:
 	enum bookCategory
 	{
@@ -30,6 +32,11 @@ private:
 	bookCategory m_category;
 	int m_publicationDate;
 	bool m_isBorrowed;
+	std::weak_ptr<BookStock> m_bookStock;
+
+
+	//CTOR - private
+	Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate, std::shared_ptr<BookStock> bookStock);
 
 	//SETTERS - private
 	void setTitle(const std::string& title);
@@ -42,8 +49,8 @@ private:
 
 
 public:
-	//CTOR
-	Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate);
+	static std::shared_ptr<Book> create(const std::string& title, std::shared_ptr<Author>& author, bookCategory category, int publicationDate, std::shared_ptr<BookStock> bookStock);
+
 	//DTOR
 	~Book();
 
@@ -61,7 +68,7 @@ public:
 	//MISC
 		//PRINTERS
 	void printBook() const;
-	void printAllAvailableCategory();
+	static void printAllAvailableCategory();
 		
 		//Book handling
 	void modifyBook(AuthorPool& authorPool);

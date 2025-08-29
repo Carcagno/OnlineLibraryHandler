@@ -1,27 +1,52 @@
 #include "Book.h"
 
-Book::Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate) :
+//CTOR - private : To avoid direct creation, because of add to BookStock & AuthorPool with shared_ptr
+Book::Book(const std::string& title, std::weak_ptr<Author> author, bookCategory category, int publicationDate, std::shared_ptr<BookStock> bookStock) :
 	m_title{ title },
 	m_author{ author },
-	m_category{ category},
+	m_category{ category },
 	m_publicationDate{ publicationDate },
-	m_isBorrowed{ false } {
-	std::shared_ptr<Author> authorShared{ m_author.lock() };
+	m_isBorrowed{ false },
+	m_bookStock{ bookStock } {
+}
+
+std::shared_ptr<Book> Book::create(const std::string& title, std::shared_ptr<Author>& author, bookCategory category, int publicationDate, std::shared_ptr<BookStock> bookStock) {
+	std::shared_ptr<Book> bookShared{std::shared_ptr<Book>(new Book(title, author, category, publicationDate, bookStock))};
+
+	// the book, once created, and given the fact that the author is already created, must add himself to the author.
+	if (author) {
+		author->addBookToAuthor(bookShared);
+	}
+	else {
+		throw std::invalid_argument("Unvalid author. Aborting creation of the Book...");
+	}
 
 	// The book should add himself into the bookstock to tighten his presence in the stock with is creation / destruction, to ensure that, while he exists, he can be found in the stock.
-	//to be refined - add book to the bookStock ?!
-	
-	// the book, once created, and given the fact that the author is already created, must add himself to the author.
-	if (authorShared) {
-		std::weak_ptr<Book> bookWeak{}; // To be refined - get the weakptr from the BookStock ?!
-
-		authorShared->addBookToAuthor(bookWeak);
+	if (bookStock) {
+		bookStock->addBook(bookShared);
 	}
+	else {
+		throw std::invalid_argument("Unvalid bookStock. Aborting creation of the Book...");
+	}
+
+	return bookShared;
 }
 
 Book::~Book() {
+	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
+	
 	deleteThisBookInAuthor();
-	// to be refined - delete book in bookstock
+
+	if (bookStockShared) {
+		if (!bookStockShared.get()->deleteBook(m_title)) {
+			//The failure of the deletion could be normal, considering the fact that, at the end of the program, everything is destructed in the reverse order of creation. 
+			//No needs to show an error message to the user, but could be interesting to have a log file, with those warning displayed.
+			//std::cerr << "Warning: a deleted book may remain in the BookStock with an invalid state because it fails to delete itself in the stock." << std::endl;
+		}
+	}
+	else {
+	}
+
 }
 
 
@@ -81,7 +106,9 @@ void Book::deleteThisBookInAuthor() {
 	}
 
 	if (!(author->deleteBookFromAuthor(m_title))) {
-		// to be refined - exception handling
+		//std::cerr << "Warning: a deleted book may remain referenced in his author with an invalid state because it fails to delete itself." << std::endl;
+		//The failure of the deletion could be normal, considering the fact that, at the end of the program, everything is destructed in the reverse order of creation. 
+		//No needs to show an error message to the user, but could be interesting to have a log file, with those warning displayed.
 	}
 }
 

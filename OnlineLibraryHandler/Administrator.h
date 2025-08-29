@@ -7,6 +7,7 @@
 #include "UserPool.h"
 #include "AuthorPool.h"
 #include "Author.h"
+#include "Utils.h"
 
 class UserPool;
 
@@ -15,7 +16,7 @@ protected:
 
 public:
 	//CTOR
-	Administrator(const std::string& AdministratorName);
+	Administrator(const std::string& AdministratorName, std::weak_ptr<BookStock> bookStock);
 
 	//DTOR
 	~Administrator() override = default;
@@ -32,17 +33,13 @@ public:
 	void deleteUser(UserPool& userPool);
 	void modifyUser(UserPool& userPool);
 	void displayUser() override;
-	void showUser(const UserPool& userPool);
+	void showOtherUser(UserPool& userPool, const std::string& userName);
 
 		//author handling
-	void addAuthor(AuthorPool& authorPool);
-	void deleteAuthor(AuthorPool& authorPool);
 	void modifyAuthor(AuthorPool& authorPool);
 
 		//book handling
-	void addBook(BookStock& bookStock, AuthorPool& authorPool);
-	void deleteBook(BookStock& bookStock);
-	void modifyBook(BookStock& bookStock);
+	void modifyBook(BookStock& bookStock, AuthorPool& authorPool);
 
 		//Self handling
 	void selfModify() override;
