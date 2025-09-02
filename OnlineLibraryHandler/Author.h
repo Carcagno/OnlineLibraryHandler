@@ -22,8 +22,6 @@ private:
 	Author(const std::string& authorName, std::shared_ptr<AuthorPool> authorPool);
 
 
-	//UNINIT
-	void SetAllAuthorBooksToNone();
 
 public:
 
@@ -46,4 +44,7 @@ public:
 	bool deleteBookFromAuthor(const std::string& bookTitle);
 	void addBookToAuthor(std::weak_ptr<Book> book);
 	bool selfModify();
+
+	//UNINIT
+	void SetAllAuthorBooksToNone();
 };

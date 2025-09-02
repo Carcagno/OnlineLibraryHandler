@@ -9,9 +9,9 @@ std::shared_ptr<AuthorPool> AuthorPool::create(const std::string& authorFilePath
 	std::shared_ptr<AuthorPool> authorPoolShared{ std::shared_ptr<AuthorPool>(new AuthorPool(authorFilePath)) };
 	
 	
-	std::shared_ptr<Author> emptyAuthor{ Author::create("Unknow", authorPoolShared) };
+	/*std::shared_ptr<Author> emptyAuthor{ Author::create("Unknow", authorPoolShared) };
 	
-	authorPoolShared->addAuthor(emptyAuthor);
+	authorPoolShared->addAuthor(emptyAuthor);*/
 
 
 	return authorPoolShared;
@@ -45,6 +45,7 @@ bool AuthorPool::addAuthor(std::shared_ptr<Author> authorName) {
 bool AuthorPool::deleteAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
+			it->get()->SetAllAuthorBooksToNone();
 			m_authors.erase(it);
 			return true;
 		}
@@ -67,7 +68,12 @@ bool AuthorPool::modifyAuthor(const std::string& authorName) {
 }
 
 void AuthorPool::printAllAuthors() const {
-	std::cout << "\t\t\t==================== Authors ====================\n" << std::endl;
+	if (m_authors.empty()) {
+		std::cout << "No authors in the AuthorPool!" << std::endl;
+		return;
+	}
+
+	std::cout << "\t\t\t==================== Authors ====================" << std::endl;
 
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		it->get()->printAuthor();

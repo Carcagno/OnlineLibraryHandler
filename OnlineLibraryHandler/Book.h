@@ -44,7 +44,6 @@ private:
 	void setPublicationDate(const int publicationDate);
 
 	//MISC - private
-	void deleteThisBookInAuthor();
 	void printCategory() const;
 
 
@@ -71,6 +70,8 @@ public:
 	static void printAllAvailableCategory();
 		
 		//Book handling
-	void modifyBook(AuthorPool& authorPool);
+	void modifyBook(std::weak_ptr<AuthorPool> authorPool);
 	void resetAuthor();
+	void deleteThisBookInAuthor();
+
 };

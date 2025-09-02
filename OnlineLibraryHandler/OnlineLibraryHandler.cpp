@@ -17,23 +17,13 @@ int main()
     std::shared_ptr<UserPool> userPool{ std::make_shared<UserPool>("PlaceHolder/Path") };
     std::shared_ptr<IUser> activeUser{ std::make_shared<Administrator>("Kevin", bookStock) };
     
-    if (1 == 1) {
-        std::shared_ptr<Author> aut1{ Author::create("Jean Valjean", authorPool) };
+    std::shared_ptr<Author> aut1{ Author::create("Jean Valjean", authorPool) };
 
-        std::shared_ptr<Book> b1{ Book::create("Alice", aut1, Book::bookCategory::Classic, 1894, bookStock) };
-    }
+    std::shared_ptr<Book> b1{ Book::create("Alice", aut1, Book::bookCategory::Classic, 1894, bookStock) };
+    
+    std::dynamic_pointer_cast<Administrator>(activeUser).get()->addUser(userPool);
 
-    bookStock.get()->printAllBooks();
-
-    authorPool.get()->printAllAuthors();
-
-    bookStock.get()->deleteBook("Alice");
-
-    authorPool.get()->deleteAuthor("Jean Valjean");
-
-    bookStock.get()->printAllBooks();
-
-    authorPool.get()->printAllAuthors();
+    userPool.get()->displayAllUsers();
 
     return 0;
 }

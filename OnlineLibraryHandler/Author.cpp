@@ -18,14 +18,8 @@ std::shared_ptr<Author> Author::create(const std::string& authorName, std::share
 	return authorShared;
 }
 
-Author::~Author() {
-	std::shared_ptr<AuthorPool> authorPoolShared{ m_authorPool.lock() };
-	
+Author::~Author() {	
 	SetAllAuthorBooksToNone();
-
-	if (authorPoolShared) {
-		authorPoolShared.get()->deleteAuthor(m_authorName);
-	}
 }
 
 
@@ -56,13 +50,13 @@ std::string Author::getAuthorName() const {
 }
 
 void Author::printAuthor() const{
-	std::cout << "\t\t\t==================== " << m_authorName << " ====================" << std::endl;
+	std::cout << "-> " << m_authorName << std::endl;
 	//If any informations is added into author, can be updated to be prompt.
 }
 
 bool Author::deleteBookFromAuthor(const std::string& bookTitle) {
 
-	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
+	for (std::vector<std::weak_ptr<Book>>::iterator it{ m_books.begin() }; it != m_books.end(); ++it) {
 		std::shared_ptr<Book> book{ it->lock() };
 
 		if (book) {

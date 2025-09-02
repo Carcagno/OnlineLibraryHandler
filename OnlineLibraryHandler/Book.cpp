@@ -33,20 +33,6 @@ std::shared_ptr<Book> Book::create(const std::string& title, std::shared_ptr<Aut
 }
 
 Book::~Book() {
-	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
-	
-	deleteThisBookInAuthor();
-
-	if (bookStockShared) {
-		if (!bookStockShared.get()->deleteBook(m_title)) {
-			//The failure of the deletion could be normal, considering the fact that, at the end of the program, everything is destructed in the reverse order of creation. 
-			//No needs to show an error message to the user, but could be interesting to have a log file, with those warning displayed.
-			//std::cerr << "Warning: a deleted book may remain in the BookStock with an invalid state because it fails to delete itself in the stock." << std::endl;
-		}
-	}
-	else {
-	}
-
 }
 
 
@@ -166,10 +152,10 @@ void Book::printBook() const {
 	std::cout << "Book borrowing status: ";
 	
 	if (m_isBorrowed) {
-		std::cout << "Borrowed";
+		std::cout << "Borrowed\n";
 	}
 	else {
-		std::cout << "Available";
+		std::cout << "Available\n";
 	}
 
 	std::cout << std::endl;
@@ -179,11 +165,13 @@ void Book::printAllAvailableCategory() {
 	std::cout << "Available categories: \n1. SciFi\n2. Classic\n3. Autobiography\n4. Roman\n5. Fantasy\n6. Thriller\n7.	Essay" << std::endl;
 }
 
-void Book::modifyBook(AuthorPool &authorPool) {
+void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	std::string title{""};
 	std::string authorName{""};
 	int category{ -1 };
 	int publicationDate{ -9999 };
+	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
+
 
 	std::cout << "Actual title: " << m_title << "\nEnter new title (leave empty to keep old title): ";
 	std::cin >> title;
@@ -198,12 +186,17 @@ void Book::modifyBook(AuthorPool &authorPool) {
 		std::cin >> authorName;
 
 		if (authorName != "" && authorName != "\n") {
-			std::shared_ptr<Author> author{ authorPool.getAuthorFromPool(authorName).lock() };
-			if (author) {
-				m_author = author;
+			if (authorPoolShared) {
+				std::shared_ptr<Author> author{ authorPoolShared.get()->getAuthorFromPool(authorName).lock()};
+				if (author) {
+					m_author = author;
+				}
+				else {
+					std::cout << "Invalid author name. Old author name left untouched. Please, retry to modifyBook again if you want to change the author" << std::endl;
+				}
 			}
 			else {
-				std::cout << "Invalid author name. Old author name left untouched. Please, retry to modifyBook again if you want to change the author" << std::endl;
+				throw std::invalid_argument("Cannot get an author from an empty Pool.");
 			}
 		}
 	}
