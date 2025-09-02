@@ -17,6 +17,8 @@ std::weak_ptr<IUser> UserPool::getUserFromPool(const std::string& userName) {
 			return *it;
 		}
 	}
+
+	return (std::weak_ptr<IUser>());
 }
 
 
