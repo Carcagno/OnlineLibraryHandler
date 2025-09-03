@@ -44,6 +44,10 @@ bool UserPool::deleteUser(const std::string& userName) {
 	return false;
 }
 
+bool UserPool::isEmpty() {
+	return m_users.empty();
+}
+
 void UserPool::displayAllUsers() const {
 
 	if (m_users.empty()) {

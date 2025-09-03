@@ -95,27 +95,51 @@ void Reader::displayUser() {
 	}
 }
 
-void Reader::selfModify() {
+bool Reader::selfModify() {
 	//to be refined - DRY: mayber IUser implem and call for Admin & Reader ?
 	std::string newUserName{ "" };
 	char newUserType{ '\0' };
 
 	std::cout << "Enter new userName (leave empty to keep old name): ";
 	std::cin >> newUserName;
+	if (!clearFailedExtraction()) {
+		ignoreLine();
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
 
 	std::cout << "Enter new userType (leave empty to keep old type), \'A\' or \'R\': ";
 	std::cin >> newUserType;
+	if (!clearFailedExtraction()) {
+		ignoreLine();
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
 
 	if (newUserName != "" && newUserName != "\n" && !(newUserName.empty())) {
 		m_userName = newUserName;
 	}
+	else {
+		std::cerr << "Cannot use an empty name" << std::endl;
+		return false;
+	}
 
 	if (newUserType != '\0' && newUserType != '\n') {
 		m_userType = newUserType;
+	}
+	else {
+		std::cerr << "Cannot use an empty type" << std::endl;
+		return false;
 	}
 
 	//to be refined maybe implement a way to have books borrowed modifyed (imply to display, and ask for each if admin wants to change borrow status ?)
 
 	std::cout << "User has been modifyed. New user informations:\n" << std::endl;
 	this->displayUser();
+
+	return true;
 }

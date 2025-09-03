@@ -37,6 +37,6 @@ public:
 
 	void virtual displayUser() override;
 
-	void selfModify() override;
+	bool selfModify() override;
 
 };

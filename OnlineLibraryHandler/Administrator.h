@@ -29,18 +29,19 @@ public:
 	void cleanUserForDelete() override;
 	
 		//user handling
-	void addUser(std::weak_ptr<UserPool> userPool);
-	void deleteUser(std::weak_ptr<UserPool> userPool);
-	void modifyUser(std::weak_ptr<UserPool> userPool);
+	bool addUser(std::weak_ptr<UserPool> userPool);
+	bool deleteUser(std::weak_ptr<UserPool> userPool);
+	bool modifyUser(std::weak_ptr<UserPool> userPool);
 	void displayUser() override;
 	void showOtherUser(std::weak_ptr<UserPool> userPool, const std::string& userName);
 
 		//author handling
-	void modifyAuthor(std::weak_ptr<AuthorPool> authorPool);
+	bool addAuthor(std::weak_ptr<AuthorPool> authorPool);
+	bool modifyAuthor(std::weak_ptr<AuthorPool> authorPool);
 
 		//book handling
 	void modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
 
 		//Self handling
-	void selfModify() override;
+	bool selfModify() override;
  };

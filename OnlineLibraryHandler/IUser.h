@@ -50,6 +50,6 @@ public:
 
 	}
 
-	virtual void selfModify() = 0;
+	virtual bool selfModify() = 0;
 	
 };

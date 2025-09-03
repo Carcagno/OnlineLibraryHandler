@@ -59,7 +59,6 @@ bool AuthorPool::modifyAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			return it->get()->selfModify();
-			return true;
 		}
 	}
 
