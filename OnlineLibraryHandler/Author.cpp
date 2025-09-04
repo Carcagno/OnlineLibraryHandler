@@ -87,22 +87,17 @@ void Author::addBookToAuthor(std::weak_ptr<Book> book) {
 
 bool Author::selfModify() {
 	std::string newAuthorName{};
-	bool isAuthorNameChanged{ false };
 
-	do {
-		std::cout << "Please, provide a new name for the author \"" << this->m_authorName << "\": ";
-		//to be refined - cin error & validation
-		std::cin >> newAuthorName;
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-			m_authorName = newAuthorName;
-		}
-		else {
-			std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
-			continue;
-		}
-
-	} while (!isAuthorNameChanged);
+	std::cout << "Please, provide a new name for the author \"" << this->m_authorName << "\": ";
+	//to be refined - cin error & validation
+	std::getline(std::cin, newAuthorName);
+	if (!clearFailedExtraction()) {
+		m_authorName = newAuthorName;
+	}
+	else {
+		std::cout << "Failed extraction ... Retrying to get user input!" << std::endl;
+		return false;
+	}
 
 	return true;
 }

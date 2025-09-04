@@ -174,7 +174,9 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 
 
 	std::cout << "Actual title: " << m_title << "\nEnter new title (leave empty to keep old title): ";
-	std::cin >> title;
+	std::getline(std::cin, title);
+	if (!clearFailedExtraction()) {
+	}
 
 	if (title != "" && title != "\n") {
 		m_title = title;
@@ -221,7 +223,7 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	std::cout << "Actual publication date: " << m_publicationDate << "\nEnter new publication date (leave empty to keep old publication date): ";
 	std::cin >> publicationDate;
 
-	if (publicationDate != -1) {
+	if (publicationDate != -9999) {
 		m_publicationDate = publicationDate;
 	}
 	

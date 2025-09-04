@@ -28,6 +28,8 @@ public:
 		//User handling
 	bool addUser(std::shared_ptr<IUser> user);
 	bool deleteUser(const std::string& userName);
+
+	bool isEmpty() const;
 	
 	//PRINTERS
 	void displayAllUsers() const;

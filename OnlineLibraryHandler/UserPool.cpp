@@ -17,6 +17,8 @@ std::weak_ptr<IUser> UserPool::getUserFromPool(const std::string& userName) {
 			return *it;
 		}
 	}
+
+	return (std::weak_ptr<IUser>());
 }
 
 
@@ -40,6 +42,10 @@ bool UserPool::deleteUser(const std::string& userName) {
 	std::cerr << "Could'nt find user \"" << userName << "\" to delete. UserPool was left untouched." << std::endl;
 
 	return false;
+}
+
+bool UserPool::isEmpty() const {
+	return m_users.empty();
 }
 
 void UserPool::displayAllUsers() const {

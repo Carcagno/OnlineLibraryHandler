@@ -35,6 +35,8 @@ public:
 	bool deleteAuthor(const std::string& authorName);
 	bool modifyAuthor(const std::string& authorName);
 
+	bool isEmpty() const;
+
 	//PRINTERS
 	void printAllAuthors() const;
 	

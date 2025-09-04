@@ -31,12 +31,12 @@ public:
 	virtual void cleanUserForDelete() override;
 
 		//book borrowing handle
-	void borrowBook(const std::string& bookName);
+	bool borrowBook(const std::string& bookName);
 	void printBorrowedBooks() const;
-	void giveBackBook(const std::string& book);
+	bool giveBackBook(const std::string& book);
 
 	void virtual displayUser() override;
 
-	void selfModify() override;
+	bool selfModify() override;
 
 };

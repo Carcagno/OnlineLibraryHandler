@@ -59,12 +59,15 @@ bool AuthorPool::modifyAuthor(const std::string& authorName) {
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			return it->get()->selfModify();
-			return true;
 		}
 	}
 
 	std::cerr << "Could'nt find any author \"" << authorName << "\" to modify. Author pool was left untouched." << std::endl;
 	return false;
+}
+
+bool AuthorPool::isEmpty() const {
+	return m_authors.empty();
 }
 
 void AuthorPool::printAllAuthors() const {
