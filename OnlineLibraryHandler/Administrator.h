@@ -37,10 +37,13 @@ public:
 
 		//author handling
 	bool addAuthor(std::weak_ptr<AuthorPool> authorPool);
+	bool deleteAuthor(std::weak_ptr<AuthorPool> authorPool);
 	bool modifyAuthor(std::weak_ptr<AuthorPool> authorPool);
 
 		//book handling
-	void modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
+	bool addBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
+	bool deleteBook(std::weak_ptr<BookStock> bookStock);
+	bool modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
 
 		//Self handling
 	bool selfModify() override;

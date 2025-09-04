@@ -10,6 +10,9 @@
     <ClCompile Include="TestAdministrator.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="TestReader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

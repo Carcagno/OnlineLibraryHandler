@@ -16,7 +16,7 @@ void Reader::cleanUserForDelete() {
 	m_borrowedBookCount = 0;
 }
 
-void Reader::borrowBook(const std::string& bookName) {
+bool Reader::borrowBook(const std::string& bookName) {
 	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
 
 	if (bookStockShared) {
@@ -26,13 +26,16 @@ void Reader::borrowBook(const std::string& bookName) {
 			std::cout << "Book: " << bookSharedPtr->getTitle() << " is now borrowed by you " << m_userName << std::endl;
 			++m_borrowedBookCount;
 			m_borrowedBooks.push_back(bookWeakPtr);
+			return true;
 		}
 		else {
-			std::cout << "Book " << bookName << " could'nt be borrowed. The title you provided may be wrong." << std::endl;
+			std::cerr << "Book " << bookName << " could'nt be borrowed. The title you provided may be wrong." << std::endl;
+			return false;
 		}
 	}
 	else {
-		throw std::runtime_error("Error: Reader could'nt borrow a book because of invalid m_bookStock ptr");
+		std::cerr << "Error: Reader could'nt borrow a book because of invalid m_bookStock ptr" << std::endl;
+		return false;
 	}
 }
 
@@ -53,7 +56,7 @@ void Reader::printBorrowedBooks() const {
 	}
 }
 
-void Reader::giveBackBook(const std::string& book) {
+bool Reader::giveBackBook(const std::string& book) {
 	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
 	
 	if (bookStockShared) {
@@ -65,17 +68,19 @@ void Reader::giveBackBook(const std::string& book) {
 					m_borrowedBooks.erase(it);
 					--m_borrowedBookCount;
 					std::cout << "The book " << book << " was successfully given back" << std::endl;
-					return;
+					return true;
 				}
 			}
 		}
 
 	}
 	else {
-		throw std::runtime_error("Error: Reader could'nt give back a book because of invalid m_bookStock ptr");
+		std::cerr << "Error: Reader could'nt give back a book because of invalid m_bookStock ptr" << std::endl;
+		return false;
 	}
 
 	std::cout << "You didn't borrowed the book " << book << ". Then, you can't give it back ..." << std::endl;
+	return false;
 }
 
 void Reader::displayUser() {

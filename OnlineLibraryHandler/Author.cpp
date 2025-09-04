@@ -90,9 +90,8 @@ bool Author::selfModify() {
 
 	std::cout << "Please, provide a new name for the author \"" << this->m_authorName << "\": ";
 	//to be refined - cin error & validation
-	std::cin >> newAuthorName;
+	std::getline(std::cin, newAuthorName);
 	if (!clearFailedExtraction()) {
-		ignoreLine();
 		m_authorName = newAuthorName;
 	}
 	else {

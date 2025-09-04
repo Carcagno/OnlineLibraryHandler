@@ -22,8 +22,8 @@ bool Administrator::addUser(std::weak_ptr<UserPool> userPool) {
 
 	std::cout << "Please, enter the informations of the new user:\n" << "UserName: ";
 	std::getline(std::cin, userName);
-	if (!clearFailedExtraction())
-		ignoreLine();
+	if (!clearFailedExtraction()){
+	}
 	else {
 		std::cerr << "Failed extraction ... this message should never be prompted" << std::endl;
 		return false;
@@ -72,7 +72,6 @@ bool Administrator::deleteUser(std::weak_ptr<UserPool> userPool) {
 		std::getline(std::cin, userName);
 
 		if (!clearFailedExtraction()) {
-			ignoreLine();
 		}
 		else {
 			std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
@@ -102,7 +101,6 @@ bool Administrator::modifyUser(std::weak_ptr<UserPool> userPool) {
 	std::getline(std::cin, userName);
 
 	if (!clearFailedExtraction()) {
-		ignoreLine();
 	}
 	else {
 		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
@@ -177,7 +175,6 @@ bool Administrator::addAuthor(std::weak_ptr<AuthorPool> authorPool) {
 	std::getline(std::cin, authorName);
 
 	if (!clearFailedExtraction()) {
-		ignoreLine();
 	}
 	else {
 		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
@@ -189,8 +186,32 @@ bool Administrator::addAuthor(std::weak_ptr<AuthorPool> authorPool) {
 		return true;
 	}
 	else {
-		throw std::invalid_argument("Cannot modify an author from an empty Pool.");
+		throw std::invalid_argument("Cannot add an author from an empty Pool.");
 	}
+	return false;
+}
+
+bool Administrator::deleteAuthor(std::weak_ptr<AuthorPool> authorPool) {
+	std::string authorName{};
+	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
+
+	std::cout << "Please, enter the name of the author to delete";
+	std::getline(std::cin, authorName);
+
+	if (!clearFailedExtraction()) {
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
+
+	if (authorPoolShared) {
+		return authorPoolShared.get()->deleteAuthor(authorName);
+	}
+	else {
+		throw std::invalid_argument("Cannot delete an author from an empty Pool.");
+	}
+	return false;
 }
 
 
@@ -201,7 +222,6 @@ bool Administrator::modifyAuthor(std::weak_ptr<AuthorPool> authorPool) {
 	std::cout << "Please, enter the name of the author to modify";
 	std::getline(std::cin, authorName);
 	if (!clearFailedExtraction()) {
-		ignoreLine();
 	}
 	else {
 		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
@@ -216,29 +236,134 @@ bool Administrator::modifyAuthor(std::weak_ptr<AuthorPool> authorPool) {
 }
 
 	//book handling
-void Administrator::modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool) {
+
+bool Administrator::addBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool) {
+	std::string bookTitle{""};
+	std::string authorName{ "" };
+	int category{ -1 };
+	int publicationDate{ -9999 };
+	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
+	std::shared_ptr<BookStock> bookStockShared{ bookStock.lock() };
+	std::shared_ptr<Author> authorShared{};
+
+	std::cout << "Please, enter the title of the book to add";
+	std::getline(std::cin, bookTitle);
+	if (!clearFailedExtraction()) {
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
+	if (bookTitle == "" || bookTitle == "\n") {
+		std::cerr << "Impossible to create a book with an empty name" << std::endl;
+		return false;
+	}
+
+
+	std::cout << "Please, enter the author name of the book to add";
+	std::getline(std::cin, authorName);
+	if (!clearFailedExtraction()) {
+		authorPoolShared = authorPool.lock();
+		if (authorPoolShared) {
+			authorShared = (authorPoolShared.get()->getAuthorFromPool(authorName)).lock();
+			if (!authorShared) {
+				std::cerr << "Could'nt find the author " << authorName << "! Impossible to add a non-existent author." << std::endl;
+				return false;
+			}
+		}
+		else {
+			std::cerr << "impossible to create an author from an empty author pool" << std::endl;
+			return false;
+		}
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
+
+	std::cout << "Please, choose a category among folllowing ones: " << std::endl;
+	Book::printAllAvailableCategory();
+	
+	std::cin >> category;
+	if (!clearFailedExtraction()) {
+
+		if (category < 0 || category > Book::bookCategory::defaultValue) {
+			std::cerr << "Invalid category. Old category left untouched. Please, retry to modifyBook again if you want to change the category" << std::endl;
+			return false;
+		}
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
+
+	std::cin >> publicationDate;
+	if (!clearFailedExtraction()) {
+		if (publicationDate == -9999) {
+			std::cerr << "Invalid date." << std::endl;
+			return false;
+		} 
+	}
+
+	if (bookStockShared) {
+		auto bookEnd{ Book::create(bookTitle, authorShared, static_cast<Book::bookCategory>(category), publicationDate, bookStockShared) };
+		if (bookEnd) {
+			std::cout << "Created book: " << std::endl;
+			bookEnd.get()->printBook();
+			return true;
+		}
+		else {
+			std::cerr << "Failed to create the book with the given information" << std::endl;
+			return false;
+		}
+	}
+	else {
+		throw std::invalid_argument("Cannot add a book from an empty Pool");
+		return false;
+	}
+
+}
+
+bool Administrator::deleteBook(std::weak_ptr<BookStock> bookStock) {
 	std::string bookTitle;
-	bool isBookModifyed{ false };
 	std::shared_ptr<BookStock> bookStockShared{ bookStock.lock() };
 
-	do {
-		std::cout << "Please, enter the title of the book to modify";
-		std::getline(std::cin, bookTitle);
-		if (!clearFailedExtraction()) {
-			ignoreLine();
-		}
-		else {
-			std::cout << "Failed extraction... this message should never be prompted" << std::endl;
-			continue;
-		}
+	std::cout << "Please, enter the title of the book to modify";
+	std::getline(std::cin, bookTitle);
+	if (!clearFailedExtraction()) {
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
 
-		if (bookStockShared) {
-			isBookModifyed = bookStockShared.get()->modifyBook(bookTitle, authorPool);
-		}
-		else {
-			throw std::invalid_argument("Cannot modify a book from an empty Pool");
-		}
-	} while (!isBookModifyed);
+	if (bookStockShared) {
+		return bookStockShared.get()->deleteBook(bookTitle);
+	}
+	else {
+		throw std::invalid_argument("Cannot modify a book from an empty Pool");
+	}
+}
+
+bool Administrator::modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool) {
+	std::string bookTitle;
+	std::shared_ptr<BookStock> bookStockShared{ bookStock.lock() };
+
+	std::cout << "Please, enter the title of the book to modify";
+	std::getline(std::cin, bookTitle);
+	if (!clearFailedExtraction()) {
+	}
+	else {
+		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+		return false;
+	}
+
+	if (bookStockShared) {
+		return bookStockShared.get()->modifyBook(bookTitle, authorPool);
+	}
+	else {
+		throw std::invalid_argument("Cannot modify a book from an empty Pool");
+	}
 }
 
 bool Administrator::selfModify() {
@@ -249,7 +374,6 @@ bool Administrator::selfModify() {
 	std::getline(std::cin, newUserName);
 
 	if (!clearFailedExtraction()) {
-		ignoreLine();
 	}
 	else {
 		std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
@@ -259,7 +383,7 @@ bool Administrator::selfModify() {
 	std::cout << "Enter new userType (leave empty to keep old type), \'A\' or \'R\': ";
 	std::cin >> newUserType;
 	if (!clearFailedExtraction()) {
-		ignoreLine();
+
 		//to be refined - DRY Create a type validate to avoid code repetition and improve evolutivity
 		if (newUserType != 'A' && newUserType != 'R') {
 			std::cout << "Invalid user type." << std::endl;

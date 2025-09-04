@@ -29,7 +29,7 @@ public:
 	bool addUser(std::shared_ptr<IUser> user);
 	bool deleteUser(const std::string& userName);
 
-	bool isEmpty();
+	bool isEmpty() const;
 	
 	//PRINTERS
 	void displayAllUsers() const;

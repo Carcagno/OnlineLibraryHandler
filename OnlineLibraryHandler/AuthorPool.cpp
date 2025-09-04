@@ -66,6 +66,10 @@ bool AuthorPool::modifyAuthor(const std::string& authorName) {
 	return false;
 }
 
+bool AuthorPool::isEmpty() const {
+	return m_authors.empty();
+}
+
 void AuthorPool::printAllAuthors() const {
 	if (m_authors.empty()) {
 		std::cout << "No authors in the AuthorPool!" << std::endl;
