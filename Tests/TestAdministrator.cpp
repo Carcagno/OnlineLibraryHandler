@@ -42,7 +42,7 @@ protected:
 
 TEST_F(AdministratorTest, CreateAndDestroy) {
 	ASSERT_EQ(m_a1.get()->getUserName(), "admin") << "Admin name not set properly";
-	ASSERT_EQ(m_a1.get()->getUserType(), 'A') << "Admin type not set properly";
+	ASSERT_EQ(m_a1.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Admin type not set properly";
 }
 
 TEST_F(AdministratorTest, GoodCreateUsers) {
@@ -65,7 +65,7 @@ TEST_F(AdministratorTest, GoodCreateUsers) {
 	ASSERT_TRUE(adminCreated) << "Unvalid created User";
 
 	ASSERT_EQ(adminCreated.get()->getUserName(), "John") << "Created admin name not set properly";
-	ASSERT_EQ(adminCreated.get()->getUserType(), 'A') << "Created admin type not set properly";
+	ASSERT_EQ(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin type not set properly";
 	std::cin.rdbuf(cin_backup);
 }
 
@@ -94,7 +94,7 @@ TEST_F(AdministratorTest, BadCreateUsers) {
 	std::weak_ptr<IUser> user{ m_userPool.get()->getUserFromPool("John") };
 	std::shared_ptr<Administrator> adminCreated(dynamic_pointer_cast<Administrator>(user.lock()));
 	ASSERT_NE(adminCreated.get()->getUserName(), "Jill") << "Created admin unproperly handle error in input creation";
-	ASSERT_NE(adminCreated.get()->getUserType(), 'Z') << "Created admin unproperly handle error in input creation";
+	ASSERT_NE(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('Z')) << "Created admin unproperly handle error in input creation";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -165,7 +165,7 @@ TEST_F(AdministratorTest, ModifyUser) {
 	ASSERT_TRUE(isUserModified) << "Admin was not Modified correctly";
 
 	ASSERT_NE(adminCreated.get()->getUserName(), "John") << "Created admin unproperly handle error in input creation";
-	ASSERT_NE(adminCreated.get()->getUserType(), 'A') << "Created admin unproperly handle error in input creation";
+	ASSERT_NE(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin unproperly handle error in input creation";
 
 	std::cin.rdbuf(cin_backup);
 }

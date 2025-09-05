@@ -40,13 +40,14 @@ protected:
 
 TEST_F(ReaderTest, CreateAndDestroy) {
 	ASSERT_EQ(m_r1.get()->getUserName(), "reader") << "Reader name not set properly";
-	ASSERT_EQ(m_r1.get()->getUserType(), 'R') << "Reader type not set properly";
+	ASSERT_EQ(m_r1.get()->getUserType(), static_cast<IUser::UserType>('R')) << "Reader type not set properly";
 }
 
 TEST_F(ReaderTest, BorrowAndGiveBackBook) {
 	bool isBookBorrowed{ false };
 	bool isBookGivenBack{ false };
-
+	
+	testing::internal::CaptureStdout();
 	isBookBorrowed = m_r1.get()->borrowBook("The yellow bridge");
 
 	ASSERT_TRUE(isBookBorrowed) << "The book wasn't borrowed properly";
@@ -60,4 +61,6 @@ TEST_F(ReaderTest, BorrowAndGiveBackBook) {
 	ASSERT_TRUE(isBookGivenBack) << "The book wasn't given back properly";
 
 	EXPECT_FALSE(book.lock().get()->getIsBorrowed()) << "The book wasn't set as not borrowed in the pool";
+	std::string output = testing::internal::GetCapturedStdout();
+
 }

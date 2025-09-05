@@ -173,7 +173,7 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
 
 
-	std::cout << "Actual title: " << m_title << "\nEnter new title (leave empty to keep old title): ";
+	std::cout << "Actual title: " << m_title << "\nEnter new title: ";
 	std::getline(std::cin, title);
 	if (!clearFailedExtraction()) {
 	}
@@ -184,7 +184,7 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 
 	std::shared_ptr<Author> author{ m_author.lock() };
 	if (author) {
-		std::cout << "Actual author: " << author->getAuthorName() << "\nEnter new author name (leave empty to keep old author): ";
+		std::cout << "Actual author: " << author->getAuthorName() << "\nEnter new author name: ";
 		std::cin >> authorName;
 
 		if (authorName != "" && authorName != "\n") {
@@ -208,7 +208,7 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	
 	std::cout << "Actual book category: ";
 	printCategory();
-	std::cout << "Enter the new category number (leave empty to keep old category):\n ";
+	std::cout << "Enter the new category number:\n ";
 	printAllAvailableCategory();
 
 	std::cin >> category;
@@ -220,7 +220,7 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 		std::cout << "Invalid category. Old category left untouched. Please, retry to modifyBook again if you want to change the category" << std::endl;
 	}
 
-	std::cout << "Actual publication date: " << m_publicationDate << "\nEnter new publication date (leave empty to keep old publication date): ";
+	std::cout << "Actual publication date: " << m_publicationDate << "\nEnter new publication date: ";
 	std::cin >> publicationDate;
 
 	if (publicationDate != -9999) {

@@ -1,20 +1,15 @@
 #pragma once
 
+#include <string>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "IUser.h"
-#include "Book.h"
 
-#include "bookStock.h"
-#include "UserPool.h"
-#include "AuthorPool.h"
-
-
-class UserPool;
+class Book;
 class BookStock;
-class IUser;
+class UserPool;
+class AuthorPool;
 
 class Reader : public IUser {
 protected:
@@ -38,11 +33,11 @@ public:
 		//book borrowing handle
 	bool borrowBook(const std::string& bookName);
 	void printBorrowedBooks() const;
-	bool giveBackBook(const std::string& book);
+	bool giveBackBook(const std::string& bookTitle);
 
-	void virtual displayUser() override;
+	void virtual displayUser() const override;
 
-	bool selfModify() override;
+	bool selfModify(std::shared_ptr<UserPool> userPool, std::shared_ptr<BookStock> bookStock) override;
 	bool selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) override;
 
 };
