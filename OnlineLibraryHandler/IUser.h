@@ -1,9 +1,12 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <memory>
 
-#include "bookStock.h"
 
 class BookStock;
+class UserPool;
+class AuthorPool;
 
 class IUser {
 protected:
@@ -45,11 +48,13 @@ public:
 	//MISC
 	virtual void cleanUserForDelete() = 0;
 
-	virtual void displayUser() = 0 {
+	virtual void displayUser() {
 		std::cout << "UserName: " << m_userName << "\nUserType: ";
 
 	}
 
 	virtual bool selfModify() = 0;
+
+	virtual bool selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) = 0;
 	
 };

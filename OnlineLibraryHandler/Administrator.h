@@ -1,14 +1,18 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 
 #include "IUser.h"
 #include "Reader.h"
-#include "UserPool.h"
-#include "AuthorPool.h"
 #include "Author.h"
 #include "Utils.h"
 
+#include "BookStock.h"
+#include "UserPool.h"
+#include "AuthorPool.h"
+
+class IUser;
 class UserPool;
 
 class Administrator : public IUser {
@@ -33,7 +37,7 @@ public:
 	bool deleteUser(std::weak_ptr<UserPool> userPool);
 	bool modifyUser(std::weak_ptr<UserPool> userPool);
 	void displayUser() override;
-	void showOtherUser(std::weak_ptr<UserPool> userPool, const std::string& userName);
+	void showOtherUser(std::weak_ptr<UserPool> userPool);
 
 		//author handling
 	bool addAuthor(std::weak_ptr<AuthorPool> authorPool);
@@ -47,4 +51,6 @@ public:
 
 		//Self handling
 	bool selfModify() override;
+	bool selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) override;
+
  };

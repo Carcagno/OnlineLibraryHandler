@@ -1,4 +1,4 @@
-#include "authorPool.h"
+#include "AuthorPool.h"
 
 //CTOR - Private to avoid direct creation because of the shared_ptr & selfFilling with default empty author
 AuthorPool::AuthorPool(const std::string& authorFilePath): 

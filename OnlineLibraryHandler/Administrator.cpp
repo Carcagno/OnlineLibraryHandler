@@ -144,11 +144,27 @@ void Administrator::displayUser() {
 	std::cout << "Administrator" << std::endl;
 }
 
-void Administrator::showOtherUser(std::weak_ptr<UserPool> userPool, const std::string& userName) {
+void Administrator::showOtherUser(std::weak_ptr<UserPool> userPool) {
+	std::string userName{ "" };
 	std::shared_ptr<UserPool> userPoolShared{ userPool.lock() };
-	
+
 	if (userPoolShared) {
-		std::weak_ptr<IUser> userWeak{ userPoolShared.get()->getUserFromPool(userName)};
+
+		std::cout << "availableUsers: " << std::endl;
+
+		userPoolShared.get()->displayAllUsers();
+
+		std::cout << "Please, enter the name of the user you want to show: ";
+
+		std::getline(std::cin, userName);
+		if (!clearFailedExtraction()) {
+		}
+		else {
+			std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
+			return;
+		}
+
+		std::weak_ptr<IUser> userWeak{ userPoolShared.get()->getUserFromPool(userName) };
 		std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
 		if (userShared) {
@@ -163,7 +179,8 @@ void Administrator::showOtherUser(std::weak_ptr<UserPool> userPool, const std::s
 		}
 	}
 	else {
-		throw std::invalid_argument("Cannot show an user from an inaccessible Pool.");
+		std::cerr << "Cannot show an user from an inaccessible Pool.";
+		return;
 	}
 }
 	//author handling
@@ -415,4 +432,114 @@ bool Administrator::selfModify() {
 	this->displayUser();
 	
 	return true;
+}
+
+bool Administrator::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) {
+	std::string userChoice{ "" };
+
+	std::cout << std::endl << "Welcome to the online library! As Administrator, you can use the following command (type the command showed between square brackets [???] to execute it): " << std::endl;
+	while (userChoice != "quit") {
+		std::cout << "[createUser]: To created a new user (Administrator or Reader)\n"
+			<< "[deleteUser]: To delete an existing user. The user must exists in the system prior to the execution of this command.\n"
+			<< "[modifyUser]: To modify an existing user. The user must exists in the system prior to the execution of this command.\n"
+			<< "[showUser]: To show the information about a specific user. The user must exists in the system prior to the execution of this command.\n"
+			<< "[createAuthor]: To create an author. An author must be created before adding a book written by the author.\n"
+			<< "[deleteAuthor]: To delete an author. If there are remaining books written by this author, the author will be set as \"Unknown\" in those books.\n"
+			<< "[modifyAuthor]: To modify an author. The books written by this author will have the informations about the author updated.\n"
+			<< "[displayMe]: To display your account informations.\n"
+			<< "[searchBook]: To search a book in the library and display the information about it.\n" // to be refined - implement a real search. findIf ?
+			<< "[searchAuthor]: To search an author in the library and display the information about it.\n"// to be refined - same as previous
+			<< "[quit]: to quit the library.\n"
+			<< std::endl; // to be refined - maybe a command to display all books / users / authors ?
+
+		std::getline(std::cin, userChoice);
+		if (!clearFailedExtraction()) {
+			std::transform(userChoice.begin(), userChoice.end(), userChoice.begin(), ::tolower);
+		}
+		else {
+			std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
+			return false;
+		}
+
+		if (userChoice == "createuser") {
+			this->addUser(userPool);
+		}
+		else if (userChoice == "deleteuser") {
+			this->deleteUser(userPool);
+		}
+		else if (userChoice == "modifyuser") {
+			this->modifyUser(userPool);
+		}
+		else if (userChoice == "showuser") {
+			this->showOtherUser(userPool);
+		}
+		else if (userChoice == "createauthor") {
+			this->addAuthor(authorPool);
+		}
+		else if (userChoice == "deleteauthor") {
+			this->deleteAuthor(authorPool);
+		}
+		else if (userChoice == "displayme") {
+			this->displayUser();
+		}
+		else if (userChoice == "searchbook") {
+			std::string bookTitle{ "" };
+
+			std::cout << "Available books: " << std::endl;
+
+			bookStock.get()->printAllBooks();
+
+
+			std::cout << "Please, enter the title of the book you want to search about: ";
+
+
+			std::getline(std::cin, bookTitle);
+			if (!clearFailedExtraction()) {
+			}
+			else {
+				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+				return false;
+			}
+
+
+			std::shared_ptr<Book> book{ bookStock.get()->getBookFromStock(bookTitle).lock()};
+
+			if (book) {
+				book.get()->printBook();
+			}
+
+		}
+		else if (userChoice == "searchauthor") {
+			std::string authorName{ "" };
+			
+			std::cout << "Available Authors: " << std::endl;
+
+			authorPool.get()->printAllAuthors();
+
+			std::cout << "Please, enter the name of the author you want to search about: ";
+
+			std::getline(std::cin, authorName);
+			if (!clearFailedExtraction()) {
+			}
+			else {
+				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+				return false;
+			}
+
+			std::shared_ptr<Author> author{ authorPool.get()->getAuthorFromPool(authorName).lock()};
+			
+			if (author) {
+				author.get()->printAuthor();
+			}
+
+		}
+		else if (userChoice == "quit") {
+			std::cout << "Exiting the library.";
+		}
+		else {
+			std::cout << "Unknown command: " << userChoice << std::endl;
+		}
+
+		std::cout << "\n\n" << std::endl;
+	}
 }

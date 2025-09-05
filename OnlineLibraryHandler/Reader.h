@@ -6,10 +6,15 @@
 
 #include "IUser.h"
 #include "Book.h"
-#include "BookStock.h"
+
+#include "bookStock.h"
+#include "UserPool.h"
+#include "AuthorPool.h"
+
 
 class UserPool;
 class BookStock;
+class IUser;
 
 class Reader : public IUser {
 protected:
@@ -38,5 +43,6 @@ public:
 	void virtual displayUser() override;
 
 	bool selfModify() override;
+	bool selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) override;
 
 };

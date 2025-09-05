@@ -9,6 +9,8 @@
 #include "Administrator.h"
 #include "Reader.h"
 
+class IUser;
+
 class UserPool {
 private:
 	std::vector<std::shared_ptr<IUser>> m_users;

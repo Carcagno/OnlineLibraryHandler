@@ -148,3 +148,9 @@ bool Reader::selfModify() {
 
 	return true;
 }
+
+bool Reader::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) {
+	
+	
+	return true;
+}

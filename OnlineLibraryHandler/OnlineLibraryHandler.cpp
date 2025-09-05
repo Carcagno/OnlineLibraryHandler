@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 
+#include "IUser.h"
 #include "Reader.h"
 #include "Administrator.h"
 #include "Author.h"
@@ -15,15 +16,15 @@ int main()
     std::shared_ptr<AuthorPool> authorPool{ AuthorPool::create("PlaceHolder/Path") };
     std::shared_ptr<BookStock> bookStock{ std::make_shared<BookStock>("PlaceHolder/Path") };
     std::shared_ptr<UserPool> userPool{ std::make_shared<UserPool>("PlaceHolder/Path") };
-    std::shared_ptr<IUser> activeUser{ std::make_shared<Administrator>("Kevin", bookStock) };
-    
-    std::shared_ptr<Author> aut1{ Author::create("Jean Valjean", authorPool) };
+    std::shared_ptr<IUser> activeUser{ std::make_shared<Administrator>("admin", bookStock) };
 
-    std::shared_ptr<Book> b1{ Book::create("Alice", aut1, Book::bookCategory::Classic, 1894, bookStock) };
-    
+    //to be refined - Add a basic login feature to setup activeUser
+
     std::dynamic_pointer_cast<Administrator>(activeUser).get()->addUser(userPool);
+    std::cout << "You are now logged as: " << std::endl;
+    activeUser.get()->displayUser();
 
-    userPool.get()->displayAllUsers();
-
+    activeUser.get()->selfExecute(authorPool, bookStock, userPool);
+ 
     return 0;
 }
