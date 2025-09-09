@@ -40,7 +40,7 @@ public:
 		//PRINTERS
 	void printAuthor() const;
 
-		//Author's books handler
+	//Author's books handler
 	bool deleteBookFromAuthor(const std::string& bookTitle);
 	void addBookToAuthor(std::weak_ptr<Book> book);
 	bool selfModify();

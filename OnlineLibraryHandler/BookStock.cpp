@@ -45,7 +45,7 @@ bool BookStock::deleteBook(const std::string& bookName) {
 	return false;
 }
 
-bool BookStock::modifyBook(const std::string& bookName, std::weak_ptr<AuthorPool> authorPool) { // to be refined - smartPointer!
+bool BookStock::modifyBook(const std::string& bookName, std::weak_ptr<AuthorPool> authorPool) {
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
 		if (it->get()->getTitle() == bookName) {
 				it->get()->modifyBook(authorPool);
@@ -83,7 +83,7 @@ bool BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {
 	}
 
 	for (auto it{ m_books.begin() }; it != m_books.end(); ++it) {
-		if (it->get()->getTitle() == book.get()->getTitle()) {
+		if (it->get()->getTitle() == book->getTitle()) {
 			if (it->get()->getIsBorrowed()) {
 				it->get()->setIsBorrowed(false);
 				std::cout << "The book was given back to the library and is now available to be borrowed" << std::endl;
@@ -95,7 +95,7 @@ bool BookStock::giveBackBook(std::weak_ptr<Book> bookWeak) {
 			}
 		}
 	}
-	std::cerr << "Could'nt find any Book \"" << book.get()->getTitle() << "\" in the BookStock to give back. BookStock was left untouched." << std::endl;
+	std::cerr << "Could'nt find any Book \"" << book->getTitle() << "\" in the BookStock to give back. BookStock was left untouched." << std::endl;
 	return false;
 }
 

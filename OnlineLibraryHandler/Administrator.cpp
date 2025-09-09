@@ -47,7 +47,7 @@ bool Administrator::addUser(std::shared_ptr<UserPool> userPool) {
 
 
 	if (userPool) {
-		return userPool.get()->addUser(tmpPtrUser);
+		return userPool->addUser(tmpPtrUser);
 	}
 	else {
 		throw std::invalid_argument("Cannot add an user to an inaccessible Pool.");
@@ -56,7 +56,7 @@ bool Administrator::addUser(std::shared_ptr<UserPool> userPool) {
 }
 
 bool Administrator::deleteUser(std::shared_ptr<UserPool> userPool) {
-	if (!(userPool.get()->isEmpty())) {
+	if (!(userPool->isEmpty())) {
 		std::string userName{};
 
 		if (!(readNonEmptyLine("Please, enter the name of the user to delete: ", userName))) {
@@ -64,7 +64,7 @@ bool Administrator::deleteUser(std::shared_ptr<UserPool> userPool) {
 		}
 
 		if (userPool) {
-			return userPool.get()->deleteUser(userName);
+			return userPool->deleteUser(userName);
 		}
 		else {
 			throw std::invalid_argument("Cannot delete an user from an inaccessible Pool.");
@@ -86,14 +86,15 @@ bool Administrator::modifyUser(std::shared_ptr<UserPool> userPool) {
 	}
 
 	if (userPool) {
-		std::weak_ptr<IUser> userWeak{ userPool.get()->getUserFromPool(userName) };
+		std::weak_ptr<IUser> userWeak{ userPool->getUserFromPool(userName) };
 		std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
 		if (userShared) {
 			std::cout << "Current user information: " << std::endl;
 
-			userShared.get()->displayUser();
-			return userShared.get()->selfModify(userPool, m_bookStock.lock());
+			userShared->displayUser();
+
+			return userShared->selfModify(userPool, m_bookStock.lock());
 		}
 	}
 	else {
@@ -113,24 +114,24 @@ void Administrator::showOtherUser(std::shared_ptr<UserPool> userPool) {
 
 	if (userPool) {
 
-		if (userPool.get()->isEmpty()) {
+		if (userPool->isEmpty()) {
 			std::cout << "The user pool is empty! No user to show." << std::endl;
 			return;
 		}
 
 		std::cout << "availableUsers: " << std::endl;
 
-		userPool.get()->displayAllUsers();
+		userPool->displayAllUsers();
 
 		if (!(readNonEmptyLine("Please, enter the name of the user you want to show: ", userName))) {
 			return;
 		}
 
-		std::weak_ptr<IUser> userWeak{ userPool.get()->getUserFromPool(userName) };
+		std::weak_ptr<IUser> userWeak{ userPool->getUserFromPool(userName) };
 		std::shared_ptr<IUser> userShared{ userWeak.lock() };
 
 		if (userShared) {
-				userShared.get()->displayUser();
+				userShared->displayUser();
 		}
 	}
 	else {
@@ -165,7 +166,7 @@ bool Administrator::deleteAuthor(std::shared_ptr<AuthorPool> authorPool) {
 	}
 
 	if (authorPool) {
-		return authorPool.get()->deleteAuthor(authorName);
+		return authorPool->deleteAuthor(authorName);
 	}
 	else {
 		throw std::invalid_argument("Cannot delete an author from an empty Pool.");
@@ -181,7 +182,7 @@ bool Administrator::modifyAuthor(std::shared_ptr<AuthorPool> authorPool) {
 		return false;
 	}
 	if (authorPool) {
-		return authorPool.get()->modifyAuthor(authorName);
+		return authorPool->modifyAuthor(authorName);
 	}
 	else {
 		throw std::invalid_argument("Cannot modify an author from an empty Pool.");
@@ -206,7 +207,7 @@ bool Administrator::addBook(std::shared_ptr<BookStock> bookStock, std::shared_pt
 	}
 
 	if (authorPool) {
-		authorShared = (authorPool.get()->getAuthorFromPool(authorName)).lock();
+		authorShared = (authorPool->getAuthorFromPool(authorName)).lock();
 		if (!authorShared) {
 			std::cerr << "Could'nt find the author " << authorName << "! Impossible to add a non-existent author." << std::endl;
 			return false;
@@ -220,27 +221,23 @@ bool Administrator::addBook(std::shared_ptr<BookStock> bookStock, std::shared_pt
 	std::cout << "Please, choose a category among following ones: " << std::endl;
 	Book::printAllAvailableCategory();
 	
-	if (!(std::cin >> category) || clearFailedExtraction()) {
-		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
-		ignoreLine();
+	
+
+	if (!(readValue("", category))) {
+		std::cerr << "Wrong category value." << std::endl;
 		return false;
 	}
-	ignoreLine();
 
 
-	if (category < 0 || category > Book::bookCategory::defaultValue) {
+	if (category < 0 || category > static_cast<int>(Book::bookCategory::defaultValue)) {
 		std::cerr << "Invalid category." << std::endl;
 		return false;
 	}
-	
-	std::cout << "Please, choose a publication date (Year): " << std::endl;
 
-	if (!(std::cin >> publicationDate) || clearFailedExtraction()) {
-		ignoreLine();
-		std::cout << "Failed extraction... this message should never be prompted" << std::endl;
+	if (!(readValue("Please, choose a publication date (Year): ", publicationDate))) {
+		std::cerr << "Wrong publication date value." << std::endl;
 		return false;
 	}
-	ignoreLine();
 
 	if (publicationDate == -9999) {
 		std::cerr << "Invalid date." << std::endl;
@@ -251,7 +248,7 @@ bool Administrator::addBook(std::shared_ptr<BookStock> bookStock, std::shared_pt
 		auto bookEnd{ Book::create(bookTitle, authorShared, static_cast<Book::bookCategory>(category), publicationDate, bookStock) };
 		if (bookEnd) {
 			std::cout << "\nCreated book: " << std::endl;
-			bookEnd.get()->printBook();
+			bookEnd->printBook();
 			ignoreLine();
 			return true;
 		}
@@ -275,7 +272,7 @@ bool Administrator::deleteBook(std::shared_ptr<BookStock> bookStock) {
 	}
 
 	if (bookStock) {
-		return bookStock.get()->deleteBook(bookTitle);
+		return bookStock->deleteBook(bookTitle);
 	}
 	else {
 		throw std::invalid_argument("Cannot modify a book from an empty Pool");
@@ -290,7 +287,7 @@ bool Administrator::modifyBook(std::shared_ptr<BookStock> bookStock, std::shared
 	}
 
 	if (bookStock) {
-		return bookStock.get()->modifyBook(bookTitle, authorPool);
+		return bookStock->modifyBook(bookTitle, authorPool);
 	}
 	else {
 		throw std::invalid_argument("Cannot modify a book from an empty Pool");
@@ -397,23 +394,18 @@ bool Administrator::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::sha
 
 			std::cout << "Available books: " << std::endl;
 
-			bookStock.get()->printAllBooks();
+			bookStock->printAllBooks();
 
-
-			std::cout << "Please, enter the title of the book you want to search about: ";
-
-
-			std::getline(std::cin, bookTitle);
-			if (clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, enter the title of the book you want to search about: ", bookTitle))) {
 				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
 
 
-			std::shared_ptr<Book> book{ bookStock.get()->getBookFromStock(bookTitle).lock()};
+			std::shared_ptr<Book> book{ bookStock->getBookFromStock(bookTitle).lock()};
 
 			if (book) {
-				book.get()->printBook();
+				book->printBook();
 			}
 
 		}
@@ -422,20 +414,19 @@ bool Administrator::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::sha
 			
 			std::cout << "Available Authors: " << std::endl;
 
-			authorPool.get()->printAllAuthors();
+			authorPool->printAllAuthors();
 
-			std::cout << "Please, enter the name of the author you want to search about: ";
+			std::cout << "";
 
-			std::getline(std::cin, authorName);
-			if (clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, enter the name of the author you want to search about: ", authorName))) {
 				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
 
-			std::shared_ptr<Author> author{ authorPool.get()->getAuthorFromPool(authorName).lock()};
+			std::shared_ptr<Author> author{ authorPool->getAuthorFromPool(authorName).lock()};
 			
 			if (author) {
-				author.get()->printAuthor();
+				author->printAuthor();
 			}
 
 		}

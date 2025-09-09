@@ -56,8 +56,8 @@ public:
 	virtual void setUserName(const std::string& userName) {
 
 		if (userName.empty() || std::all_of(userName.begin(), userName.end(), 
-			[](char c) {
-				return std::isspace(static_cast<unsigned char>(c)); //convert into unsigned char because isspace needs an unsigned char, AFAIK in the doc.
+			[](unsigned char c) {
+				return std::isspace(c); //convert into unsigned char because isspace needs an unsigned char, AFAIK in the doc.
 			})) {
 			std::cerr << "The username cannot be empty or whitespace only." << std::endl;
 			return;

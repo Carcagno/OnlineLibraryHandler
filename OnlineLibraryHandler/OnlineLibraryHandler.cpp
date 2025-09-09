@@ -11,6 +11,8 @@
 #include "BookStock.h"
 #include "AuthorPool.h"
 
+//to be refined - Could consider the usage of std::unordered_map for the pools and stock to reach a O(1) complexity
+
 int main()
 {
     std::shared_ptr<AuthorPool> authorPool{ AuthorPool::create("PlaceHolder/Path") };
@@ -23,9 +25,9 @@ int main()
     //to be refined - Add a basic login feature to setup activeUser
 
     std::cout << "You are now logged as: " << std::endl;
-    activeUser.get()->displayUser();
+    activeUser->displayUser();
 
-    activeUser.get()->selfExecute(authorPool, bookStock, userPool);
+    activeUser->selfExecute(authorPool, bookStock, userPool);
  
     return 0;
 }

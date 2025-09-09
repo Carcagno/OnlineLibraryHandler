@@ -21,7 +21,7 @@ void Reader::cleanUserForDelete() {
 	for (const std::weak_ptr<Book>& book : m_borrowedBooks) {
 		std::shared_ptr<Book> bookSharedPtr{book.lock()};
 		if (bookSharedPtr) {
-			this->giveBackBook(bookSharedPtr.get()->getTitle());
+			this->giveBackBook(bookSharedPtr->getTitle());
 		}
 	}
 
@@ -32,7 +32,7 @@ bool Reader::borrowBook(const std::string& bookName) {
 	std::shared_ptr<BookStock> bookStockShared{ m_bookStock.lock() };
 
 	if (bookStockShared) {
-		std::weak_ptr<Book> bookWeakPtr{ bookStockShared.get()->borrowBook(bookName)};
+		std::weak_ptr<Book> bookWeakPtr{ bookStockShared->borrowBook(bookName)};
 		std::shared_ptr<Book> bookSharedPtr{ bookWeakPtr.lock() };
 		if (bookSharedPtr) {
 			std::cout << "Book: " << bookSharedPtr->getTitle() << " is now borrowed by you " << m_userName << std::endl;
@@ -76,7 +76,7 @@ bool Reader::giveBackBook(const std::string& bookTitle) {
 			std::shared_ptr<Book> bookSharedPtr{ it->lock() };
 			if (bookSharedPtr) {
 				if (bookSharedPtr->getTitle() == bookTitle) {
-					bookStockShared.get()->giveBackBook(bookSharedPtr);
+					bookStockShared->giveBackBook(bookSharedPtr);
 					m_borrowedBooks.erase(it);
 					--m_borrowedBookCount;
 					std::cout << "The book " << bookTitle << " was successfully given back" << std::endl;
@@ -104,7 +104,7 @@ void Reader::displayUser() const {
 		std::shared_ptr<Book> bookSharedPtr{ book.lock() };
 
 		if (bookSharedPtr) {
-			bookSharedPtr.get()->printBook();
+			bookSharedPtr->printBook();
 		}
 		else {
 			std::cerr << "One of the borrowed book is unvalid or impossible to access. Skipping ..." << std::endl;
@@ -112,8 +112,8 @@ void Reader::displayUser() const {
 	}
 }
 
-bool Reader::selfModify(std::shared_ptr<UserPool> userPool, std::shared_ptr<BookStock> bookStock) { // ERROR
-	//to be refined - DRY: mayber IUser implem and call for Admin & Reader ?
+bool Reader::selfModify(std::shared_ptr<UserPool> userPool, std::shared_ptr<BookStock> bookStock) {
+	//to be refined - DRY: mayber IUser implem and call for Admin & Reader ? Be aware of the case currUserType != newUserType
 	std::string newUserName{ "" };
 	char newUserType{ '\0' };
 
@@ -170,11 +170,9 @@ bool Reader::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr
 
 			std::cout << "Available Books in the library: " << std::endl;
 
-			bookStock.get()->printAllBooks();
+			bookStock->printAllBooks();
 
-			std::cout << "Please, Enter the name of the book that you want to borrow: ";
-
-			if (!(std::getline(std::cin, bookTitle)) || clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, Enter the name of the book that you want to borrow: ", bookTitle))) {
 				std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
@@ -188,9 +186,7 @@ bool Reader::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr
 
 			this->printBorrowedBooks();
 			
-			std::cout << "Please, Enter the name of the book that you want to give back: ";
-
-			if (!(std::getline(std::cin, bookTitle)) || clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, Enter the name of the book that you want to give back: ", bookTitle))) {
 				std::cerr << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
@@ -204,23 +200,18 @@ bool Reader::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr
 
 			std::cout << "Available books: " << std::endl;
 
-			bookStock.get()->printAllBooks();
-
-
-			std::cout << "Please, enter the title of the book you want to search about: ";
-
-
+			bookStock->printAllBooks();
 			
-			if (!(std::getline(std::cin, bookTitle)) || clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, enter the title of the book you want to search about: ", bookTitle))) {
 				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
 
 
-			std::shared_ptr<Book> book{ bookStock.get()->getBookFromStock(bookTitle).lock() };
+			std::shared_ptr<Book> book{ bookStock->getBookFromStock(bookTitle).lock() };
 
 			if (book) {
-				book.get()->printBook();
+				book->printBook();
 			}
 
 		}
@@ -229,19 +220,19 @@ bool Reader::selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr
 
 			std::cout << "Available Authors: " << std::endl;
 
-			authorPool.get()->printAllAuthors();
+			authorPool->printAllAuthors();
 
-			std::cout << "Please, enter the name of the author you want to search about: ";
+			std::cout << "";
 
-			if (!(std::getline(std::cin, authorName)) || clearFailedExtraction()) {
+			if (!(readNonEmptyLine("Please, enter the name of the author you want to search about: ", authorName))) {
 				std::cout << "Failed extraction... this message should never be prompted" << std::endl;
 				return false;
 			}
 
-			std::shared_ptr<Author> author{ authorPool.get()->getAuthorFromPool(authorName).lock() };
+			std::shared_ptr<Author> author{ authorPool->getAuthorFromPool(authorName).lock() };
 
 			if (author) {
-				author.get()->printAuthor();
+				author->printAuthor();
 			}
 
 		}

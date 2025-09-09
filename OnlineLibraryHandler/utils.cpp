@@ -46,3 +46,4 @@ bool readCharOption(const std::string& prompt, const std::string& validOptions, 
     }
     return true;
 }
+

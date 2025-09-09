@@ -41,8 +41,8 @@ protected:
 };
 
 TEST_F(AdministratorTest, CreateAndDestroy) {
-	ASSERT_EQ(m_a1.get()->getUserName(), "admin") << "Admin name not set properly";
-	ASSERT_EQ(m_a1.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Admin type not set properly";
+	ASSERT_EQ(m_a1->getUserName(), "admin") << "Admin name not set properly";
+	ASSERT_EQ(m_a1->getUserType(), static_cast<IUser::UserType>('A')) << "Admin type not set properly";
 }
 
 TEST_F(AdministratorTest, GoodCreateUsers) {
@@ -55,17 +55,17 @@ TEST_F(AdministratorTest, GoodCreateUsers) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isUserCreated = m_a1.get()->addUser(m_userPool);
+	isUserCreated = m_a1->addUser(m_userPool);
 	std::string output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isUserCreated) << "User Admin was not created properly";
 
-	std::weak_ptr<IUser> user{ m_userPool.get()->getUserFromPool("John") };
+	std::weak_ptr<IUser> user{ m_userPool->getUserFromPool("John") };
 	std::shared_ptr<Administrator> adminCreated(dynamic_pointer_cast<Administrator>(user.lock()));
 	ASSERT_TRUE(adminCreated) << "Unvalid created User";
 
-	ASSERT_EQ(adminCreated.get()->getUserName(), "John") << "Created admin name not set properly";
-	ASSERT_EQ(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin type not set properly";
+	ASSERT_EQ(adminCreated->getUserName(), "John") << "Created admin name not set properly";
+	ASSERT_EQ(adminCreated->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin type not set properly";
 	std::cin.rdbuf(cin_backup);
 }
 
@@ -80,21 +80,21 @@ TEST_F(AdministratorTest, BadCreateUsers) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isUserCreated = m_a1.get()->addUser(m_userPool);
+	isUserCreated = m_a1->addUser(m_userPool);
 	std::string output = testing::internal::GetCapturedStdout();
 
 	ASSERT_FALSE(isUserCreated) << "User Admin was not created properly";
 	
 	testing::internal::CaptureStdout();
-	isUserCreated = m_a1.get()->addUser(m_userPool);
+	isUserCreated = m_a1->addUser(m_userPool);
 	output = testing::internal::GetCapturedStdout();
 	
 	ASSERT_TRUE(isUserCreated) << "User Admin was not created properly";
 
-	std::weak_ptr<IUser> user{ m_userPool.get()->getUserFromPool("John") };
+	std::weak_ptr<IUser> user{ m_userPool->getUserFromPool("John") };
 	std::shared_ptr<Administrator> adminCreated(dynamic_pointer_cast<Administrator>(user.lock()));
-	ASSERT_NE(adminCreated.get()->getUserName(), "Jill") << "Created admin unproperly handle error in input creation";
-	ASSERT_NE(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('Z')) << "Created admin unproperly handle error in input creation";
+	ASSERT_NE(adminCreated->getUserName(), "Jill") << "Created admin unproperly handle error in input creation";
+	ASSERT_NE(adminCreated->getUserType(), static_cast<IUser::UserType>('Z')) << "Created admin unproperly handle error in input creation";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -108,9 +108,9 @@ TEST_F(AdministratorTest, DeleteUser) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	m_a1.get()->addUser(m_userPool);
+	m_a1->addUser(m_userPool);
 
-	std::weak_ptr<IUser> user{ m_userPool.get()->getUserFromPool("John") };
+	std::weak_ptr<IUser> user{ m_userPool->getUserFromPool("John") };
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -125,12 +125,12 @@ TEST_F(AdministratorTest, DeleteUser) {
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isUserDeleted = m_a1.get()->deleteUser(m_userPool);
+	isUserDeleted = m_a1->deleteUser(m_userPool);
 
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_EQ(isUserDeleted, true) << "Created admin was not deleted correctly";
-	ASSERT_EQ(m_userPool.get()->isEmpty(), true) << "Created admin was not deleted correctly";
+	ASSERT_EQ(m_userPool->isEmpty(), true) << "Created admin was not deleted correctly";
 	std::cin.rdbuf(cin_backup);
 
 }
@@ -144,9 +144,9 @@ TEST_F(AdministratorTest, ModifyUser) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	m_a1.get()->addUser(m_userPool);
+	m_a1->addUser(m_userPool);
 
-	std::weak_ptr<IUser> user{ m_userPool.get()->getUserFromPool("John") };
+	std::weak_ptr<IUser> user{ m_userPool->getUserFromPool("John") };
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -158,14 +158,18 @@ TEST_F(AdministratorTest, ModifyUser) {
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isUserModified = m_a1.get()->modifyUser(m_userPool);
+	isUserModified = m_a1->modifyUser(m_userPool);
 
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isUserModified) << "Admin was not Modified correctly";
 
-	ASSERT_NE(adminCreated.get()->getUserName(), "John") << "Created admin unproperly handle error in input creation";
-	ASSERT_NE(adminCreated.get()->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin unproperly handle error in input creation";
+	std::shared_ptr<IUser> modifiedUser{ m_userPool->getUserFromPool("Billy") };
+	
+	ASSERT_TRUE(modifiedUser) << "The modified user was not found in the pool";
+
+	ASSERT_NE(modifiedUser->getUserName(), "John") << "Created admin unproperly handle error in input creation";
+	ASSERT_NE(modifiedUser->getUserType(), static_cast<IUser::UserType>('A')) << "Created admin unproperly handle error in input creation";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -179,9 +183,9 @@ TEST_F(AdministratorTest, CreateAuthor) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isAuthorCreated =  m_a1.get()->addAuthor(m_authorPool);
+	isAuthorCreated =  m_a1->addAuthor(m_authorPool);
 
-	std::weak_ptr<Author> author{ m_authorPool.get()->getAuthorFromPool("Georges Orwell") };
+	std::weak_ptr<Author> author{ m_authorPool->getAuthorFromPool("Georges Orwell") };
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -190,7 +194,7 @@ TEST_F(AdministratorTest, CreateAuthor) {
 	std::shared_ptr<Author> authorCreated((author.lock()));
 	ASSERT_TRUE(authorCreated) << "Unvalid created Author";
 
-	ASSERT_EQ(authorCreated.get()->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
+	ASSERT_EQ(authorCreated->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -207,9 +211,9 @@ TEST_F(AdministratorTest, DeleteAuthor) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isAuthorCreated = m_a1.get()->addAuthor(m_authorPool);
+	isAuthorCreated = m_a1->addAuthor(m_authorPool);
 
-	std::weak_ptr<Author> author{ m_authorPool.get()->getAuthorFromPool("Georges Orwell") };
+	std::weak_ptr<Author> author{ m_authorPool->getAuthorFromPool("Georges Orwell") };
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -218,19 +222,19 @@ TEST_F(AdministratorTest, DeleteAuthor) {
 	std::shared_ptr<Author> authorCreated((author.lock()));
 	ASSERT_TRUE(authorCreated) << "Unvalid created Author";
 
-	ASSERT_EQ(authorCreated.get()->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
+	ASSERT_EQ(authorCreated->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
 
 	testing::internal::CaptureStdout();
 	std::stringstream ss2("Georges Orwell\n");
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isAuthordeleted = m_a1.get()->deleteAuthor(m_authorPool);
+	isAuthordeleted = m_a1->deleteAuthor(m_authorPool);
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isAuthordeleted) << "Author was not delete properly";
 
-	ASSERT_TRUE(m_authorPool.get()->isEmpty()) << "Author was not deleted properly from the pool";
+	ASSERT_TRUE(m_authorPool->isEmpty()) << "Author was not deleted properly from the pool";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -247,9 +251,9 @@ TEST_F(AdministratorTest, ModifyAuthor) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isAuthorCreated = m_a1.get()->addAuthor(m_authorPool);
+	isAuthorCreated = m_a1->addAuthor(m_authorPool);
 
-	std::weak_ptr<Author> author{ m_authorPool.get()->getAuthorFromPool("Georges Orwell") };
+	std::weak_ptr<Author> author{ m_authorPool->getAuthorFromPool("Georges Orwell") };
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -258,23 +262,23 @@ TEST_F(AdministratorTest, ModifyAuthor) {
 	std::shared_ptr<Author> authorCreated((author.lock()));
 	ASSERT_TRUE(authorCreated) << "Unvalid created Author";
 
-	ASSERT_EQ(authorCreated.get()->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
+	ASSERT_EQ(authorCreated->getAuthorName(), "Georges Orwell") << "Created author unproperly created";
 
 	testing::internal::CaptureStdout();
 	std::stringstream ss2("Georges Orwell\nAnne Boulanger\n");
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isAuthorModified = m_a1.get()->modifyAuthor(m_authorPool);
+	isAuthorModified = m_a1->modifyAuthor(m_authorPool);
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isAuthorModified) << "Author was not modified properly";
 
-	std::weak_ptr<Author> authorChanged{ m_authorPool.get()->getAuthorFromPool("Anne Boulanger") };
+	std::weak_ptr<Author> authorChanged{ m_authorPool->getAuthorFromPool("Anne Boulanger") };
 	std::shared_ptr<Author> authorChangedShared{ authorChanged.lock() };
 
 	ASSERT_TRUE(authorChangedShared) << "Author was not changed properly in the pool";
-	ASSERT_EQ(authorChangedShared.get()->getAuthorName(), "Anne Boulanger") << "Author name was not properly changed un the pool";
+	ASSERT_EQ(authorChangedShared->getAuthorName(), "Anne Boulanger") << "Author name was not properly changed un the pool";
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -289,20 +293,20 @@ TEST_F(AdministratorTest, CreateBook) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isBookCreated = m_a1.get()->addBook(m_bookStock, m_authorPool2);
+	isBookCreated = m_a1->addBook(m_bookStock, m_authorPool2);
 
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
 	ASSERT_TRUE(isBookCreated) << "Book was not created properly";
 
-	std::shared_ptr<Book> createdBook{m_bookStock.get()->getBookFromStock("The mysterious wall of the earth")};
+	std::shared_ptr<Book> createdBook{m_bookStock->getBookFromStock("The mysterious wall of the earth")};
 
 	ASSERT_TRUE(createdBook) << "Created Book not valid";
 
-	EXPECT_EQ(createdBook.get()->getAuthor().lock().get()->getAuthorName(), "John Frutz") << "Created book has wrong author";
-	EXPECT_EQ(createdBook.get()->getCategory(), static_cast<Book::bookCategory>(1)) << "Created book has wrong category";
-	EXPECT_EQ(createdBook.get()->getPublicationDate(), 1995) << "Created book has wrong publicationDate";
+	EXPECT_EQ(createdBook->getAuthor().lock()->getAuthorName(), "John Frutz") << "Created book has wrong author";
+	EXPECT_EQ(createdBook->getCategory(), static_cast<Book::bookCategory>(1)) << "Created book has wrong category";
+	EXPECT_EQ(createdBook->getPublicationDate(), 1995) << "Created book has wrong publicationDate";
 }
 
 TEST_F(AdministratorTest, DeleteBook) {
@@ -315,14 +319,14 @@ TEST_F(AdministratorTest, DeleteBook) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isBookCreated = m_a1.get()->addBook(m_bookStock, m_authorPool2);
+	isBookCreated = m_a1->addBook(m_bookStock, m_authorPool2);
 
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
 	ASSERT_TRUE(isBookCreated) << "Book was not created properly";
 
-	std::shared_ptr<Book> createdBook{ m_bookStock.get()->getBookFromStock("The mysterious wall of the earth") };
+	std::shared_ptr<Book> createdBook{ m_bookStock->getBookFromStock("The mysterious wall of the earth") };
 
 	ASSERT_TRUE(createdBook) << "Created Book not valid";
 
@@ -331,11 +335,11 @@ TEST_F(AdministratorTest, DeleteBook) {
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isBookDeleted = m_a1.get()->deleteBook(m_bookStock);
+	isBookDeleted = m_a1->deleteBook(m_bookStock);
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isBookDeleted) << "Book was not correctly deleted";
-	ASSERT_TRUE(m_bookStock.get()->isStockEmpty());
+	ASSERT_TRUE(m_bookStock->isStockEmpty());
 
 	std::cin.rdbuf(cin_backup);
 }
@@ -352,14 +356,14 @@ TEST_F(AdministratorTest, ModifyBook) {
 	std::stringbuf* buf = ss.rdbuf();
 	std::cin.rdbuf(buf);
 
-	isBookCreated = m_a1.get()->addBook(m_bookStock, m_authorPool2);
+	isBookCreated = m_a1->addBook(m_bookStock, m_authorPool2);
 
 	std::string output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
 	ASSERT_TRUE(isBookCreated) << "Book was not created properly";
 
-	std::shared_ptr<Book> createdBook{ m_bookStock.get()->getBookFromStock("The mysterious wall of the earth") };
+	std::shared_ptr<Book> createdBook{ m_bookStock->getBookFromStock("The mysterious wall of the earth") };
 
 	ASSERT_TRUE(createdBook) << "Created Book not valid";
 
@@ -368,9 +372,9 @@ TEST_F(AdministratorTest, ModifyBook) {
 	std::stringbuf* buf3 = ss3.rdbuf();
 	std::cin.rdbuf(buf3);
 
-	isAuthorCreated = m_a1.get()->addAuthor(m_authorPool2);
+	isAuthorCreated = m_a1->addAuthor(m_authorPool2);
 
-	std::weak_ptr<Author> author{ m_authorPool2.get()->getAuthorFromPool("Tolstoi") };
+	std::weak_ptr<Author> author{ m_authorPool2->getAuthorFromPool("Tolstoi") };
 	output = testing::internal::GetCapturedStdout();
 	std::cin.rdbuf(cin_backup);
 
@@ -381,17 +385,17 @@ TEST_F(AdministratorTest, ModifyBook) {
 	std::stringbuf* buf2 = ss2.rdbuf();
 	std::cin.rdbuf(buf2);
 
-	isBookModified = m_a1.get()->modifyBook(m_bookStock, m_authorPool2);
+	isBookModified = m_a1->modifyBook(m_bookStock, m_authorPool2);
 	output = testing::internal::GetCapturedStdout();
 
 	ASSERT_TRUE(isBookModified) << "Book was not correctly Modified";
 
-	std::shared_ptr<Book> bookShared{ m_bookStock.get()->getBookFromStock("War and peace").lock()};
+	std::shared_ptr<Book> bookShared{ m_bookStock->getBookFromStock("War and peace").lock()};
 
 	ASSERT_TRUE(bookShared) << "The book that was modified is impossible to find in the book stock. Either not modified, corrupted or deleted by mistake";
-	EXPECT_EQ(bookShared.get()->getAuthor().lock().get()->getAuthorName(), "Tolstoi") << "Modified book has wrong author";
-	EXPECT_EQ(bookShared.get()->getCategory(), static_cast<Book::bookCategory>(4)) << "Modified book has wrong category";
-	EXPECT_EQ(bookShared.get()->getPublicationDate(), 1845) << "Modified book has wrong publicationDate";
+	EXPECT_EQ(bookShared->getAuthor().lock()->getAuthorName(), "Tolstoi") << "Modified book has wrong author";
+	EXPECT_EQ(bookShared->getCategory(), static_cast<Book::bookCategory>(4)) << "Modified book has wrong category";
+	EXPECT_EQ(bookShared->getPublicationDate(), 1845) << "Modified book has wrong publicationDate";
 
 	std::cin.rdbuf(cin_backup);
 }
