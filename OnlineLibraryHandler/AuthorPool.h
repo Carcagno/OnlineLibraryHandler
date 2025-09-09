@@ -38,7 +38,4 @@ public:
 
 	//PRINTERS
 	void printAllAuthors() const;
-	
-	
-
 };

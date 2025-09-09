@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36" version="28.1.0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.1.2">
   <diagram name="Page-1" id="cnl19Zu05ogIa-8aHU8F">
-    <mxGraphModel dx="1743" dy="2462" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="872" dy="2024" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -17,16 +17,16 @@
           <mxGeometry x="850" y="-1060" width="390" height="140" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-1" value="Book" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1270" y="1030" width="360" height="540" as="geometry" />
+          <mxGeometry x="1270" y="1030" width="360" height="640" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-2" value="- std::string m_title&lt;br&gt;&lt;div&gt;- std::weak_ptr&amp;lt;Author&amp;gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;m_author&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- bookCategory m_category&lt;/div&gt;&lt;div&gt;- int m_publicationDate&lt;/div&gt;&lt;div&gt;- bool m_isBorrowed&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-1" vertex="1">
-          <mxGeometry y="29" width="360" height="81" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-2" value="&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::string m_title;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::weak_ptr&amp;lt;Author&amp;gt; m_author;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- bookCategory m_category;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- int m_publicationDate;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- bool m_isBorrowed;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::weak_ptr&amp;lt;BookStock&amp;gt; m_bookStock;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-1" vertex="1">
+          <mxGeometry y="29" width="360" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-3" value="+ Book(const std::string&amp;amp; title, std::weak_ptr&amp;lt;Author&amp;gt; author, bookCategory category, int publicationDate)&lt;div&gt;+ ~Book()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;- void setTitle(const std::string&amp;amp; title)&lt;/div&gt;&lt;div&gt;+ void setAuthor(std::weak_ptr&amp;lt;Author&amp;gt; author)&lt;/div&gt;&lt;div&gt;- void setCategory(const bookCategory category)&lt;/div&gt;&lt;div&gt;- void setPublicationDate(const int publicationDate)&lt;br&gt;+ void setIsBorrowed(const bool isBorrowed)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::string getTitle() const&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; getAuthor() const&lt;/div&gt;&lt;div&gt;+ bookCategory getCategory() const&lt;/div&gt;&lt;div&gt;+ int getPublicationDate() const&lt;/div&gt;&lt;div&gt;+ bool getIsBorrowed() const&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- void deleteThisBookInAuthor()&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- void printCategory() const&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void printBook() const&lt;/div&gt;&lt;div&gt;+&amp;nbsp;static void printAllAvailableCategory()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void modifyBook()&lt;br&gt;+ void resetAuthor()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-1" vertex="1">
-          <mxGeometry y="110" width="360" height="430" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-3" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Book(const std::string&amp;amp; title, std::weak_ptr&amp;lt;Author&amp;gt; author, bookCategory category, int publicationDate, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;void setTitle(const std::string&amp;amp; title);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- void setCategory(const bookCategory category);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- void setPublicationDate(const int publicationDate);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- void printCategory() const;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;+ static std::shared_ptr&amp;lt;Book&amp;gt; create(const std::string&amp;amp; title, std::shared_ptr&amp;lt;Author&amp;gt;&amp;amp; author, bookCategory category, int publicationDate, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ ~Book();&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void setAuthor(std::weak_ptr&amp;lt;Author&amp;gt; author);&lt;/div&gt;&lt;div&gt;+ void setIsBorrowed(const bool isBorrowed);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::string getTitle() const;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; getAuthor() const;&lt;/div&gt;&lt;div&gt;+ Book::bookCategory getCategory() const;&lt;/div&gt;&lt;div&gt;+ int getPublicationDate() const;&lt;/div&gt;&lt;div&gt;+ bool getIsBorrowed() const;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void printBook() const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ static void printAllAvailableCategory();&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre; white-space: normal;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ bool modifyBook(std::weak_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/div&gt;&lt;div&gt;+ bool resetAuthor();&lt;/div&gt;&lt;div&gt;+ bool deleteThisBookInAuthor();&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-1" vertex="1">
+          <mxGeometry y="139" width="360" height="501" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-10" value="&lt;span style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;&amp;lt;enumeration&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;bookCategory&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="995" y="1390" width="160" height="170" as="geometry" />
+          <mxGeometry x="965" y="1590" width="160" height="170" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-11" value="Sci-Fi&lt;div&gt;Classic&lt;/div&gt;&lt;div&gt;Autobiography&lt;/div&gt;&lt;div&gt;Roman&lt;/div&gt;&lt;div&gt;Fantasy&lt;/div&gt;&lt;div&gt;Thriller&lt;/div&gt;&lt;div&gt;Essay&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-10" vertex="1">
           <mxGeometry y="50" width="160" height="120" as="geometry" />
@@ -38,15 +38,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-17" value="Author" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1765" y="1150" width="360" height="390" as="geometry" />
+          <mxGeometry x="1790" y="1150" width="360" height="430" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-18" value="- std::string m_authorName&lt;div&gt;- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; m_books&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-17" vertex="1">
-          <mxGeometry y="29" width="360" height="141" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-18" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::string m_authorName;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; m_books;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::weak_ptr&amp;lt;AuthorPool&amp;gt; m_authorPool;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-17" vertex="1">
+          <mxGeometry y="29" width="360" height="91" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-19" value="+ Author(const std::string&amp;amp; authorName)&lt;br&gt;+ ~Author()&lt;br&gt;&lt;div&gt;&lt;br&gt;- void SetAllAuthorBooksToNone()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;+ void setAuthorName(const std::string&amp;amp; authorName)&lt;br&gt;&lt;br&gt;+ std::string getAuthorName() const&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void printAuthor()&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;const&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;+ bool deleteBookFromAuthor(const std::string&amp;amp; bookTitle);&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;void addBookToAuthor(std::weak_ptr&amp;lt;Book&amp;gt; book);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-17" vertex="1">
-          <mxGeometry y="170" width="360" height="220" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-19" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- Author(const std::string&amp;amp; authorName, std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ static std::shared_ptr&amp;lt;Author&amp;gt; create(const std::string&amp;amp; authorName, std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~Author();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void setAuthorName(const std::string&amp;amp; authorName);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;std::string getAuthorName() const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void printAuthor() const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool deleteBookFromAuthor(const std::string&amp;amp; bookTitle);&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void addBookToAuthor(std::weak_ptr&amp;lt;Book&amp;gt; book);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool selfModify();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void SetAllAuthorBooksToNone();&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-17" vertex="1">
+          <mxGeometry y="120" width="360" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-24" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.003;entryY=0.204;entryDx=0;entryDy=0;exitX=1.002;exitY=0.204;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-3" target="HNg3gGWHc3ooryUhJboP-18" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-24" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.003;entryY=0.204;entryDx=0;entryDy=0;exitX=1.002;exitY=0.204;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;startArrow=diamondThin;startFill=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-3" target="HNg3gGWHc3ooryUhJboP-18" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1800" y="1550" as="sourcePoint" />
             <mxPoint x="1850" y="1500" as="targetPoint" />
@@ -54,34 +54,30 @@
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-25" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-24" vertex="1" connectable="0">
           <mxGeometry x="0.0188" y="2" relative="1" as="geometry">
-            <mxPoint x="11" y="3" as="offset" />
+            <mxPoint x="-71" y="48" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-26" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=-0.002;exitY=0.885;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-19" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-26" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;align=left;verticalAlign=bottom;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.51;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-19" target="HNg3gGWHc3ooryUhJboP-3" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">
-            <mxPoint x="1760" y="1560" as="sourcePoint" />
-            <mxPoint x="1630" y="1550" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1720" y="1515" />
-              <mxPoint x="1720" y="1550" />
-            </Array>
+            <mxPoint x="1808.72" y="1640.3500000000004" as="sourcePoint" />
+            <mxPoint x="1630" y="1800.507" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-111" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-26" vertex="1" connectable="0">
           <mxGeometry x="0.0791" y="1" relative="1" as="geometry">
-            <mxPoint x="11" as="offset" />
+            <mxPoint x="66" y="14" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-28" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IUser" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1090" y="-410" width="340" height="430" as="geometry" />
+          <mxGeometry x="1090" y="-570" width="340" height="610" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-29" value="- std::string m_userName&lt;div&gt;- char m_userType&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-28" vertex="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-29" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;div style=&quot;&quot;&gt;- std::string m_userName;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;- std::weak_ptr&amp;lt;BookStock&amp;gt; m_bookStock;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;- UserType m_userType;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-28" vertex="1">
           <mxGeometry y="29" width="340" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-30" value="+ IUser(const std::string&amp;amp; userName, const char userType)&lt;br&gt;+ IUser()&lt;br&gt;+ ~IUser()&amp;nbsp;&lt;div&gt;&lt;br&gt;+ void setUserName(const std::string&amp;amp; userName)&lt;/div&gt;&lt;div&gt;+&amp;nbsp;void setUserType(const char c)&lt;br&gt;&lt;br&gt;+ std::string getUserName() const&lt;/div&gt;&lt;div&gt;+ char getUserType() const&lt;br&gt;&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete() = 0&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void displayUser() = 0&lt;br&gt;&lt;br&gt;+ void selfModify () = 0&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-28" vertex="1">
-          <mxGeometry y="170" width="340" height="260" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-30" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- IUser(const std::string&amp;amp; userName, const IUser::UserType userType, std::weak_ptr&amp;lt;BookStock&amp;gt; bookStock)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;- virtual ~IUser() = default;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;+ IUser() = delete;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ IUser(const IUser&amp;amp;) = delete;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ IUser&amp;amp; operator=(const IUser&amp;amp;) = delete;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ IUser(IUser&amp;amp;&amp;amp;) = delete; &lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ IUser&amp;amp; operator=(IUser&amp;amp;&amp;amp;) = delete;&lt;/span&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;+ virtual void setUserName(const std::string&amp;amp; userName)&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ virtual void setUserType(const IUser::UserType userType)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;br&gt;+ virtual const std::string&amp;amp; getUserName() const&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ virtual UserType getUserType() const&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ virtual void cleanUserForDelete() = 0;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ virtual void displayUser() const&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ virtual bool selfModify(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock) = 0;&lt;br&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ virtual bool selfExecute(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock, std::shared_ptr&amp;lt;UserPool&amp;gt; userPool) = 0;&lt;/span&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-28" vertex="1">
+          <mxGeometry y="170" width="340" height="440" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-33" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;entryX=0.503;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-34" target="HNg3gGWHc3ooryUhJboP-30" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-33" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;entryX=0.503;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.357;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-34" target="HNg3gGWHc3ooryUhJboP-30" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1120" y="240" as="sourcePoint" />
             <mxPoint x="1240" y="60" as="targetPoint" />
@@ -92,24 +88,24 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-34" value="Administrator" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1280" y="150" width="350" height="380" as="geometry" />
+          <mxGeometry x="1280" y="150" width="490" height="470" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-38" value="//" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-34" vertex="1">
-          <mxGeometry y="29" width="350" height="31" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-38" value="&lt;div&gt;//&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-34" vertex="1">
+          <mxGeometry y="29" width="490" height="31" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-36" value="+ Administrator(const std::string&amp;amp; AdministratorName)&lt;br&gt;+ ~Administrator()&lt;br&gt;&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addUser(UserPool&amp;amp; userPool)&lt;br&gt;+ void deleteUser(UserPool&amp;amp; userPool)&lt;br&gt;+ void modifyUser(UserPool&amp;amp; userPool)&lt;br&gt;&lt;div&gt;+ void showOtherUser(const UserPool&amp;amp; userPool, const std::string&amp;amp; userName)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ void addAuthor(AuthorPool&amp;amp; authorPool)&lt;/div&gt;&lt;div&gt;+ void deleteAuthor(AuthorPool&amp;amp; authorPool)&lt;/div&gt;&lt;div&gt;+ void modifyAuthor(AuthorPool&amp;amp; authorPool)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addBook()&lt;/div&gt;&lt;div&gt;+ void deleteBook()&lt;/div&gt;&lt;div&gt;+ void modifyBook()&lt;/div&gt;&lt;div&gt;&lt;br&gt;+&amp;nbsp;void selfModify() override&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-34" vertex="1">
-          <mxGeometry y="60" width="350" height="320" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-36" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ explicit Administrator(const std::string&amp;amp; AdministratorName, std::weak_ptr&amp;lt;BookStock&amp;gt; bookStock);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~Administrator() override = default;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;void cleanUserForDelete() override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre; white-space: normal;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;bool addUser(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool deleteUser(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool);&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool modifyUser(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void displayUser() const override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void showOtherUser(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool addAuthor(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool deleteAuthor(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool modifyAuthor(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool addBook(std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock, &lt;br&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool deleteBook(std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool modifyBook(std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock, std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool selfModify(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock) override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool selfExecute(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock, std::shared_ptr&amp;lt;UserPool&amp;gt; userPool) override;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-34" vertex="1">
+          <mxGeometry y="60" width="490" height="410" as="geometry" />
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-37" value="Reader" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="880" y="150" width="360" height="270" as="geometry" />
+          <mxGeometry x="880" y="150" width="390" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-41" value="- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; m_borrowedBooks&lt;div&gt;- int m_borrowedBookCount&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-37" vertex="1">
-          <mxGeometry y="29" width="360" height="61" as="geometry" />
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-15" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- std::vector&amp;lt;std::weak_ptr&amp;lt;Book&amp;gt;&amp;gt; m_borrowedBooks;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- int m_borrowedBookCount;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-37" vertex="1">
+          <mxGeometry y="29" width="390" height="61" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-39" value="+ Reader(const std::string&amp;amp; readerName)&lt;br&gt;+ ~Reader()&lt;div&gt;&lt;div&gt;&lt;br&gt;+ void cleanUserForDelete() override&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void borrowBook(const std::string&amp;amp; bookName)&lt;br&gt;+ void printBorrowedBooks() const&lt;br&gt;+ void giveBackBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void displayUser()&lt;br&gt;&lt;br&gt;+ void selfModify() override;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-37" vertex="1">
-          <mxGeometry y="90" width="360" height="180" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-39" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ Reader(const std::string&amp;amp; readerName, std::weak_ptr&amp;lt;BookStock&amp;gt; bookStock);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre; white-space: normal;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;~Reader() override = default;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre; white-space: normal;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;virtual void cleanUserForDelete() override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool borrowBook(const std::string&amp;amp; bookName);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void printBorrowedBooks() const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool giveBackBook(const std::string&amp;amp; bookTitle);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ void virtual displayUser() const override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool selfModify(std::shared_ptr&amp;lt;UserPool&amp;gt; userPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock) override;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool selfExecute(std::shared_ptr&amp;lt;AuthorPool&amp;gt; authorPool, std::shared_ptr&amp;lt;BookStock&amp;gt; bookStock, std::shared_ptr&amp;lt;UserPool&amp;gt; userPool) override;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-37" vertex="1">
+          <mxGeometry y="90" width="390" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-40" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="HNg3gGWHc3ooryUhJboP-37" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-40" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.462;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="HNg3gGWHc3ooryUhJboP-37" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1260" y="80" as="sourcePoint" />
             <mxPoint x="1450" y="80" as="targetPoint" />
@@ -118,135 +114,92 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-44" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.101;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.889;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#FF8000;" parent="1" source="HNg3gGWHc3ooryUhJboP-34" target="HNg3gGWHc3ooryUhJboP-37" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-44" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.096;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.696;entryY=1.001;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#FF8000;" parent="1" source="HNg3gGWHc3ooryUhJboP-34" target="HNg3gGWHc3ooryUhJboP-30" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1298.3900000000003" y="91.0499999999999" as="sourcePoint" />
             <mxPoint x="1221.46" y="89.99999999999972" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1315" y="90" />
-              <mxPoint x="1200" y="90" />
-            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-45" value="Create" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-44" vertex="1" connectable="0">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-45" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Create 0..*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-44" vertex="1" connectable="0">
           <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
-            <mxPoint x="11" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-49" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-44" vertex="1" connectable="0">
-          <mxGeometry x="-0.311" relative="1" as="geometry">
-            <mxPoint x="-26" y="10" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.995;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.947;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#FF8000;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1639.65" y="590.3199999999999" as="sourcePoint" />
-            <mxPoint x="1561" y="530" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1630" y="580" />
-              <mxPoint x="1561" y="580" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-48" value="Create" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-47" vertex="1" connectable="0">
-          <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
-            <mxPoint x="11" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-51" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="1593" y="590" as="geometry">
-            <mxPoint x="3" y="1" as="offset" />
+            <mxPoint x="2" y="10" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-56" value="BookStock" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="880" y="580" width="360" height="380" as="geometry" />
+          <mxGeometry x="880" y="580" width="360" height="400" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-57" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Book&amp;gt;&amp;gt; m_books&lt;div&gt;- std::string m_bookFilePath&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-56" vertex="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-57" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Book&amp;gt;&amp;gt; m_books&lt;div&gt;- std::string m_bookFilePath&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-56" vertex="1">
           <mxGeometry y="29" width="360" height="81" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-58" value="+ BookStock(const std::string bookFilePath)&lt;div&gt;+ ~BookStock()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ s&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;td::weak_ptr&amp;lt;Book&amp;gt; getBookFromStock(const std::string&amp;amp; bookName) const;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addBook(std::shared_ptr&amp;lt;Book&amp;gt; book)&lt;/div&gt;&lt;div&gt;+ void deleteBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;+ void modifyBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; borrowBook(const std::string&amp;amp; book)&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void giveBackBook(std::weak_ptr&amp;lt;Book&amp;gt; bookWeak)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;+ void printAllBooks() const&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool isStockEmpty() const&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-56" vertex="1">
-          <mxGeometry y="110" width="360" height="270" as="geometry" />
+        <mxCell id="HNg3gGWHc3ooryUhJboP-58" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ BookStock(const std::string&amp;amp; bookFilePath);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~BookStock();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; getBookFromStock(const std::string&amp;amp; bookName) const;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;+ bool addBook(std::shared_ptr&amp;lt;Book&amp;gt; book);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ bool deleteBook(const std::string&amp;amp; bookName);&lt;/div&gt;&lt;div&gt;+ bool modifyBook(const std::string&amp;amp; bookName, + std::weak_ptr&amp;lt;AuthorPool&amp;gt; authorPool);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ std::weak_ptr&amp;lt;Book&amp;gt; borrowBook(const std::string&amp;amp; bookName);&lt;/div&gt;&lt;div&gt;+ bool giveBackBook(std::weak_ptr&amp;lt;Book&amp;gt; bookWeak);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void printAllBooks() const;&lt;/div&gt;&lt;div&gt;+ bool isStockEmpty() const;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-56" vertex="1">
+          <mxGeometry y="110" width="360" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-59" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.749;exitY=1.005;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-39" target="HNg3gGWHc3ooryUhJboP-56" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-59" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.541;entryY=0.002;entryDx=0;entryDy=0;exitX=0.501;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-39" target="HNg3gGWHc3ooryUhJboP-56" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1110" y="490" as="sourcePoint" />
             <mxPoint x="1110" y="597" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-60" value="holds 0..* weak_ptr&amp;lt;Book&amp;gt; from the stock" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-59" vertex="1" connectable="0">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-60" value="holds 0..* weak_ptr&amp;lt;Book&amp;gt; from the stock&lt;br&gt;Used to perform book related taks" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-59" vertex="1" connectable="0">
           <mxGeometry x="0.0188" y="2" relative="1" as="geometry">
-            <mxPoint x="11" y="3" as="offset" />
+            <mxPoint x="-2" y="3" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-61" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.25;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;fontColor=light-dark(#330000,#EDEDED);labelBackgroundColor=#FFFFFF;strokeColor=#FF8000;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-57" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-61" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.891;entryDx=0;entryDy=0;exitX=0.25;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;fontColor=light-dark(#330000,#EDEDED);labelBackgroundColor=#FFFFFF;strokeColor=#007FFF;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-57" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1430" y="570" as="sourcePoint" />
             <mxPoint x="1290" y="470" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1369" y="650" />
+              <mxPoint x="1403" y="680" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-62" value="Fill/Modify/Delete/QueryShow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-61" vertex="1" connectable="0">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-62" value="&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;Fill/Modify/Delete/QueryShow&lt;br&gt;0..*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-61" vertex="1" connectable="0">
           <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
-            <mxPoint x="11" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-63" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="1240" y="590" as="geometry">
-            <mxPoint x="130" y="74" as="offset" />
+            <mxPoint x="59" y="-29" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-67" value="AuthorPool" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="2060" y="580" width="420" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-68" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Author&amp;gt;&amp;gt; m_authors&lt;div&gt;- std::string m_authorsFilePath&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-67" vertex="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-68" value="- std::vector&amp;lt;std::shared_ptr&amp;lt;Author&amp;gt;&amp;gt; m_authors&lt;div&gt;- std::string m_authorsFilePath&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-67" vertex="1">
           <mxGeometry y="29" width="420" height="81" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-69" value="+&amp;nbsp;&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;(const std::string&amp;amp; authorFilePath)&lt;div&gt;+ ~&lt;span style=&quot;text-align: center;&quot;&gt;AuthorPool&lt;/span&gt;()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void addAuthor(std::shared_ptr&amp;lt;Author&amp;gt; authorName)&lt;/div&gt;&lt;div&gt;+ void deleteAuthor(const std::string&amp;amp; authorName)&lt;/div&gt;&lt;div&gt;+ void modifyAuthor(const std::string&amp;amp; authorName)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ void printAllA&lt;/span&gt;uthors&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;() const&lt;br&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; getAuthorFromPool(const std::string&amp;amp; authorName)&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-67" vertex="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-69" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- AuthorPool(const std::string&amp;amp; authorFilePath);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ static std::shared_ptr&amp;lt;AuthorPool&amp;gt; create(const std::string&amp;amp; authorFilePath);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~AuthorPool();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ std::weak_ptr&amp;lt;Author&amp;gt; getAuthorFromPool(const std::string&amp;amp; authorName) const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool addAuthor(std::shared_ptr&amp;lt;Author&amp;gt; authorName);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ bool deleteAuthor(const std::string&amp;amp; authorName);&lt;/div&gt;&lt;div&gt;+ bool modifyAuthor(const std::string&amp;amp; authorName);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ bool isEmpty() const;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ void printAllAuthors() const;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="HNg3gGWHc3ooryUhJboP-67" vertex="1">
           <mxGeometry y="110" width="420" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-72" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-67" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-72" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;strokeColor=#0066CC;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-67" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1549" y="590" as="sourcePoint" />
             <mxPoint x="1420" y="770" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="2060" y="370" />
+              <mxPoint x="2060" y="415" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-73" value="&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Fill/Modify/Delete/QueryShow&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;*..0&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-72" vertex="1" connectable="0">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-73" value="&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;Fill/Modify/Delete/QueryShow&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;*..0&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-72" vertex="1" connectable="0">
           <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
-            <mxPoint x="11" as="offset" />
+            <mxPoint x="38" y="74" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-74" value="0..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0.502;exitY=1.011;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.372;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-58" target="HNg3gGWHc3ooryUhJboP-3" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-74" value="0..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;align=left;verticalAlign=bottom;rounded=0;exitX=0.502;exitY=1.011;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.006;entryY=0.16;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-58" target="HNg3gGWHc3ooryUhJboP-3" edge="1">
           <mxGeometry x="-0.9377" y="9" relative="1" as="geometry">
             <mxPoint x="1330" y="1300" as="sourcePoint" />
-            <mxPoint x="1180" y="1300" as="targetPoint" />
+            <mxPoint x="1210" y="1290" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1061" y="1300" />
+              <mxPoint x="1061" y="1250" />
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-75" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1600" y="1280" width="30" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-76" value="1..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0.749;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.003;entryY=0.266;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-69" target="HNg3gGWHc3ooryUhJboP-19" edge="1">
-          <mxGeometry x="-0.963" y="19" relative="1" as="geometry">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-76" value="1..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;align=left;verticalAlign=bottom;rounded=0;exitX=0.749;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.003;entryY=0.266;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HNg3gGWHc3ooryUhJboP-69" target="HNg3gGWHc3ooryUhJboP-19" edge="1">
+          <mxGeometry x="-0.9331" y="15" relative="1" as="geometry">
             <mxPoint x="1320.52" y="1390" as="sourcePoint" />
             <mxPoint x="2200" y="1420" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="2375" y="1370" />
-              <mxPoint x="2375" y="1379" />
+              <mxPoint x="2375" y="1350" />
             </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-77" value="*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-76" vertex="1" connectable="0">
-          <mxGeometry x="0.931" y="-2" relative="1" as="geometry">
-            <mxPoint x="-7" y="-18" as="offset" />
+            <mxPoint y="1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-78" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Legend:&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
@@ -276,7 +229,7 @@
         <mxCell id="HNg3gGWHc3ooryUhJboP-90" value="= Inheritance" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="1120" y="-1005" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-91" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.101;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.889;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-91" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.101;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.889;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#FF8000;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1405" y="-966.5" as="sourcePoint" />
             <mxPoint x="1290" y="-968.5" as="targetPoint" />
@@ -286,14 +239,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-92" value="Create" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-91" vertex="1" connectable="0">
+        <mxCell id="HNg3gGWHc3ooryUhJboP-92" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Create&lt;br&gt;0..*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-91" vertex="1" connectable="0">
           <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
             <mxPoint x="11" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="HNg3gGWHc3ooryUhJboP-93" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="HNg3gGWHc3ooryUhJboP-91" vertex="1" connectable="0">
-          <mxGeometry x="-0.311" relative="1" as="geometry">
-            <mxPoint x="-26" y="10" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="HNg3gGWHc3ooryUhJboP-99" value="= Instanciation (0 to infinite instances)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
@@ -346,16 +294,16 @@
         <mxCell id="HNg3gGWHc3ooryUhJboP-115" value="= Aggregation (0 to *infinite instances)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="980" y="-710" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-1" value="UserPool" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-1" value="UserPool" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="1690" y="-320" width="450" height="356" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-2" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- std::vector&amp;lt;std::shared_ptr&amp;lt;IUser&amp;gt;&amp;gt; m_users&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;- std::string m_userFilePath;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="vW5HuOTTJ0uYs6iy90tC-1">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-2" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- std::vector&amp;lt;std::shared_ptr&amp;lt;IUser&amp;gt;&amp;gt; m_users&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;- std::string m_userFilePath;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="vW5HuOTTJ0uYs6iy90tC-1" vertex="1">
           <mxGeometry y="29" width="450" height="131" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-3" value="&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ UserPool(&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;const std::string&amp;amp; userFilePath&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ ~UserPool()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;std::weak_ptr&amp;lt;IUser&amp;gt; getUserFromPool(const std::string&amp;amp; userName)&lt;/div&gt;&lt;br&gt;+ bool addUser(std::shared_ptr&amp;lt;IUser&amp;gt; user)&lt;br&gt;+ bool deleteUser(const std::string&amp;amp; userName)&lt;br&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;+ void displayAllUsers() const&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="vW5HuOTTJ0uYs6iy90tC-1">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-3" value="&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ UserPool(const std::string&amp;amp; userFilePath);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ~UserPool();&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;std::weak_ptr&amp;lt;IUser&amp;gt; getUserFromPool(const std::string&amp;amp; userName);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ bool addUser(std::shared_ptr&amp;lt;IUser&amp;gt; user);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool deleteUser(const std::string&amp;amp; userName);&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ bool isEmpty() const;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre; white-space: normal;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;+ void displayAllUsers() const;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="vW5HuOTTJ0uYs6iy90tC-1" vertex="1">
           <mxGeometry y="160" width="450" height="196" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.154;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.397;entryY=1.003;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="vW5HuOTTJ0uYs6iy90tC-3">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.154;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.397;entryY=1.003;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#0066CC;" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="vW5HuOTTJ0uYs6iy90tC-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1760" y="270" as="sourcePoint" />
             <mxPoint x="1780" y="120" as="targetPoint" />
@@ -364,12 +312,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-6" value="Fill/Modify/Delete/QueryShow&lt;div&gt;0..*&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="vW5HuOTTJ0uYs6iy90tC-5">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-6" value="&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;Fill/Modify/Delete/QueryShow&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;0..*&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="vW5HuOTTJ0uYs6iy90tC-5" vertex="1" connectable="0">
           <mxGeometry x="-0.4852" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="17" y="-161" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-9" value="0..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" edge="1" parent="1">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-9" value="0..*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
           <mxGeometry x="-0.8462" y="-10" relative="1" as="geometry">
             <mxPoint x="1690" y="-120" as="sourcePoint" />
             <mxPoint x="1430" y="-120" as="targetPoint" />
@@ -379,14 +327,131 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-10" value="OnlineLibraryHandler(main)" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="1600" y="630" width="350" height="270" as="geometry" />
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-10" value="OnlineLibraryHandler(main)" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1665" y="680" width="350" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-11" value="- UserPool userPool&lt;br&gt;- AuthorPool authorPool&lt;div&gt;- BookStock bookStock&lt;br&gt;- IUser activeUser&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="vW5HuOTTJ0uYs6iy90tC-10">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-11" value="- UserPool userPool&lt;br&gt;- AuthorPool authorPool&lt;div&gt;- BookStock bookStock&lt;br&gt;- IUser activeUser&lt;/div&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="vW5HuOTTJ0uYs6iy90tC-10" vertex="1">
           <mxGeometry y="29" width="350" height="121" as="geometry" />
         </mxCell>
-        <mxCell id="vW5HuOTTJ0uYs6iy90tC-12" value="+&amp;nbsp;&lt;span style=&quot;text-align: center;&quot;&gt;MainOperationsHandler&lt;/span&gt;()&lt;br&gt;+ ~&lt;span style=&quot;text-align: center;&quot;&gt;MainOperationsHandler&lt;/span&gt;()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="vW5HuOTTJ0uYs6iy90tC-10">
+        <mxCell id="vW5HuOTTJ0uYs6iy90tC-12" value="main ()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" parent="vW5HuOTTJ0uYs6iy90tC-10" vertex="1">
           <mxGeometry y="150" width="350" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-1" value="&lt;span style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;&amp;lt;enumeration&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-size: 12px; font-weight: 700;&quot;&gt;UserType&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1513" y="-550" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-2" value="Reader&lt;br&gt;Administrator" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="Q2lUaQVB5Joi5LT8yYDt-1">
+          <mxGeometry y="50" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-3" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1.001;entryY=0.246;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Q2lUaQVB5Joi5LT8yYDt-2" target="HNg3gGWHc3ooryUhJboP-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1475" y="-251" as="sourcePoint" />
+            <mxPoint x="1360" y="-450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-9" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;align=left;verticalAlign=bottom;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.999;entryY=1.001;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vW5HuOTTJ0uYs6iy90tC-10" target="HNg3gGWHc3ooryUhJboP-30">
+          <mxGeometry x="-0.9789" y="-15" relative="1" as="geometry">
+            <mxPoint x="1750" y="570" as="sourcePoint" />
+            <mxPoint x="1610" y="-10" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1840" y="160" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-10" value="Active user - composition&lt;br&gt;Execute selfExecute (mainloop)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-9">
+          <mxGeometry x="-0.2942" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0.996;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#FF8000;entryX=0.708;entryY=0.001;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1480" y="901" as="sourcePoint" />
+            <mxPoint x="1525" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-13" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Create 0..*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-12">
+          <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
+            <mxPoint x="2" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.689;exitY=1.006;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#FF8000;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-36" target="HNg3gGWHc3ooryUhJboP-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1590" y="760" as="sourcePoint" />
+            <mxPoint x="1590" y="1173" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1620" y="1000" />
+              <mxPoint x="1790" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-15" value="&lt;font style=&quot;color: rgb(255, 128, 0);&quot;&gt;Create 0..*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-14">
+          <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
+            <mxPoint x="-9" y="-91" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-16" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=1.009;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;endFill=1;startArrow=diamondThin;startFill=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-2" target="HNg3gGWHc3ooryUhJboP-58">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="940" y="1150" as="sourcePoint" />
+            <mxPoint x="1098" y="1077" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-18" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-16">
+          <mxGeometry x="-0.1036" y="-3" relative="1" as="geometry">
+            <mxPoint x="32" y="61" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-20" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.082;entryY=1.009;entryDx=0;entryDy=0;exitX=0.85;exitY=-0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;startArrow=diamondThin;startFill=0;" edge="1" parent="1" source="HNg3gGWHc3ooryUhJboP-17" target="HNg3gGWHc3ooryUhJboP-69">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2160" y="1150" as="sourcePoint" />
+            <mxPoint x="2318" y="1077" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-21" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-20">
+          <mxGeometry x="0.0188" y="2" relative="1" as="geometry">
+            <mxPoint x="11" y="87" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1275" y="-760" width="390" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-23" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.101;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.889;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#0066CC;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1435" y="-664.5" as="sourcePoint" />
+            <mxPoint x="1320" y="-666.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1435" y="-725.5" />
+              <mxPoint x="1320" y="-725.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-24" value="&lt;font style=&quot;color: rgb(0, 102, 204);&quot;&gt;Fill / create / ...&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q2lUaQVB5Joi5LT8yYDt-23">
+          <mxGeometry x="0.1083" y="-1" relative="1" as="geometry">
+            <mxPoint x="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-28" value="= Perform some actions &lt;br&gt;through instance of the object" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="-710" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-30" value="1" style="endArrow=open;html=1;startArrow=diamondThin;startFill=1;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.007;entryY=0.294;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vW5HuOTTJ0uYs6iy90tC-11" target="HNg3gGWHc3ooryUhJboP-69">
+          <mxGeometry x="-0.3764" y="-21" relative="1" as="geometry">
+            <mxPoint x="2065" y="1310" as="sourcePoint" />
+            <mxPoint x="1640" y="700" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-32" value="1" style="endArrow=open;html=1;startArrow=diamondThin;startFill=1;align=left;verticalAlign=bottom;rounded=0;entryX=1.007;entryY=0.458;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.004;exitY=0.933;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="vW5HuOTTJ0uYs6iy90tC-11" target="HNg3gGWHc3ooryUhJboP-58">
+          <mxGeometry x="-0.3764" y="-21" relative="1" as="geometry">
+            <mxPoint x="1670" y="823" as="sourcePoint" />
+            <mxPoint x="2008" y="820" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2lUaQVB5Joi5LT8yYDt-34" value="1" style="endArrow=open;html=1;startArrow=diamondThin;startFill=1;align=left;verticalAlign=bottom;rounded=0;entryX=0.598;entryY=1.017;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.844;exitY=0.001;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="vW5HuOTTJ0uYs6iy90tC-10" target="vW5HuOTTJ0uYs6iy90tC-3">
+          <mxGeometry x="-0.968" y="-10" relative="1" as="geometry">
+            <mxPoint x="1863" y="770" as="sourcePoint" />
+            <mxPoint x="1440" y="771" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
