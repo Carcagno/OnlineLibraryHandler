@@ -14,9 +14,8 @@ class BookStock;
 
 class Book: public std::enable_shared_from_this<Book> {
 public:
-	enum bookCategory
-	{
-		SciFi,
+	enum class bookCategory: int {
+		SciFi = 0,
 		Classic,
 		Autobiography,
 		Roman,
@@ -70,8 +69,8 @@ public:
 	static void printAllAvailableCategory();
 		
 		//Book handling
-	void modifyBook(std::weak_ptr<AuthorPool> authorPool);
-	void resetAuthor();
-	void deleteThisBookInAuthor();
+	bool modifyBook(std::weak_ptr<AuthorPool> authorPool);
+	bool resetAuthor();
+	bool deleteThisBookInAuthor();
 
 };

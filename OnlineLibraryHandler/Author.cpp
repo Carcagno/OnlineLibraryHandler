@@ -10,7 +10,7 @@ std::shared_ptr<Author> Author::create(const std::string& authorName, std::share
 	std::shared_ptr<Author> authorShared{ std::shared_ptr<Author>(new Author(authorName, authorPool)) };
 
 	if (authorPool) {
-		authorPool.get()->addAuthor(authorShared);
+		authorPool->addAuthor(authorShared);
 	}
 	else {
 		throw std::invalid_argument("Invalid authorPool during the creation of the author. Aborting creation of the Author ...");
@@ -89,9 +89,8 @@ bool Author::selfModify() {
 	std::string newAuthorName{};
 
 	std::cout << "Please, provide a new name for the author \"" << this->m_authorName << "\": ";
-	//to be refined - cin error & validation
-	std::getline(std::cin, newAuthorName);
-	if (!clearFailedExtraction()) {
+
+	if ((readNonEmptyLine("", newAuthorName))) {
 		m_authorName = newAuthorName;
 	}
 	else {

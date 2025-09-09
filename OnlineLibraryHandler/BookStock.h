@@ -1,5 +1,4 @@
 #pragma once
-//to be refined
 
 #include <memory>
 #include <iostream>

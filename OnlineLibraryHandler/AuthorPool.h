@@ -10,7 +10,6 @@
 class Author;
 
 class AuthorPool {
-	//to be refined - implement class
 private:
 	std::vector<std::shared_ptr<Author>> m_authors;
 	std::string m_authorsFilePath;
@@ -27,7 +26,7 @@ public:
 	~AuthorPool();
 
 	//GETTERS
-	std::weak_ptr<Author> getAuthorFromPool(const std::string& authorName);
+	std::weak_ptr<Author> getAuthorFromPool(const std::string& authorName) const;
 
 	//MISC
 		//Author handling

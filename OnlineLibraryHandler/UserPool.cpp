@@ -34,6 +34,7 @@ bool UserPool::addUser(std::shared_ptr<IUser> user) {
 bool UserPool::deleteUser(const std::string& userName) {
 	for (auto it{ m_users.begin() }; it != m_users.end(); ++it) {
 		if (it->get()->getUserName() == userName) {
+			std::cout << "Deleting " << userName << "." << std::endl;
 			m_users.erase(it);
 			return true;
 		}
@@ -56,7 +57,7 @@ void UserPool::displayAllUsers() const {
 	}
 
 	for (auto it{ m_users.begin() }; it != m_users.end(); ++it) {
-		if (it->get()->getUserType() == 'A') {
+		if (it->get()->getUserType() == IUser::UserType::Administrator) {
 			std::shared_ptr<Administrator> tmpA{ std::dynamic_pointer_cast<Administrator>(*it) };
 
 			tmpA->displayUser();

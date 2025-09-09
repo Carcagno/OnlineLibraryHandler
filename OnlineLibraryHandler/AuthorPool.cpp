@@ -23,7 +23,7 @@ AuthorPool::~AuthorPool() {
 	// to be refined - should exclude empty author in the save file, because default created ?
 }
 
-std::weak_ptr<Author> AuthorPool::getAuthorFromPool(const std::string& authorName) {
+std::weak_ptr<Author> AuthorPool::getAuthorFromPool(const std::string& authorName) const{
 	for (auto it{ m_authors.begin() }; it != m_authors.end(); ++it) {
 		if (it->get()->getAuthorName() == authorName) {
 			return std::weak_ptr<Author>{*it };

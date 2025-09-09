@@ -1,26 +1,20 @@
 #pragma once
 
-#include <iostream>
-#include <algorithm>
+#include <string>
+#include <memory>
 
 #include "IUser.h"
-#include "Reader.h"
-#include "Author.h"
-#include "Utils.h"
 
-#include "BookStock.h"
-#include "UserPool.h"
-#include "AuthorPool.h"
-
-class IUser;
+class Reader;
+class Author;
 class UserPool;
+class AuthorPool;
+class BookStock;
 
 class Administrator : public IUser {
-protected:
-
 public:
 	//CTOR
-	Administrator(const std::string& AdministratorName, std::weak_ptr<BookStock> bookStock);
+	explicit Administrator(const std::string& AdministratorName, std::weak_ptr<BookStock> bookStock);
 
 	//DTOR
 	~Administrator() override = default;
@@ -33,24 +27,24 @@ public:
 	void cleanUserForDelete() override;
 	
 		//user handling
-	bool addUser(std::weak_ptr<UserPool> userPool);
-	bool deleteUser(std::weak_ptr<UserPool> userPool);
-	bool modifyUser(std::weak_ptr<UserPool> userPool);
-	void displayUser() override;
-	void showOtherUser(std::weak_ptr<UserPool> userPool);
+	bool addUser(std::shared_ptr<UserPool> userPool);
+	bool deleteUser(std::shared_ptr<UserPool> userPool);
+	bool modifyUser(std::shared_ptr<UserPool> userPool);
+	void displayUser() const override;
+	void showOtherUser(std::shared_ptr<UserPool> userPool);
 
 		//author handling
-	bool addAuthor(std::weak_ptr<AuthorPool> authorPool);
-	bool deleteAuthor(std::weak_ptr<AuthorPool> authorPool);
-	bool modifyAuthor(std::weak_ptr<AuthorPool> authorPool);
+	bool addAuthor(std::shared_ptr<AuthorPool> authorPool);
+	bool deleteAuthor(std::shared_ptr<AuthorPool> authorPool);
+	bool modifyAuthor(std::shared_ptr<AuthorPool> authorPool);
 
 		//book handling
-	bool addBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
-	bool deleteBook(std::weak_ptr<BookStock> bookStock);
-	bool modifyBook(std::weak_ptr<BookStock> bookStock, std::weak_ptr<AuthorPool> authorPool);
+	bool addBook(std::shared_ptr<BookStock> bookStock, std::shared_ptr<AuthorPool> authorPool);
+	bool deleteBook(std::shared_ptr<BookStock> bookStock);
+	bool modifyBook(std::shared_ptr<BookStock> bookStock, std::shared_ptr<AuthorPool> authorPool);
 
 		//Self handling
-	bool selfModify() override;
+	bool selfModify(std::shared_ptr<UserPool> userPool, std::shared_ptr<BookStock> bookStock) override;
 	bool selfExecute(std::shared_ptr<AuthorPool> authorPool, std::shared_ptr<BookStock> bookStock, std::shared_ptr<UserPool> userPool) override;
 
  };

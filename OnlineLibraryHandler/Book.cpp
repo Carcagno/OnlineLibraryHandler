@@ -47,7 +47,8 @@ void Book::setAuthor(std::weak_ptr<Author> author) {
 		m_author = author;
 	}
 	else {
-		//to be refined - handle exception
+		std::cerr << "Invalid author";
+		return;
 	}
 }
 
@@ -83,19 +84,23 @@ bool Book::getIsBorrowed() const {
 	return m_isBorrowed;
 }
 
-void Book::deleteThisBookInAuthor() {
+bool Book::deleteThisBookInAuthor() {
 	std::shared_ptr<Author> author{ m_author.lock() };
 	
 	if (!author) {
 		//Author = None / Unknown. No need to delete the book in any author book
-		return;
+		std::cout << "No author linked to this book. No needs to delete this book in the author." << std::endl;
+		return false;
 	}
 
 	if (!(author->deleteBookFromAuthor(m_title))) {
 		//std::cerr << "Warning: a deleted book may remain referenced in his author with an invalid state because it fails to delete itself." << std::endl;
 		//The failure of the deletion could be normal, considering the fact that, at the end of the program, everything is destructed in the reverse order of creation. 
 		//No needs to show an error message to the user, but could be interesting to have a log file, with those warning displayed.
+		return false;
 	}
+
+	return true;
 }
 
 void Book::printCategory() const {
@@ -165,7 +170,7 @@ void Book::printAllAvailableCategory() {
 	std::cout << "Available categories: \n1. SciFi\n2. Classic\n3. Autobiography\n4. Roman\n5. Fantasy\n6. Thriller\n7.	Essay" << std::endl;
 }
 
-void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
+bool Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	std::string title{""};
 	std::string authorName{""};
 	int category{ -1 };
@@ -173,10 +178,9 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	std::shared_ptr<AuthorPool> authorPoolShared{ authorPool.lock() };
 
 
-	std::cout << "Actual title: " << m_title << "\nEnter new title (leave empty to keep old title): ";
-	std::getline(std::cin, title);
-	if (!clearFailedExtraction()) {
-	}
+	std::cout << "Actual title: " << m_title << "\nEnter new title: ";
+	if (!(readNonEmptyLine("", title)))
+		return false;
 
 	if (title != "" && title != "\n") {
 		m_title = title;
@@ -184,12 +188,11 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 
 	std::shared_ptr<Author> author{ m_author.lock() };
 	if (author) {
-		std::cout << "Actual author: " << author->getAuthorName() << "\nEnter new author name (leave empty to keep old author): ";
-		std::cin >> authorName;
+		std::cout << "Actual author: " << author->getAuthorName() << "\nEnter new author name: ";
 
-		if (authorName != "" && authorName != "\n") {
+		if (readNonEmptyLine("", authorName)) {
 			if (authorPoolShared) {
-				std::shared_ptr<Author> author{ authorPoolShared.get()->getAuthorFromPool(authorName).lock()};
+				std::shared_ptr<Author> author{ authorPoolShared->getAuthorFromPool(authorName).lock()};
 				if (author) {
 					m_author = author;
 				}
@@ -208,29 +211,36 @@ void Book::modifyBook(std::weak_ptr<AuthorPool> authorPool) {
 	
 	std::cout << "Actual book category: ";
 	printCategory();
-	std::cout << "Enter the new category number (leave empty to keep old category):\n ";
+	std::cout << "Enter the new category number:\n ";
 	printAllAvailableCategory();
 
-	std::cin >> category;
+	if (!(readValue("", category)))
+		return false;
 
-	if (category >= 0 && category < bookCategory::defaultValue) {
+	if (category >= 0 && category < static_cast<int>(bookCategory::defaultValue)) {
 		m_category = static_cast<bookCategory>(category);
 	}
 	else {
 		std::cout << "Invalid category. Old category left untouched. Please, retry to modifyBook again if you want to change the category" << std::endl;
 	}
 
-	std::cout << "Actual publication date: " << m_publicationDate << "\nEnter new publication date (leave empty to keep old publication date): ";
-	std::cin >> publicationDate;
+	std::cout << "Actual publication date: " << m_publicationDate << "\nEnter new publication date: ";
+	if (!(readValue("", publicationDate)))
+		return false;
 
 	if (publicationDate != -9999) {
 		m_publicationDate = publicationDate;
+	}
+	else {
+		std::cout << "Invalid publication date." << std::endl;
+		return false;
 	}
 	
 	std::cout << "Book updated. Updated book: " << std::endl;
 	printBook();
 }
 
-void Book::resetAuthor() {
+bool Book::resetAuthor() {
 	this->m_author.reset();
+	return true;
 }
